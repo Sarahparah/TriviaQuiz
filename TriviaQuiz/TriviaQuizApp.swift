@@ -9,6 +9,13 @@ import SwiftUI
 
 @main
 struct TriviaQuizApp: App {
+    
+    init() {
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
