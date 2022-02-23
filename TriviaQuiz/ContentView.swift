@@ -9,9 +9,44 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        
+        NavigationView{
+            
+            ZStack {
+                
+                
+                Color
+                    .red
+                    .ignoresSafeArea()
+                ZStack{
+                                    
+                Circle()
+                    .fill(.black)
+                    .padding()
+                    
+        
+                
+                NavigationLink(destination: TriviaView()) {
+                    
+                    Text("Enter game")
+                        .foregroundColor(.white)
+                }
+                }
+                .offset(y: -60)
+                .navigationTitle("TriviaQuiz") 
+                
+            }
+            
+            
+            
+            
+        }
+        
+        
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

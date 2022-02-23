@@ -14,6 +14,8 @@
 		415AC1B027C664980042886E /* TriviaQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1AF27C664980042886E /* TriviaQuizTests.swift */; };
 		415AC1BA27C664980042886E /* TriviaQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1B927C664980042886E /* TriviaQuizUITests.swift */; };
 		415AC1BC27C664980042886E /* TriviaQuizUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1BB27C664980042886E /* TriviaQuizUITestsLaunchTests.swift */; };
+		415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1C927C66C9D0042886E /* TriviaView.swift */; };
+		415AC1CD27C670700042886E /* TriviaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1CC27C670700042886E /* TriviaButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		415AC1B527C664980042886E /* TriviaQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriviaQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		415AC1B927C664980042886E /* TriviaQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuizUITests.swift; sourceTree = "<group>"; };
 		415AC1BB27C664980042886E /* TriviaQuizUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuizUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		415AC1C927C66C9D0042886E /* TriviaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaView.swift; sourceTree = "<group>"; };
+		415AC1CC27C670700042886E /* TriviaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 		415AC19D27C664960042886E /* TriviaQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				415AC1CB27C66EA10042886E /* Component */,
+				415AC1C827C66C800042886E /* Views */,
 				415AC19E27C664960042886E /* TriviaQuizApp.swift */,
 				415AC1A027C664960042886E /* ContentView.swift */,
 				415AC1A227C664980042886E /* Assets.xcassets */,
@@ -125,6 +131,22 @@
 				415AC1BB27C664980042886E /* TriviaQuizUITestsLaunchTests.swift */,
 			);
 			path = TriviaQuizUITests;
+			sourceTree = "<group>";
+		};
+		415AC1C827C66C800042886E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				415AC1C927C66C9D0042886E /* TriviaView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		415AC1CB27C66EA10042886E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				415AC1CC27C670700042886E /* TriviaButton.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +279,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415AC1CD27C670700042886E /* TriviaButton.swift in Sources */,
 				415AC1A127C664960042886E /* ContentView.swift in Sources */,
+				415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */,
 				415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
