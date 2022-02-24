@@ -16,6 +16,7 @@
 		415AC1BC27C664980042886E /* TriviaQuizUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1BB27C664980042886E /* TriviaQuizUITestsLaunchTests.swift */; };
 		415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1C927C66C9D0042886E /* TriviaView.swift */; };
 		415AC1CD27C670700042886E /* TriviaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1CC27C670700042886E /* TriviaButton.swift */; };
+		B350222627C69C7600D3E404 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222527C69C7600D3E404 /* ProgressBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		415AC1BB27C664980042886E /* TriviaQuizUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuizUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		415AC1C927C66C9D0042886E /* TriviaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaView.swift; sourceTree = "<group>"; };
 		415AC1CC27C670700042886E /* TriviaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaButton.swift; sourceTree = "<group>"; };
+		B350222527C69C7600D3E404 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				415AC1CC27C670700042886E /* TriviaButton.swift */,
+				B350222527C69C7600D3E404 /* ProgressBar.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				415AC1CD27C670700042886E /* TriviaButton.swift in Sources */,
 				415AC1A127C664960042886E /* ContentView.swift in Sources */,
 				415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */,
+				B350222627C69C7600D3E404 /* ProgressBar.swift in Sources */,
 				415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
