@@ -9,26 +9,35 @@ import Foundation
 import SwiftUI
 
 struct TriviaView : View {
+
+    var triviaManager = TriviaManager()
+    //var settingsView = settingsView()
+    var currentGame = 0 
     
     var body: some View {
+
         VStack{
-            Text("Trivia Game")
+
+            Text("\(TriviaManager.index) out of \(triviaManager.numberOfQuestions[0])")
+
             
-            Text("Question")
+            Text(triviaManager.questionArray[TriviaManager.index])
             
             Spacer()
             
             VStack{
-                TriviaButton(text: "Answer 1")
-                TriviaButton(text: "Answer 2")
-                TriviaButton(text: "Answer 3")
-                TriviaButton(text: "Answer 4")
+
+                TriviaButton(text: triviaManager.answerArray[0]) 
+                TriviaButton(text: triviaManager.answerArray[1])
+                TriviaButton(text: triviaManager.answerArray[2])
+                TriviaButton(text: triviaManager.answerArray[3])
+
             }
+
             Spacer()
-            
-            
-            
+
         }
+        .navigationTitle("TriviaQuiz")
     }
     
 }
@@ -38,6 +47,9 @@ struct TriviaView : View {
 struct TriviaViewPreviews: PreviewProvider {
     static var previews: some View {
         TriviaView()
-            
+
     }
 }
+
+
+
