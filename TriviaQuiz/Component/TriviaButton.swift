@@ -13,12 +13,15 @@ struct TriviaButton: View {
     
     var text: String
     var background: Color?
-    
-    
+
+    var triviaManager = TriviaManager()
+
     var body: some View {
         
         Button(action: {
             print(text)
+            TriviaManager.index += 1
+
         }) {
             Text("\(text)")
                 .foregroundColor(.green)

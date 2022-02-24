@@ -9,15 +9,16 @@ import Foundation
 import SwiftUI
 
 struct SettingsView : View {
-    
 
-    
+    var triviaManager = TriviaManager()
+
     let categorys = ["History", "Entertainment: books", "General knowledge", "Entertainment: Cartoons&Animations", "Science&Nature", "Geography"]
     
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
     
     let difficulty = ["Easy", "Medium", "Hard"]
-    let numberOfQuestions = ["10", "20", "30", "40", "50"]
+    
+    //let numberOfQuestions = ["10", "20", "30", "40", "50"]
     
     @State var selectedCategoryIndex = 0
     @State var selectedDifficultyIndex = 0
@@ -43,7 +44,7 @@ struct SettingsView : View {
            
             PickerStack(array: difficulty, title: "difficulty", index: selectedDifficultyIndex)
             Spacer()
-            PickerStack(array: numberOfQuestions, title: "number of questions", index: selectedNumberOfQuestions)
+            PickerStack(array: triviaManager.numberOfQuestions, title: "number of questions", index: selectedNumberOfQuestions)
             Spacer()
             NavigationLink(destination: TriviaView()) {
                 Text("START YOUR GAME")

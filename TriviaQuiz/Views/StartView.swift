@@ -21,7 +21,7 @@ struct ContentView: View {
                 ZStack{
                                     
                 Circle()
-                    //.fill(.black)
+                    
                         .fill(LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .padding()
                     
@@ -40,13 +40,11 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .font(.title)
                             .bold()
+                       }
                     }
-                    
-                }
                 }
                 .offset(y: -60)
-                .navigationTitle("TriviaQuiz")
-                
+                .navigationTitle("TriviaQuiz") 
             }
         }
     }
