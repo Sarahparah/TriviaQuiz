@@ -25,11 +25,23 @@ struct ContentView: View {
                         .fill(LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .padding()
                     
-                NavigationLink(destination: TriviaView()) {
+                NavigationLink(destination: SettingsView()) {
                     
-                    Text("Enter game")
-                        .foregroundColor(.white)
-                        .font(.title)
+                    ZStack{
+                        Circle()
+                            .fill(.blue)
+                            .padding(50)
+                            .shadow(color: .white, radius: 5)
+                        Circle()
+                            .fill(.yellow)
+                            .padding(110)
+                            .shadow(color: .white, radius: 5)
+                        Text("Enter game")
+                            .foregroundColor(.white)
+                            .font(.title)
+                            .bold()
+                    }
+                    
                 }
                 }
                 .offset(y: -60)
