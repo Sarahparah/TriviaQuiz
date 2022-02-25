@@ -12,7 +12,7 @@ struct QuestionIndex: View {
     @EnvironmentObject var triviaManager: TriviaManager
 
     var body: some View {
-        Text("\(triviaManager.index) out of \(triviaManager.numberOfQuestions[0])")
+        Text("\(triviaManager.index+1) out of \(triviaManager.numberOfQuestions[0])")
         
     }
 }
