@@ -8,16 +8,17 @@
 import Foundation
 
 
-struct TriviaManager {
+class TriviaManager : ObservableObject {
     
     var questionArray = ["A", "B", "C", "D", "E", "F"]
     var answerArray = ["1", "2", "3", "4"]
-    static var index: Int = 1
+    @Published var index: Int = 1
     let numberOfQuestions = ["10", "20", "30", "40", "50"]
+    @Published var quizData: QuizData?
     
     func fetchTrivia()  {
         
-        let url = URL(string : "https://opentdb.com/api.php?amount=10")
+        let url = URL(string : "https://opentdb.com/api.php?amount=10&type=multiple")
         
         guard url != nil else {
             print("error creating url object")
@@ -33,13 +34,14 @@ struct TriviaManager {
                 let decoder = JSONDecoder()
                 
                 do{
-                    let dictionary = try decoder.decode(QuizData.self, from: data!)
-                    print(dictionary)
+                    self.quizData = try decoder.decode(QuizData.self, from: data!)
+                   // print(quizData)
+                    let q = self.quizData?.results[0].question
+                    print(q)
                     
-                }catch {
+                } catch {
                     print("error")
                 }
-                
             }
         }
         dataTask.resume()
