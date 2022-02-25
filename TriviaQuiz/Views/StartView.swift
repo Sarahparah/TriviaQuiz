@@ -44,7 +44,7 @@ struct ContentView: View {
                     }
                 }
                 .offset(y: -60)
-                .navigationTitle("TriviaQuiz") 
+                .navigationTitle("TriviaQuiz")
             }
         }
     }
