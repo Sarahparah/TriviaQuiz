@@ -17,16 +17,16 @@ struct TriviaView : View {
 
         VStack{
             Spacer()
-            Text(triviaManager.quizData?.results[0].question ?? "Error")
+            Text(triviaManager.quizData?.results[0].question ?? "Loading...")
             
             Spacer()
             
             VStack{
 
-                TriviaButton(text: triviaManager.quizData?.results[0].correct_answer ?? "Error")
-                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[0] ?? "Error")
-                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[1] ?? "Error")
-                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[2] ?? "Error")
+                TriviaButton(text: triviaManager.quizData?.results[0].correct_answer ?? "Loading...")
+                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[0] ?? "Loading...")
+                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[1] ?? "Loading...")
+                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[2] ?? "Loading...")
             }
             Spacer()
         }
