@@ -31,18 +31,12 @@ struct TriviaView : View {
                 TriviaButton(text: triviaManager.answerArray[1])
                 TriviaButton(text: triviaManager.answerArray[2])
                 TriviaButton(text: triviaManager.answerArray[3])
-
             }
-
             Spacer()
-
         }
         .navigationTitle("TriviaQuiz")
     }
-    
 }
-
-
 
 struct TriviaViewPreviews: PreviewProvider {
     static var previews: some View {

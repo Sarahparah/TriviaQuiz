@@ -24,14 +24,9 @@ struct SettingsView : View {
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
     
-    
-    
-    
     var body: some View {
         
         ZStack{
-            
-        
             LinearGradient(colors: [.blue, Color.yellow.opacity(0.5)], startPoint: .topTrailing, endPoint: .bottomLeading)
                 .ignoresSafeArea()
         
@@ -49,28 +44,23 @@ struct SettingsView : View {
             NavigationLink(destination: TriviaView()) {
                 Text("START YOUR GAME")
                     .foregroundColor(.green)
-                    
-                
             }
-            
-          
         }
-            
         .navigationTitle("Customize your game")
         .frame(width: 300, height: 600, alignment: .center)
         .background(.teal)
         .cornerRadius(10)
-        
+        .onAppear(perform: printFetch)
     }
-    
 }
+    func printFetch() {
+        var x = triviaManager.fetchTrivia()
+        print(x)
+    }
 }
 
 struct SettingsViewPreviews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-      
     }
-    
 }
-

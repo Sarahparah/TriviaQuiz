@@ -20,6 +20,8 @@
 		415AC1D127C7B4430042886E /* PickerStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1D027C7B4430042886E /* PickerStack.swift */; };
 		B350222827C7CA1E00D3E404 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222727C7CA1E00D3E404 /* ProgressBar.swift */; };
 		B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222A27C7CBC600D3E404 /* TriviaManager.swift */; };
+		C852023827C8ED8A0045AACD /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023727C8ED8A0045AACD /* QuizData.swift */; };
+		C852023A27C8EDE00045AACD /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023927C8EDE00045AACD /* QuestionData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		415AC1D027C7B4430042886E /* PickerStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerStack.swift; sourceTree = "<group>"; };
 		B350222727C7CA1E00D3E404 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B350222A27C7CBC600D3E404 /* TriviaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaManager.swift; sourceTree = "<group>"; };
+		C852023727C8ED8A0045AACD /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
+		C852023927C8EDE00045AACD /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				415AC1A027C664960042886E /* StartView.swift */,
-				415AC1C927C66C9D0042886E /* TriviaView.swift */,
 				415AC1CE27C79D7C0042886E /* SettingsView.swift */,
+				415AC1C927C66C9D0042886E /* TriviaView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				B350222A27C7CBC600D3E404 /* TriviaManager.swift */,
+				C852023727C8ED8A0045AACD /* QuizData.swift */,
+				C852023927C8EDE00045AACD /* QuestionData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +312,8 @@
 				415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */,
 				415AC1D127C7B4430042886E /* PickerStack.swift in Sources */,
 				415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */,
+				C852023A27C8EDE00045AACD /* QuestionData.swift in Sources */,
+				C852023827C8ED8A0045AACD /* QuizData.swift in Sources */,
 				B350222827C7CA1E00D3E404 /* ProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
