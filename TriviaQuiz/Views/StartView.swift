@@ -9,19 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @StateObject var triviaManager = TriviaManager()
+    
     var body: some View {
         
         NavigationView{
             
             ZStack {
-            
                 LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea()
-                
                 ZStack{
-                                    
                 Circle()
-                    
                         .fill(LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .padding()
                     
@@ -46,7 +44,7 @@ struct ContentView: View {
                 .offset(y: -60)
                 .navigationTitle("TriviaQuiz")
             }
-        }
+        }.environmentObject(triviaManager)
     }
 }
 

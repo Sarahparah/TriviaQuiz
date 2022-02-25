@@ -10,31 +10,28 @@ import SwiftUI
 
 struct TriviaView : View {
 
-    var triviaManager = TriviaManager()
-    //var settingsView = settingsView()
-    var currentGame = 0 
+    @EnvironmentObject var triviaManager : TriviaManager
+    var currentGame = 0
     
     var body: some View {
 
         VStack{
-
-            Text("\(TriviaManager.index) out of \(triviaManager.numberOfQuestions[0])")
-
-            
-            Text(triviaManager.questionArray[TriviaManager.index])
+            Spacer()
+            Text(triviaManager.quizData?.results[0].question ?? "Error")
             
             Spacer()
             
             VStack{
 
-                TriviaButton(text: triviaManager.answerArray[0]) 
-                TriviaButton(text: triviaManager.answerArray[1])
-                TriviaButton(text: triviaManager.answerArray[2])
-                TriviaButton(text: triviaManager.answerArray[3])
+                TriviaButton(text: triviaManager.quizData?.results[0].correct_answer ?? "Error")
+                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[0] ?? "Error")
+                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[1] ?? "Error")
+                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[2] ?? "Error")
             }
             Spacer()
         }
         .navigationTitle("TriviaQuiz")
+        .navigationBarItems(trailing: QuestionIndex())
     }
 }
 

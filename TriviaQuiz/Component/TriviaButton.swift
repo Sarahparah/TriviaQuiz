@@ -20,8 +20,8 @@ struct TriviaButton: View {
         
         Button(action: {
             print(text)
-            TriviaManager.index += 1
-
+            triviaManager.index += 1
+           // self.opacity(configuration.isPressed ? 0.7 : 1)
         }) {
             Text("\(text)")
                 .foregroundColor(.green)
@@ -29,8 +29,16 @@ struct TriviaButton: View {
                 .background(.blue)
                 .cornerRadius(10)
                 .shadow(radius: 5)
-                
-        }
+        }.buttonStyle(MyButtonStyle())
     }
     
+}
+
+struct MyButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .background(.quaternary, in: Capsule())
+            .opacity(configuration.isPressed ? 0.5 : 1)
+    }
 }

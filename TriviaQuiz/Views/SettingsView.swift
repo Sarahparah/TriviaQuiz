@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SettingsView : View {
 
-    var triviaManager = TriviaManager()
+    @EnvironmentObject var triviaManager : TriviaManager
 
     let categorys = ["History", "Entertainment: books", "General knowledge", "Entertainment: Cartoons&Animations", "Science&Nature", "Geography"]
     

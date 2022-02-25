@@ -22,6 +22,7 @@
 		B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222A27C7CBC600D3E404 /* TriviaManager.swift */; };
 		C852023827C8ED8A0045AACD /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023727C8ED8A0045AACD /* QuizData.swift */; };
 		C852023A27C8EDE00045AACD /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023927C8EDE00045AACD /* QuestionData.swift */; };
+		C852023C27C91ECA0045AACD /* QuestionIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023B27C91ECA0045AACD /* QuestionIndex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		B350222A27C7CBC600D3E404 /* TriviaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaManager.swift; sourceTree = "<group>"; };
 		C852023727C8ED8A0045AACD /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
 		C852023927C8EDE00045AACD /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
+		C852023B27C91ECA0045AACD /* QuestionIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionIndex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				415AC1CC27C670700042886E /* TriviaButton.swift */,
 				415AC1D027C7B4430042886E /* PickerStack.swift */,
 				B350222727C7CA1E00D3E404 /* ProgressBar.swift */,
+				C852023B27C91ECA0045AACD /* QuestionIndex.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				415AC1CF27C79D7C0042886E /* SettingsView.swift in Sources */,
 				415AC1CD27C670700042886E /* TriviaButton.swift in Sources */,
 				415AC1A127C664960042886E /* StartView.swift in Sources */,
+				C852023C27C91ECA0045AACD /* QuestionIndex.swift in Sources */,
 				415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */,
 				415AC1D127C7B4430042886E /* PickerStack.swift in Sources */,
 				415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */,
