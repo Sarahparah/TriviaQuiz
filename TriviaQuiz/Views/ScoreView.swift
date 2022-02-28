@@ -7,11 +7,26 @@
 
 import SwiftUI
 
+
+
 struct ScoreView: View {
+    
+    @EnvironmentObject var triviaManager : TriviaManager
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        
+        Text("\(triviaManager.score) out of \(triviaManager.numberOfQuestions)")
     }
 }
+
+
+
+
+
+
+
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {

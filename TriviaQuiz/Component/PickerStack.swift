@@ -10,6 +10,8 @@ import SwiftUI
 
 struct PickerStack:  View {
     
+    @EnvironmentObject var triviaManager : TriviaManager
+    
     var array: [String]
     var title: String
     //var color: Color
@@ -23,6 +25,8 @@ struct PickerStack:  View {
         HStack{
             
             Text("Selected \(title): \(array[index])")
+           
+            
             
         }
     
@@ -35,10 +39,13 @@ struct PickerStack:  View {
             
             }
         .pickerStyle(SegmentedPickerStyle())
-        
+
         }
         
+        
     }
+    
+    
 }
 
 

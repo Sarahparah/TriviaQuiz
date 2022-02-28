@@ -19,9 +19,15 @@ struct TriviaButton: View {
     var body: some View {
         
         Button(action: {
+            
             print(text)
+            
+            if text == triviaManager.quizData?.results[triviaManager.index].correct_answer {
+                triviaManager.score += 1
+                print(triviaManager.score)
+            }
             triviaManager.nextQuestion()
-           // self.opacity(configuration.isPressed ? 0.7 : 1)
+            // self.opacity(configuration.isPressed ? 0.7 : 1)
         }) {
             Text("\(text)")
                 .foregroundColor(.green)
