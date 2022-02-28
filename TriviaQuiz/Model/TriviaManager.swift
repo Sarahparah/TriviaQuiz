@@ -10,11 +10,12 @@ import Foundation
 
 class TriviaManager : ObservableObject {
     
-    var questionArray = ["A", "B", "C", "D", "E", "F"]
-    var answerArray = ["1", "2", "3", "4"]
+   // var questionArray = ["A", "B", "C", "D", "E", "F"]
+   // var answerArray = ["1", "2", "3", "4"]
     @Published var index: Int = 0
     let numberOfQuestions = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
+    @Published var isGameEnded = false
     
     func fetchTrivia()  {
         
@@ -42,5 +43,14 @@ class TriviaManager : ObservableObject {
             }
         }
         dataTask.resume()
+    }
+    
+    func nextQuestion() {
+        if index < (quizData!.results.count - 1) {
+            index += 1
+        } else {
+            print("spelet är slut")
+            isGameEnded = true
+        }
     }
 }

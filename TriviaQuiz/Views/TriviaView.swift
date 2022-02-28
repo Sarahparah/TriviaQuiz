@@ -17,17 +17,19 @@ struct TriviaView : View {
 
         VStack{
             Spacer()
-            Text(triviaManager.quizData?.results[0].question ?? "Loading...")
+            Text(triviaManager.quizData?.results[triviaManager.index].question ?? "Loading...")
             
             Spacer()
             
             VStack{
 
-                TriviaButton(text: triviaManager.quizData?.results[0].correct_answer ?? "Loading...")
-                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[0] ?? "Loading...")
-                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[1] ?? "Loading...")
-                TriviaButton(text: triviaManager.quizData?.results[0].incorrect_answers[2] ?? "Loading...")
+                TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].correct_answer ?? "Loading...")
+                TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[0] ?? "Loading...")
+                TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[1] ?? "Loading...")
+                TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[2] ?? "Loading...")
             }
+            Spacer()
+            NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
             Spacer()
         }
         .navigationTitle("TriviaQuiz")
