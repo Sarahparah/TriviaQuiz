@@ -16,7 +16,6 @@ struct ScoreView: View {
     
     var body: some View {
         
-        
         Text("\(triviaManager.score) out of \(triviaManager.numberOfQuestions)")
     }
 }
