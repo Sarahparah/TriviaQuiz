@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct TriviaManager {
 
     var questionArray = ["A", "B", "C", "D", "E", "F"]
