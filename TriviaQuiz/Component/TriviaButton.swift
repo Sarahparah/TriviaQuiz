@@ -14,13 +14,13 @@ struct TriviaButton: View {
     var text: String
     var background: Color?
 
-    var triviaManager = TriviaManager()
+    @EnvironmentObject var triviaManager : TriviaManager
 
     var body: some View {
         
         Button(action: {
             print(text)
-            triviaManager.index += 1
+            triviaManager.nextQuestion()
            // self.opacity(configuration.isPressed ? 0.7 : 1)
         }) {
             Text("\(text)")
@@ -28,17 +28,21 @@ struct TriviaButton: View {
                 .frame(width: 280, height: 50)
                 .background(.blue)
                 .cornerRadius(10)
-                .shadow(radius: 5)
-        }.buttonStyle(MyButtonStyle())
+               // .shadow(radius: 5)
+               // .shadow(color: triviaManager.isGameEnded ? (.pink) : .gray, radius: 5, x: 0.5, y: 0.5)
+        }
+        .buttonStyle(MyButtonStyle())
     }
     
 }
 
 struct MyButtonStyle: ButtonStyle {
+    @EnvironmentObject var triviaManager : TriviaManager
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(.quaternary, in: Capsule())
+            .background(triviaManager.isGameEnded ? (LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
             .opacity(configuration.isPressed ? 0.5 : 1)
     }
 }

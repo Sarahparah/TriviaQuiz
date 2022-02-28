@@ -23,6 +23,7 @@
 		C852023827C8ED8A0045AACD /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023727C8ED8A0045AACD /* QuizData.swift */; };
 		C852023A27C8EDE00045AACD /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023927C8EDE00045AACD /* QuestionData.swift */; };
 		C852023C27C91ECA0045AACD /* QuestionIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023B27C91ECA0045AACD /* QuestionIndex.swift */; };
+		C852023E27CCD0AA0045AACD /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023D27CCD0AA0045AACD /* ScoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		C852023727C8ED8A0045AACD /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
 		C852023927C8EDE00045AACD /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
 		C852023B27C91ECA0045AACD /* QuestionIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionIndex.swift; sourceTree = "<group>"; };
+		C852023D27CCD0AA0045AACD /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				415AC1A027C664960042886E /* StartView.swift */,
 				415AC1CE27C79D7C0042886E /* SettingsView.swift */,
 				415AC1C927C66C9D0042886E /* TriviaView.swift */,
+				C852023D27CCD0AA0045AACD /* ScoreView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			files = (
 				B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */,
 				415AC1CF27C79D7C0042886E /* SettingsView.swift in Sources */,
+				C852023E27CCD0AA0045AACD /* ScoreView.swift in Sources */,
 				415AC1CD27C670700042886E /* TriviaButton.swift in Sources */,
 				415AC1A127C664960042886E /* StartView.swift in Sources */,
 				C852023C27C91ECA0045AACD /* QuestionIndex.swift in Sources */,
