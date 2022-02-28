@@ -19,26 +19,26 @@ struct ContentView: View {
                 LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 ZStack{
-                Circle()
+                    Circle()
                         .fill(LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .padding()
+                        .padding()
                     
-                NavigationLink(destination: SettingsView()) {
-                    
-                    ZStack{
-                        Circle()
-                            .fill(.blue)
-                            .padding(50)
-                            .shadow(color: .white, radius: 5)
-                        Circle()
-                            .fill(.yellow)
-                            .padding(110)
-                            .shadow(color: .white, radius: 5)
-                        Text("Enter game")
-                            .foregroundColor(.white)
-                            .font(.title)
-                            .bold()
-                       }
+                    NavigationLink(destination: SettingsView()) {
+                        
+                        ZStack{
+                            Circle()
+                                .fill(.blue)
+                                .padding(50)
+                                .shadow(color: .white, radius: 5)
+                            Circle()
+                                .fill(.yellow)
+                                .padding(110)
+                                .shadow(color: .white, radius: 5)
+                            Text("Enter game")
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .bold()
+                        }
                     }
                 }
                 .offset(y: -60)

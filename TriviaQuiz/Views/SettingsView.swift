@@ -38,7 +38,7 @@ struct SettingsView : View {
                 Spacer()
                 PickerStack(array: difficulty, title: "difficulty", index: selectedDifficultyIndex)
                 Spacer()
-                PickerStack(array: triviaManager.numberOfQuestions, title: "number of questions", index: selectedNumberOfQuestions)
+                PickerStack(array: triviaManager.numberOfQuestionsArray, title: "number of questions", index: selectedNumberOfQuestions)
                 Spacer()
                 NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
                     EmptyView()
@@ -46,6 +46,7 @@ struct SettingsView : View {
                 Button(action: {
                     triviaManager.fetchTrivia()
                     isTriviaViewActive = true
+                    triviaManager.numberOfQuestions  = selectedNumberOfQuestions
                 }, label: {
                     Text("START YOUR GAME")
                 })

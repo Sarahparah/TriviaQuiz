@@ -13,9 +13,12 @@ class TriviaManager : ObservableObject {
    // var questionArray = ["A", "B", "C", "D", "E", "F"]
    // var answerArray = ["1", "2", "3", "4"]
     @Published var index: Int = 0
-    let numberOfQuestions = ["10", "20", "30", "40", "50"]
+    let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
     @Published var isGameEnded = false
+    var numberOfQuestions = 0 
+    
+    var score = 0
     
     func fetchTrivia()  {
         
