@@ -20,6 +20,7 @@ class TriviaManager : ObservableObject {
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
+    var allAnswers : [String] = []
 
     var score = 0
 
@@ -44,6 +45,10 @@ class TriviaManager : ObservableObject {
                     self.quizData = quizData
                     let q = quizData.results[self.index].question
                     print(q)
+                    self.allAnswers = quizData.results[self.index].incorrect_answers ?? ["A","B","C","D"]
+                    self.allAnswers.append(quizData.results[self.index].correct_answer ?? "")
+                    self.allAnswers.shuffle()
+                    print("All answers: \(self.allAnswers)")
                 }
             }
         }

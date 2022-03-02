@@ -14,4 +14,12 @@ struct QuestionData: Decodable {
     var question: String?
     var correct_answer: String?
     var incorrect_answers: [String]
+    
+//    func createAllAnswersArray() -> [String] {
+//        var allAnswers : [String] = []
+//        allAnswers = incorrect_answers
+//        allAnswers.append(correct_answer ?? "bla")
+//        allAnswers.shuffle()
+//        print("All answers: \(allAnswers)")
+//    }
 }

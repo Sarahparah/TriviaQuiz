@@ -26,6 +26,8 @@ struct SettingsView : View {
     @State var selectedNumberOfQuestions = 0
     @State var isTriviaViewActive = false
     
+    
+    
     var body: some View {
         
         ZStack{
@@ -80,6 +82,7 @@ struct SettingsView : View {
                     returnSettings()
                     print("triviaManagers numberOfQuestions variabel: \(triviaManager.numberOfQuestions)!")
                     print("Current urlString: \(triviaManager.urlString)!")
+                    
                 }, label: {
                     Text("START YOUR GAME")
                 })
