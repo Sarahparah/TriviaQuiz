@@ -12,6 +12,7 @@ class TriviaManager : ObservableObject {
     
    // var questionArray = ["A", "B", "C", "D", "E", "F"]
    // var answerArray = ["1", "2", "3", "4"]
+    var removeThisVariable = 0 
     @Published var index: Int = 0
     let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
@@ -22,62 +23,57 @@ class TriviaManager : ObservableObject {
 
     var score = 0
 
-    var urlString = "https://opentdb.com/api.php?"
+    let urlString = "https://opentdb.com/api.php"
     
-    func fetchTrivia(with urlString : String)  {
+    func fetchTrivia(with url : URL)  {
+        let session = URLSession(configuration: .default)
 
-        if let url = URL(string : urlString) {
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if error != nil && data != nil {
+                return
+            }
 
-            let session = URLSession(configuration: .default)
-
-            let task = session.dataTask(with: url){
-                (data, response, error) in
-                if error != nil && data != nil {
-                    return
-                }
-
-                let decoder = JSONDecoder()
-
-                do {
-
-                    self.quizData = try decoder.decode(QuizData.self, from: data!)
-                    let q = self.quizData?.results[self.index].question
-                    print(q)
-
+            let decoder = JSONDecoder()
+            DispatchQueue.main.async {
+                do  {
+                    _ = try decoder.decode(QuizData.self, from: data!)
                 } catch {
-
-                    print("error")
-
+                    print(error)
+                }
+                if let quizData = try? decoder.decode(QuizData.self, from: data!) {
+                    self.quizData = quizData
+                    let q = quizData.results[self.index].question
+                    print(q)
                 }
             }
-            task.resume()
-
         }
+        task.resume()
+
         //let url = URL(string : "https://opentdb.com/api.php?amount=10&type=multiple")
         
-//        guard url != nil else {
-//            print("error creating url object")
-//            return
-//        }
+        //        guard url != nil else {
+        //            print("error creating url object")
+        //            return
+        //        }
         
-//
-//        let dataTask = session.dataTask(with: url!) { (data, response, error) in
-//            if error == nil && data != nil {
-//
-//                let decoder = JSONDecoder()
-//
-//                do {
-//
-//                    self.quizData = try decoder.decode(QuizData.self, from: data!)
-//                    let q = self.quizData?.results[self.index].question
-//                    print(q)
-//
-//                } catch {
-//                    print("error")
-//                }
-//            }
-//        }
-//        task.resume()
+        //
+        //        let dataTask = session.dataTask(with: url!) { (data, response, error) in
+        //            if error == nil && data != nil {
+        //
+        //                let decoder = JSONDecoder()
+        //
+        //                do {
+        //
+        //                    self.quizData = try decoder.decode(QuizData.self, from: data!)
+        //                    let q = self.quizData?.results[self.index].question
+        //                    print(q)
+        //
+        //                } catch {
+        //                    print("error")
+        //                }
+        //            }
+        //        }
+        //        task.resume()
     }
     
     func nextQuestion() {
@@ -91,11 +87,22 @@ class TriviaManager : ObservableObject {
 
 
     func fetchTheFetchTrivia(amount : Int, category : Int, difficulty : String) {
+        guard var urlComps = URLComponents(string: self.urlString) else {
+            print("failed to create URLCOMPONENTS")
+            return
+        }
+        let queryItems = [
 
-        let urlStringEnd = "\(urlString)amount=\(amount)&category=10&difficulty=\(difficulty)&type=multiple"
-        fetchTrivia(with: urlString)
-        print("Current urlStringEnd = \(urlStringEnd)")
+            URLQueryItem(name: "amount", value: String(amount)),
+            URLQueryItem(name: "category", value: String(category)),
+            URLQueryItem(name: "difficulty", value: String(difficulty)),
+            URLQueryItem(name: "type", value: "multiple")
+        ]
+        urlComps.queryItems = queryItems
+        guard let url = urlComps.url else { return }
+
+        fetchTrivia(with: url)
+        print("Current urlStringEnd = \(url)")
        // performRequest(with: urlString)
-
     }
 }

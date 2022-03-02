@@ -21,12 +21,13 @@ struct TriviaView : View {
             
             Spacer()
             
-            VStack{
+            VStack {
 
                 TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].correct_answer ?? "Loading...")
                 TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[0] ?? "Loading...")
                 TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[1] ?? "Loading...")
                 TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[2] ?? "Loading...")
+                
             }
             Spacer()
             NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
