@@ -12,6 +12,7 @@ class TriviaManager : ObservableObject {
     
    // var questionArray = ["A", "B", "C", "D", "E", "F"]
    // var answerArray = ["1", "2", "3", "4"]
+    var removeThisVariable = 0 
     @Published var index: Int = 0
     let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
@@ -91,6 +92,7 @@ class TriviaManager : ObservableObject {
             return
         }
         let queryItems = [
+
             URLQueryItem(name: "amount", value: String(amount)),
             URLQueryItem(name: "category", value: String(category)),
             URLQueryItem(name: "difficulty", value: String(difficulty)),
