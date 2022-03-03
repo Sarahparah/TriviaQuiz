@@ -10,9 +10,7 @@ import Foundation
 
 class TriviaManager : ObservableObject {
     
-   // var questionArray = ["A", "B", "C", "D", "E", "F"]
-   // var answerArray = ["1", "2", "3", "4"]
-    var removeThisVariable = 0 
+    var removeThisVariable = 0
     @Published var index: Int = 0
     let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
@@ -21,7 +19,7 @@ class TriviaManager : ObservableObject {
     var category : Int = 0
     var difficulty : String = ""
     var categoryNumbersArray = [9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
-    var fullURL = ""
+    var allAnswers : [String] = []
 
     var score = 0
 
@@ -46,10 +44,14 @@ class TriviaManager : ObservableObject {
                     self.quizData = quizData
                     let q = quizData.results[self.index].question
                     print(q)
+                    self.allAnswers = quizData.results[self.index].incorrect_answers ?? ["A","B","C"]
+                    self.allAnswers.append(quizData.results[self.index].correct_answer ?? "D")
+                   // print("allAnswers: \(self.allAnswers)")
                 }
             }
         }
         task.resume()
+        
     }
     
     func nextQuestion() {
@@ -59,6 +61,10 @@ class TriviaManager : ObservableObject {
             print("spelet är slut")
             isGameEnded = true
         }
+    }
+    
+    func resetGame() {
+        print("reset game")
     }
 
     func fetchTheFetchTrivia(amount : Int, category : Int, difficulty : String) {
@@ -77,9 +83,7 @@ class TriviaManager : ObservableObject {
         guard let url = urlComps.url else { return }
 
         fetchTrivia(with: url)
-        print("Current urlStringEnd = \(url)")
-        fullURL = url.absoluteString
-
-       // performRequest(with: urlString)
+       // print("Current urlStringEnd = \(url)")
+        
     }
 }

@@ -109,11 +109,12 @@ struct SettingsView : View {
                     triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
                     
                     triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
-                    print("selectedCategoryIndex: \(selectedCategoryIndex)")  //GREAT SUCCESS!
-                    print("selectedNumberOfQuestions: \(numberOfQuestions[selectedNumberOfQuestions])")
+                   // print("selectedCategoryIndex: \(selectedCategoryIndex)")  //GREAT SUCCESS!
+                   // print("selectedNumberOfQuestions: \(numberOfQuestions[selectedNumberOfQuestions])")
                     returnSettings()
-                    print("triviaManagers numberOfQuestions variabel: \(triviaManager.numberOfQuestions)!")
-                    print("Current urlString: \(triviaManager.urlString)!")
+                   // print("triviaManagers numberOfQuestions variabel: \(triviaManager.numberOfQuestions)!")
+                   // print("Current urlString: \(triviaManager.urlString)!")
+                    
                 }, label: {
                     Text("Let's quiz!")
                         .foregroundColor(.white)

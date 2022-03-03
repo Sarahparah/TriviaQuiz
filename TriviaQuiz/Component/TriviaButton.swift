@@ -27,6 +27,7 @@ struct TriviaButton: View {
                 print(triviaManager.score)
             }
             triviaManager.nextQuestion()
+            
             // self.opacity(configuration.isPressed ? 0.7 : 1)
         }) {
             Text("\(text)")
