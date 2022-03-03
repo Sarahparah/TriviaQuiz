@@ -37,14 +37,14 @@ struct SettingsView : View {
                 
                 ZStack {
                     Circle()
-                        .fill(LinearGradient(colors: [.blue, Color.yellow.opacity(0.5), .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .fill(LinearGradient(colors: [.purple, .blue, Color.purple.opacity(0.5), .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 5)
 
                     Circle().size(circleSize)
                         .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
-                        .ignoresSafeArea()
-
                         .shadow(color: .white, radius: 5)
+                        .edgesIgnoringSafeArea(.bottom)
+                        .padding(.top, 50)
                     ZStack {
                         Text("Category")
                             .fontWeight(.bold)
@@ -58,7 +58,6 @@ struct SettingsView : View {
                                     .fontWeight(.bold)
                             }
                         }.pickerStyle(WheelPickerStyle())
-                        
                     }
                 }.position(x: 130, y: 160)
                 
@@ -68,23 +67,40 @@ struct SettingsView : View {
                     Circle()
                         .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 5)
-
+                        
+                    ZStack {
+                        Text("Difficulty")
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .padding(.bottom, 90)
+                            .foregroundColor(.yellow)
                     Picker(selection: $selectedDifficultyIndex, label: Text("")) {
                         ForEach(0..<difficulty.count) {
                             Text("\(self.difficulty[$0])")
                                 .foregroundColor(.white)
                         }
                     }.pickerStyle(WheelPickerStyle())
-                }
+                    }
+                }.position(x: 195, y: 150)
                 
                 Spacer()
                 //PickerStack(array: triviaManager.numberOfQuestionsArray, title: "number of questions", index: selectedNumberOfQuestions)
                 ZStack {
                     Circle()
                         .fill(LinearGradient(colors: [.blue, Color.yellow.opacity(0.5), .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .shadow(color: .white, radius: 10)
+
                     Circle()
-                        .fill(.blue)
+                        .fill(LinearGradient(colors: [.yellow, .blue, .purple], startPoint: .topTrailing, endPoint: .bottomLeading))
                         .padding()
+                        .shadow(color: .white, radius: 5)
+
+                    ZStack {
+                        Text("Questions")
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .padding(.bottom, 90)
+                            .foregroundColor(.yellow)
                     Picker(selection: $selectedNumberOfQuestions, label: Text("")) {
                         ForEach(0..<numberOfQuestions.count) {
                             Text("\(self.numberOfQuestions[$0])")
@@ -93,7 +109,8 @@ struct SettingsView : View {
                             
                         }
                     }.pickerStyle(WheelPickerStyle())
-                }.position(x: 260, y: 80)
+                    }
+                }.position(x: 260, y: 110)
                 
                 Spacer()
                 NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
