@@ -13,6 +13,8 @@ struct TriviaView : View {
     @EnvironmentObject var triviaManager : TriviaManager
     var currentGame = 0
     
+    
+    
     var body: some View {
         
         ZStack {
@@ -27,6 +29,7 @@ struct TriviaView : View {
                         .shadow(color: .white, radius: 5)
                         .padding()
                     Text(triviaManager.quizData?.results[triviaManager.index].question ?? "Loading...")
+                   // Text(triviaManager.questionToDisplay)
                         .fontWeight(.bold)
                         .font(.headline)
                         .foregroundColor(.white)
