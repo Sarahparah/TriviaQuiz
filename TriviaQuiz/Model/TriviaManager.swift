@@ -19,20 +19,23 @@ class TriviaManager : ObservableObject {
     var category : Int = 0
     var difficulty : String = ""
     var categoryNumbersArray = [9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
+    @Published var questionToDisplay = NSAttributedString()
+    var incorrectAnswers : [NSAttributedString] = []
+    var correctAnswer = NSAttributedString()
     var allAnswers : [String] = []
-
+    
     var score = 0
-
+    
     let urlString = "https://opentdb.com/api.php"
     
     func fetchTrivia(with url : URL)  {
         let session = URLSession(configuration: .default)
-
+        
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil && data != nil {
                 return
             }
-
+            
             let decoder = JSONDecoder()
             DispatchQueue.main.async {
                 do  {
@@ -42,11 +45,13 @@ class TriviaManager : ObservableObject {
                 }
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
                     self.quizData = quizData
-                    let q = quizData.results[self.index].question
-                    print(q)
+                    self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question ?? "Oops")
+                   // let q = quizData.results[self.index].question
+                   // print(q)
                     self.allAnswers = quizData.results[self.index].incorrect_answers ?? ["A","B","C"]
                     self.allAnswers.append(quizData.results[self.index].correct_answer ?? "D")
                     print("allAnswers: \(self.allAnswers)")
+                    
                 }
             }
         }
@@ -66,24 +71,35 @@ class TriviaManager : ObservableObject {
     func resetGame() {
         print("reset game")
     }
-
+    
     func fetchTheFetchTrivia(amount : Int, category : Int, difficulty : String) {
         guard var urlComps = URLComponents(string: self.urlString) else {
             print("failed to create URLCOMPONENTS")
             return
         }
         let queryItems = [
-
+            
             URLQueryItem(name: "amount", value: String(amount)),
             URLQueryItem(name: "category", value: String(category)),
             URLQueryItem(name: "difficulty", value: String(difficulty)),
-            URLQueryItem(name: "type", value: "multiple")
+            URLQueryItem(name: "type", value: "multiple"),
+            // URLQueryItem(name: "encode", value: "url3986")
         ]
         urlComps.queryItems = queryItems
         guard let url = urlComps.url else { return }
-
-        fetchTrivia(with: url)
-       // print("Current urlStringEnd = \(url)")
         
+        fetchTrivia(with: url)
+        // print("Current urlStringEnd = \(url)")
+        
+    }
+    
+    func decodeHTML(string: String) -> NSAttributedString {
+        let dataUTF = Data(string.utf8)
+        if let attributedString = try? NSAttributedString(data: dataUTF, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            //yourLabel.attributedText = attributedString
+            print("attributedString: \(attributedString)")
+            return attributedString
+        }
+        return NSAttributedString()
     }
 }
