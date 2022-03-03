@@ -53,6 +53,9 @@ struct ScoreView: View {
                 Button(action: {}) {
                     Text("See your answers")
                 }
+                NavigationLink(destination: FakeView()) {
+                    Text("Fake View")
+                }
                 Spacer()
             }
         }.navigationBarBackButtonHidden(true)

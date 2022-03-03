@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  FakeView.swift
 //  TriviaQuiz
 //
-//  Created by Sarah Lidberg on 2022-02-23.
+//  Created by Joanne Yager on 2022-03-03.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct FakeView: View {
     
     @StateObject var triviaManager = TriviaManager()
     @State var animateGradient = false
@@ -48,13 +48,14 @@ struct ContentView: View {
                 .offset(y: -60)
                 .navigationTitle("TriviaQuiz")
             }
-        }.environmentObject(triviaManager)
+        }
+        .environmentObject(triviaManager)
     }
 }
 
 
-struct ContentView_Previews: PreviewProvider {
+struct FakeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        FakeView()
     }
 }
