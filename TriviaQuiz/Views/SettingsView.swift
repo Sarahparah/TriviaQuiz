@@ -12,13 +12,9 @@ struct SettingsView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     
-    let categorys = ["History", "Books", "General knowledge", "Cartoons & Animations", "Science & Nature", "Geography"]
-    
+    let categories = ["General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
-    
-    let difficulty = ["Easy", "Medium", "Hard"]
-    
-    //let numberOfQuestions = ["10", "20", "30", "40", "50"]
+    let difficulty = ["easy", "medium", "hard"]
     let numberOfQuestions = [10, 20, 30, 40, 50]
     
     @State var selectedCategoryIndex = 0
@@ -56,8 +52,8 @@ struct SettingsView : View {
                             .padding(.bottom, 90)
                             .foregroundColor(.yellow)
                         Picker(selection: $selectedCategoryIndex, label: Text("")) {
-                            ForEach(0..<categorys.count) {
-                                Text("\(self.categorys[$0])")
+                            ForEach(0..<categories.count) {
+                                Text("\(self.categories[$0])")
                                     .foregroundColor(.white)
                                     .fontWeight(.bold)
                             }
@@ -109,10 +105,8 @@ struct SettingsView : View {
                     triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
                     
                     triviaManager.difficulty = difficulty[selectedDifficultyIndex]
-                    
-                    //triviaManager.category = categorys[selectedCategoryIndex]
-                    
-                    triviaManager.category = selectedCategoryIndex
+                                        
+                    triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
                     
                     triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
                     print("selectedCategoryIndex: \(selectedCategoryIndex)")  //GREAT SUCCESS!

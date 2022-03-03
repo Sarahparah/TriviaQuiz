@@ -20,6 +20,8 @@ class TriviaManager : ObservableObject {
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
+    var categoryNumbersArray = [9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
+    var fullURL = ""
 
     var score = 0
 
@@ -48,32 +50,6 @@ class TriviaManager : ObservableObject {
             }
         }
         task.resume()
-
-        //let url = URL(string : "https://opentdb.com/api.php?amount=10&type=multiple")
-        
-        //        guard url != nil else {
-        //            print("error creating url object")
-        //            return
-        //        }
-        
-        //
-        //        let dataTask = session.dataTask(with: url!) { (data, response, error) in
-        //            if error == nil && data != nil {
-        //
-        //                let decoder = JSONDecoder()
-        //
-        //                do {
-        //
-        //                    self.quizData = try decoder.decode(QuizData.self, from: data!)
-        //                    let q = self.quizData?.results[self.index].question
-        //                    print(q)
-        //
-        //                } catch {
-        //                    print("error")
-        //                }
-        //            }
-        //        }
-        //        task.resume()
     }
     
     func nextQuestion() {
@@ -84,7 +60,6 @@ class TriviaManager : ObservableObject {
             isGameEnded = true
         }
     }
-
 
     func fetchTheFetchTrivia(amount : Int, category : Int, difficulty : String) {
         guard var urlComps = URLComponents(string: self.urlString) else {
@@ -103,6 +78,8 @@ class TriviaManager : ObservableObject {
 
         fetchTrivia(with: url)
         print("Current urlStringEnd = \(url)")
+        fullURL = url.absoluteString
+
        // performRequest(with: urlString)
     }
 }
