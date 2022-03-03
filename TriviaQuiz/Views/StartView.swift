@@ -11,16 +11,16 @@ struct ContentView: View {
     
     @StateObject var triviaManager = TriviaManager()
     @State var scale: CGFloat = 1
+    @State var animateGradient = false
     
     var body: some View {
         
         NavigationView {
             
             ZStack {
-                //  LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+//                  LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
                 AnimatedBackground()
                     .scaleEffect(1.5)
-                //.ignoresSafeArea()
                     .edgesIgnoringSafeArea(.all)
                     .blur(radius: 50)
                 ZStack{

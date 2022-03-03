@@ -31,9 +31,9 @@ struct TriviaButton: View {
             // self.opacity(configuration.isPressed ? 0.7 : 1)
         }) {
             Text("\(text)")
-                .foregroundColor(.green)
+                .foregroundColor(.white)
                 .frame(width: 280, height: 50)
-                .background(.blue)
+                .background(.blue.opacity(0.5))
                 .cornerRadius(10)
                // .shadow(radius: 5)
                // .shadow(color: triviaManager.isGameEnded ? (.pink) : .gray, radius: 5, x: 0.5, y: 0.5)

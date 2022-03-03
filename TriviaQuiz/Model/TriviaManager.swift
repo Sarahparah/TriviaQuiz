@@ -46,7 +46,7 @@ class TriviaManager : ObservableObject {
                     print(q)
                     self.allAnswers = quizData.results[self.index].incorrect_answers ?? ["A","B","C"]
                     self.allAnswers.append(quizData.results[self.index].correct_answer ?? "D")
-                   // print("allAnswers: \(self.allAnswers)")
+                    print("allAnswers: \(self.allAnswers)")
                 }
             }
         }
