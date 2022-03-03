@@ -23,6 +23,11 @@ struct TriviaView : View {
             
             VStack {
 
+//                TriviaButton(text: triviaManager.allAnswers[0])
+//                TriviaButton(text: triviaManager.allAnswers[1])
+//                TriviaButton(text: triviaManager.allAnswers[2])
+//                TriviaButton(text: triviaManager.allAnswers[3])
+
                 TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].correct_answer ?? "Loading...")
                 TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[0] ?? "Loading...")
                 TriviaButton(text: triviaManager.quizData?.results[triviaManager.index].incorrect_answers[1] ?? "Loading...")
