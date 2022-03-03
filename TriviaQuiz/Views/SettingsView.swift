@@ -43,7 +43,7 @@ struct SettingsView : View {
                     Circle().size(circleSize)
                         .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 5)
-                        .edgesIgnoringSafeArea(.bottom)
+                        .edgesIgnoringSafeArea(.all)
                         .padding(.top, 50)
                     ZStack {
                         Text("Category")
