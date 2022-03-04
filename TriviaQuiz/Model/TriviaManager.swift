@@ -38,17 +38,9 @@ class TriviaManager : ObservableObject {
             // 2
             let decoder = JSONDecoder()
             DispatchQueue.main.async {
-//                do  {
-//                    _ = try decoder.decode(QuizData.self, from: data!)
-//                } catch {
-//                    print(error)
-//                }
                 // 3
-                
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
                     self.quizData = quizData
-                   // let q = quizData.results[self.index].question
-                    
                     // 7
                     self.nextQuestion()
                 }
@@ -67,11 +59,11 @@ class TriviaManager : ObservableObject {
         }
 
         if index < (quizData.results.count - 1) {
-            
+            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
             self.allAnswers = quizData.results[self.index].incorrect_answers
             self.allAnswers.append(quizData.results[self.index].correct_answer!)
             print("allAnswers: \(self.allAnswers)")
-            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
+
             index += 1
 
         } else {
@@ -101,7 +93,6 @@ class TriviaManager : ObservableObject {
         guard let url = urlComps.url else { return }
         
         fetchTrivia(with: url)
-        // print("Current urlStringEnd = \(url)")
         
     }
     

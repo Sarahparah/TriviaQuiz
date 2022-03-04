@@ -17,15 +17,16 @@ struct ContentView: View {
             ZStack {
                 LinearGradient(colors: [.red, .yellow, .purple], startPoint: animateGradient ? .topLeading : .bottomTrailing, endPoint: animateGradient ? .bottomTrailing : .topTrailing)
                     .ignoresSafeArea()
-                    .onAppear {
-                        withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: true)) {
-                            animateGradient.toggle()
-                        }
-                    }
+//                    .onAppear {
+//                        withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: true)) {
+//                            animateGradient.toggle()
+//                        }
+//                    }
                 ZStack{
                     Circle()
                         .fill(LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .padding()
+                    
                     NavigationLink(destination: SettingsView()) {
                         
                         ZStack{
