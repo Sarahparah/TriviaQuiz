@@ -11,6 +11,8 @@ import SwiftUI
 struct SettingsView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
+    @State var animateGradient = false
+
     
     let categories = ["General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
@@ -29,74 +31,70 @@ struct SettingsView : View {
         ZStack {
             LinearGradient(colors: [.blue, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
+            
+            Circle().size(circleSize)
+                .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .ignoresSafeArea()
+                .shadow(color: .white, radius: 5)
+                .padding(.top, 50)
+                
             VStack {
-                Spacer()
                 ZStack {
-                    Circle().size(circleSize)
-                        .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
-                        .ignoresSafeArea()
-
+                    Circle()
+                        .fill(LinearGradient(colors: [.purple, .blue, Color.purple.opacity(0.5), .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 5)
-                        .padding(.top, 50)
-
-                    ZStack {
-                        Circle()
-                            .fill(LinearGradient(colors: [.purple, .blue, Color.purple.opacity(0.5), .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            .shadow(color: .white, radius: 5)
-                        Text("Category")
-                            .fontWeight(.bold)
-                            .font(.title)
-                            .padding(.bottom, 90)
-                            .foregroundColor(.yellow)
-                        Picker(selection: $selectedCategoryIndex, label: Text("")) {
-                            ForEach(0..<categories.count) {
-                                Text("\(self.categories[$0])")
-                                    .foregroundColor(.white)
-                                    .fontWeight(.bold)
-                            }
-                        }.pickerStyle(WheelPickerStyle())
-                    }
-                    .offset(y: -50)
-                }.position(x: 130, y: 160)
+                    Text("Category")
+                        .fontWeight(.bold)
+                        .font(.title)
+                        .padding(.bottom, 90)
+                        .foregroundColor(.yellow)
+                    Picker(selection: $selectedCategoryIndex, label: Text("")) {
+                        ForEach(0..<categories.count) {
+                            Text("\(self.categories[$0])")
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                        }
+                    }.pickerStyle(WheelPickerStyle())
+                }
+                .offset(x: -70, y: 50)
+                
+                // }.position(x: 130, y: 160)
                 
                 Spacer()
                 ZStack {
                     Circle()
                         .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 5)
-                        
-                    ZStack {
-                        Text("Difficulty")
-                            .fontWeight(.bold)
-                            .font(.title)
-                            .padding(.bottom, 90)
-                            .foregroundColor(.yellow)
+                    Text("Difficulty")
+                        .fontWeight(.bold)
+                        .font(.title)
+                        .padding(.bottom, 90)
+                        .foregroundColor(.yellow)
                     Picker(selection: $selectedDifficultyIndex, label: Text("")) {
                         ForEach(0..<difficulty.count) {
                             Text("\(self.difficulty[$0])")
                                 .foregroundColor(.white)
                         }
                     }.pickerStyle(WheelPickerStyle())
-                    }
-                }.position(x: 195, y: 150)
+                    
+                }.offset(x: -20, y: 20)
+                //.position(x: 195, y: 150)
                 
                 Spacer()
                 ZStack {
                     Circle()
                         .fill(LinearGradient(colors: [.blue, Color.yellow.opacity(0.5), .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 10)
-
+                    
                     Circle()
                         .fill(LinearGradient(colors: [.yellow, .blue, .purple], startPoint: .topTrailing, endPoint: .bottomLeading))
                         .padding()
                         .shadow(color: .white, radius: 5)
-
-                    ZStack {
-                        Text("Questions")
-                            .fontWeight(.bold)
-                            .font(.title)
-                            .padding(.bottom, 90)
-                            .foregroundColor(.yellow)
+                    Text("Questions")
+                        .fontWeight(.bold)
+                        .font(.title)
+                        .padding(.bottom, 90)
+                        .foregroundColor(.yellow)
                     Picker(selection: $selectedNumberOfQuestions, label: Text("")) {
                         ForEach(0..<numberOfQuestions.count) {
                             Text("\(self.numberOfQuestions[$0])")
@@ -105,8 +103,10 @@ struct SettingsView : View {
                             
                         }
                     }.pickerStyle(WheelPickerStyle())
-                    }
-                }.position(x: 260, y: 110)
+                    
+                }
+                .offset(x: 80, y: -20)
+                //.position(x: 260, y: 110)
                 
                 Spacer()
                 NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
@@ -118,7 +118,7 @@ struct SettingsView : View {
                     triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
                     
                     triviaManager.difficulty = difficulty[selectedDifficultyIndex]
-                                        
+                    
                     triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
                     
                     triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
@@ -131,10 +131,12 @@ struct SettingsView : View {
                         .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .cornerRadius(30)
                 })
+                    .offset(y: -20)
             }
+            
             .navigationTitle("Customize your game")
-            .cornerRadius(10)
-            .edgesIgnoringSafeArea(.bottom)
+            //.cornerRadius(10)
+            //.edgesIgnoringSafeArea(.bottom)
         }
     }
     
