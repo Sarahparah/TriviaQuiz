@@ -19,49 +19,61 @@ class TriviaManager : ObservableObject {
     var category : Int = 0
     var difficulty : String = ""
     var categoryNumbersArray = [9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
-    @Published var questionToDisplay = NSAttributedString()
+    @Published var questionToDisplay = ""
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
-    var allAnswers : [String] = []
+    @Published var allAnswers : [String] = []
     
     var score = 0
     
     let urlString = "https://opentdb.com/api.php"
     
-    func fetchTrivia(with url : URL)  {
+    func fetchTrivia(with url : URL)  { // 1 5 6 2 4 3
         let session = URLSession(configuration: .default)
-        
+        // 1
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil && data != nil {
                 return
             }
-            
+            // 2
             let decoder = JSONDecoder()
             DispatchQueue.main.async {
-                do  {
-                    _ = try decoder.decode(QuizData.self, from: data!)
-                } catch {
-                    print(error)
-                }
+//                do  {
+//                    _ = try decoder.decode(QuizData.self, from: data!)
+//                } catch {
+//                    print(error)
+//                }
+                // 3
+                
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
                     self.quizData = quizData
-                    self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question ?? "Oops")
                    // let q = quizData.results[self.index].question
-                   // print(q)
-                    self.allAnswers = quizData.results[self.index].incorrect_answers ?? ["A","B","C"]
-                    self.allAnswers.append(quizData.results[self.index].correct_answer ?? "D")
-                    print("allAnswers: \(self.allAnswers)")
                     
+                    // 7
+                    self.nextQuestion()
                 }
+                // 8
             }
+            // 4
         }
+        // 5
         task.resume()
-        
+        // 6
     }
     
     func nextQuestion() {
-        if index < (quizData!.results.count - 1) {
+        guard let quizData = quizData else {
+            return
+        }
+
+        if index < (quizData.results.count - 1) {
+            
+            self.allAnswers = quizData.results[self.index].incorrect_answers
+            self.allAnswers.append(quizData.results[self.index].correct_answer!)
+            print("allAnswers: \(self.allAnswers)")
+            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
             index += 1
+
         } else {
             print("spelet är slut")
             isGameEnded = true
@@ -93,13 +105,12 @@ class TriviaManager : ObservableObject {
         
     }
     
-    func decodeHTML(string: String) -> NSAttributedString {
+    func decodeHTML(string: String) -> String {
         let dataUTF = Data(string.utf8)
         if let attributedString = try? NSAttributedString(data: dataUTF, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-            //yourLabel.attributedText = attributedString
             print("attributedString: \(attributedString)")
-            return attributedString
+            return attributedString.string
         }
-        return NSAttributedString()
+        return ""
     }
 }

@@ -26,26 +26,23 @@ struct SettingsView : View {
     
     var body: some View {
         
-        ZStack{
+        ZStack {
             LinearGradient(colors: [.blue, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
-            
             VStack {
-                
                 Spacer()
-                //PickerStack(array: categorys, title: "category", index: selectedCategoryIndex)
-                
                 ZStack {
-                    Circle()
-                        .fill(LinearGradient(colors: [.purple, .blue, Color.purple.opacity(0.5), .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
-                        .shadow(color: .white, radius: 5)
-
                     Circle().size(circleSize)
                         .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .ignoresSafeArea()
+
                         .shadow(color: .white, radius: 5)
-                        .edgesIgnoringSafeArea(.all)
                         .padding(.top, 50)
+
                     ZStack {
+                        Circle()
+                            .fill(LinearGradient(colors: [.purple, .blue, Color.purple.opacity(0.5), .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .shadow(color: .white, radius: 5)
                         Text("Category")
                             .fontWeight(.bold)
                             .font(.title)
@@ -59,10 +56,10 @@ struct SettingsView : View {
                             }
                         }.pickerStyle(WheelPickerStyle())
                     }
+                    .offset(y: -50)
                 }.position(x: 130, y: 160)
                 
                 Spacer()
-                //PickerStack(array: difficulty, title: "difficulty", index: selectedDifficultyIndex)
                 ZStack {
                     Circle()
                         .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -84,7 +81,6 @@ struct SettingsView : View {
                 }.position(x: 195, y: 150)
                 
                 Spacer()
-                //PickerStack(array: triviaManager.numberOfQuestionsArray, title: "number of questions", index: selectedNumberOfQuestions)
                 ZStack {
                     Circle()
                         .fill(LinearGradient(colors: [.blue, Color.yellow.opacity(0.5), .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -126,11 +122,7 @@ struct SettingsView : View {
                     triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
                     
                     triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
-                   // print("selectedCategoryIndex: \(selectedCategoryIndex)")  //GREAT SUCCESS!
-                   // print("selectedNumberOfQuestions: \(numberOfQuestions[selectedNumberOfQuestions])")
                     returnSettings()
-                   // print("triviaManagers numberOfQuestions variabel: \(triviaManager.numberOfQuestions)!")
-                   // print("Current urlString: \(triviaManager.urlString)!")
                     
                 }, label: {
                     Text("Let's quiz!")
@@ -142,9 +134,9 @@ struct SettingsView : View {
             }
             .navigationTitle("Customize your game")
             .cornerRadius(10)
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
-    
     
     func returnSettings() {
         
