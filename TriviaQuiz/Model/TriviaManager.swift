@@ -19,6 +19,7 @@ class TriviaManager : ObservableObject {
     var category : Int = 0
     var difficulty : String = ""
     var categoryNumbersArray = [9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
+    var difficultyArray = ["mix", "easy", "medium", "hard"]
     @Published var questionToDisplay = ""
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
@@ -62,6 +63,7 @@ class TriviaManager : ObservableObject {
             self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
             self.allAnswers = quizData.results[self.index].incorrect_answers
             self.allAnswers.append(quizData.results[self.index].correct_answer!)
+            self.allAnswers.shuffle()
             print("allAnswers: \(self.allAnswers)")
 
             index += 1
@@ -81,16 +83,25 @@ class TriviaManager : ObservableObject {
             print("failed to create URLCOMPONENTS")
             return
         }
-        let queryItems = [
+        var queryItems = [
+            
             
             URLQueryItem(name: "amount", value: String(amount)),
             URLQueryItem(name: "category", value: String(category)),
-            URLQueryItem(name: "difficulty", value: String(difficulty)),
+           // URLQueryItem(name: "difficulty", value: String(difficulty)),
             URLQueryItem(name: "type", value: "multiple"),
             // URLQueryItem(name: "encode", value: "url3986")
         ]
+        if difficulty != "mix" {
+            queryItems.append(URLQueryItem(name: "difficulty", value: String(difficulty)))
+        
+        }
+        
         urlComps.queryItems = queryItems
         guard let url = urlComps.url else { return }
+        
+        
+        print("URLLLL:  \(url)")
         
         fetchTrivia(with: url)
         
