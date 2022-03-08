@@ -24,7 +24,12 @@ class TriviaManager : ObservableObject {
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
     @Published var allAnswers : [String] = []
+
+    @Published var isColorMode = true
+
     @Published var allAnswersDecoded : [String] = []
+    var backwards = false
+
     
     var score = 0
     
@@ -59,8 +64,8 @@ class TriviaManager : ObservableObject {
         guard let quizData = quizData else {
             return
         }
-
-        if index < (quizData.results.count - 1) {
+        
+        if index < (quizData.results.count) {
             self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
             self.allAnswers = quizData.results[self.index].incorrect_answers
             self.allAnswers.append(quizData.results[self.index].correct_answer!)
@@ -72,8 +77,8 @@ class TriviaManager : ObservableObject {
             }
             print("allAnswers: \(allAnswers)")
             print("allAnswersDecoded: \(allAnswersDecoded)")
-            index += 1
-
+           // index += 1
+            
         } else {
             print("spelet är slut")
             isGameEnded = true
@@ -94,13 +99,12 @@ class TriviaManager : ObservableObject {
             
             URLQueryItem(name: "amount", value: String(amount)),
             //URLQueryItem(name: "category", value: String(category)),
-           // URLQueryItem(name: "difficulty", value: String(difficulty)),
+            // URLQueryItem(name: "difficulty", value: String(difficulty)),
             URLQueryItem(name: "type", value: "multiple"),
             // URLQueryItem(name: "encode", value: "url3986")
         ]
         if difficulty  != "mix" {
             queryItems.append(URLQueryItem(name: "difficulty", value: String(difficulty)))
-        
         }
         if category != 0 {
             queryItems.append(URLQueryItem(name: "category", value: String(category)))
@@ -108,8 +112,6 @@ class TriviaManager : ObservableObject {
         
         urlComps.queryItems = queryItems
         guard let url = urlComps.url else { return }
-        
-        
         print("URLLLL:  \(url)")
         
         fetchTrivia(with: url)
