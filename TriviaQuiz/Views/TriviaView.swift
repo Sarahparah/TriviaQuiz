@@ -35,7 +35,7 @@ struct TriviaView : View {
                 }
                 Spacer()
                 VStack {
-                    ForEach(triviaManager.allAnswers, id: \.self) {answer in
+                    ForEach(triviaManager.allAnswersDecoded, id: \.self) {answer in
                         TriviaButton(text: answer)
                     }
                 }

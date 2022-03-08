@@ -24,6 +24,7 @@ class TriviaManager : ObservableObject {
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
     @Published var allAnswers : [String] = []
+    @Published var allAnswersDecoded : [String] = []
     
     var score = 0
     
@@ -65,7 +66,12 @@ class TriviaManager : ObservableObject {
             self.allAnswers.append(quizData.results[self.index].correct_answer!)
             self.allAnswers.shuffle()
             print("allAnswers: \(self.allAnswers)")
-
+            allAnswersDecoded = []
+            for i in 0..<allAnswers.count {
+                allAnswersDecoded.append(decodeHTML(string: allAnswers[i]))
+            }
+            print("allAnswers: \(allAnswers)")
+            print("allAnswersDecoded: \(allAnswersDecoded)")
             index += 1
 
         } else {
