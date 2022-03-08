@@ -11,24 +11,41 @@ import SwiftUI
 
 struct ScoreView: View {
     
+    var randomWords = ["Good job", "Almost there", "Score!"]
+    
+    
     @EnvironmentObject var triviaManager : TriviaManager
+
+    
+ 
+
     @State var isTriviaViewActive = false
+
     
     var body: some View {
+        
+       
+        
         ZStack {
-            LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+            
+            LinearGradient(colors: [.white, .yellow], startPoint: .topTrailing, endPoint: .bottomLeading)
+                .ignoresSafeArea(.all)
+            
+            
+            
             VStack(spacing: 0) {
                 Spacer()
-                Text("Good job!")
+                Text("\(randomWords[1])")
                     .font(.system(size: 50))
                 ZStack {
-                    Circle()
-                        .fill(.red)
-                        .shadow(color: .white, radius: 5)
+                    Capsule()
+                        .fill(LinearGradient(colors: [.green, .teal], startPoint: .center, endPoint: .bottom))
+                        .shadow(color: .white, radius: 40)
+                        .padding(10)
+                        //.rotationEffect(.init(degrees: 30))
                     ZStack {
-                    Circle()
-                        .fill(.blue)
+                    Capsule()
+                        .fill(.white)
                         .padding(30)
                         .shadow(color: .white, radius: 5)
                     Text("Your score")
@@ -36,18 +53,25 @@ struct ScoreView: View {
                         .padding(.bottom, 250)
                     }
                     Circle()
-                        .fill(.yellow)
+                        .fill(.black)
                         .padding(90)
                         .shadow(color: .white, radius: 5)
     
                         
                     Text("\(triviaManager.score)")
-                        .font(.system(size: 120))
+                        .font(.system(size: 180))
                         .fontWeight(.bold)
-                        .foregroundColor(.red)
+                        .foregroundColor(.white)
+                        .blur(radius: 15.0)
+                    
+                    Text("\(triviaManager.score)")
+                        .font(.system(size: 180))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        
                     
                 }
-                Text("out of \(triviaManager.numberOfQuestions) questions")
+                Text("out of \(triviaManager.numberOfQuestions)")
                     .font(.system(size: 50))
                 Spacer()
                 NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
@@ -70,6 +94,7 @@ struct ScoreView: View {
         }.navigationBarBackButtonHidden(true)
         
     }
+    
 }
 
 
