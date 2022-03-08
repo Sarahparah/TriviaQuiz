@@ -40,6 +40,22 @@ struct TriviaView : View {
                     }
                 }
                 Spacer()
+                HStack {
+                    Button(action: {
+                        if triviaManager.index >= 1 {
+                            triviaManager.index -= 1
+                        } else {
+                            triviaManager.index = 0
+                        }
+                        triviaManager.nextQuestion()
+                    }, label: {Text("Back")})
+                    Spacer()
+                    Button(action: {
+                        triviaManager.index += 1
+                        triviaManager.nextQuestion()
+                        
+                    }, label: {Text("Next")})
+                }
                 NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
                 Spacer()
             }

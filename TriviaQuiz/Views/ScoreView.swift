@@ -12,7 +12,7 @@ import SwiftUI
 struct ScoreView: View {
     
     @EnvironmentObject var triviaManager : TriviaManager
-    
+    @State var isTriviaViewActive = false
     
     var body: some View {
         ZStack {
@@ -50,9 +50,18 @@ struct ScoreView: View {
                 Text("out of \(triviaManager.numberOfQuestions) questions")
                     .font(.system(size: 50))
                 Spacer()
-                Button(action: {}) {
-                    Text("See your answers")
+                NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
+                    EmptyView()
                 }
+                Button(action: {
+                    isTriviaViewActive = true
+                    triviaManager.index = 0
+                    triviaManager.nextQuestion()
+                    
+                },
+                       label: {
+                    Text("See your answers")
+                })
                 NavigationLink(destination: FakeView()) {
                     Text("Fake View")
                 }
