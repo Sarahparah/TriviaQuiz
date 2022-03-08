@@ -18,12 +18,18 @@ class TriviaManager : ObservableObject {
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
-    var categoryNumbersArray = [9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
+    var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
+    var difficultyArray = ["mix", "easy", "medium", "hard"]
     @Published var questionToDisplay = ""
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
     @Published var allAnswers : [String] = []
+
     @Published var isColorMode = true
+
+    @Published var allAnswersDecoded : [String] = []
+    var backwards = false
+
     
     var score = 0
     
@@ -58,15 +64,21 @@ class TriviaManager : ObservableObject {
         guard let quizData = quizData else {
             return
         }
-
-        if index < (quizData.results.count - 1) {
+        
+        if index < (quizData.results.count) {
             self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
             self.allAnswers = quizData.results[self.index].incorrect_answers
             self.allAnswers.append(quizData.results[self.index].correct_answer!)
+            self.allAnswers.shuffle()
             print("allAnswers: \(self.allAnswers)")
-
-            index += 1
-
+            allAnswersDecoded = []
+            for i in 0..<allAnswers.count {
+                allAnswersDecoded.append(decodeHTML(string: allAnswers[i]))
+            }
+            print("allAnswers: \(allAnswers)")
+            print("allAnswersDecoded: \(allAnswersDecoded)")
+           // index += 1
+            
         } else {
             print("spelet är slut")
             isGameEnded = true
@@ -82,16 +94,25 @@ class TriviaManager : ObservableObject {
             print("failed to create URLCOMPONENTS")
             return
         }
-        let queryItems = [
+        var queryItems = [
+            
             
             URLQueryItem(name: "amount", value: String(amount)),
-            URLQueryItem(name: "category", value: String(category)),
-            URLQueryItem(name: "difficulty", value: String(difficulty)),
+            //URLQueryItem(name: "category", value: String(category)),
+            // URLQueryItem(name: "difficulty", value: String(difficulty)),
             URLQueryItem(name: "type", value: "multiple"),
             // URLQueryItem(name: "encode", value: "url3986")
         ]
+        if difficulty  != "mix" {
+            queryItems.append(URLQueryItem(name: "difficulty", value: String(difficulty)))
+        }
+        if category != 0 {
+            queryItems.append(URLQueryItem(name: "category", value: String(category)))
+        }
+        
         urlComps.queryItems = queryItems
         guard let url = urlComps.url else { return }
+        print("URLLLL:  \(url)")
         
         fetchTrivia(with: url)
         

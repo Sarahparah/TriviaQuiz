@@ -43,11 +43,27 @@ struct TriviaView : View {
                 }
                 Spacer()
                 VStack {
-                    ForEach(triviaManager.allAnswers, id: \.self) {answer in
+                    ForEach(triviaManager.allAnswersDecoded, id: \.self) {answer in
                         TriviaButton(text: answer)
                     }
                 }
                 Spacer()
+                HStack {
+                    Button(action: {
+                        if triviaManager.index >= 1 {
+                            triviaManager.index -= 1
+                        } else {
+                            triviaManager.index = 0
+                        }
+                        triviaManager.nextQuestion()
+                    }, label: {Text("Back")})
+                    Spacer()
+                    Button(action: {
+                        triviaManager.index += 1
+                        triviaManager.nextQuestion()
+                        
+                    }, label: {Text("Next")})
+                }
                 NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
                 Spacer()
             }
