@@ -14,7 +14,7 @@ struct SettingsView : View {
     @State var animateGradient = false
 
     
-    let categories = ["General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
+    let categories = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
     let difficulty = ["Mix", "Easy", "Medium", "Hard"]
     

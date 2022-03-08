@@ -18,7 +18,7 @@ class TriviaManager : ObservableObject {
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
-    var categoryNumbersArray = [9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
+    var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
     @Published var questionToDisplay = ""
     var incorrectAnswers : [NSAttributedString] = []
@@ -87,14 +87,17 @@ class TriviaManager : ObservableObject {
             
             
             URLQueryItem(name: "amount", value: String(amount)),
-            URLQueryItem(name: "category", value: String(category)),
+            //URLQueryItem(name: "category", value: String(category)),
            // URLQueryItem(name: "difficulty", value: String(difficulty)),
             URLQueryItem(name: "type", value: "multiple"),
             // URLQueryItem(name: "encode", value: "url3986")
         ]
-        if difficulty != "mix" {
+        if difficulty  != "mix" {
             queryItems.append(URLQueryItem(name: "difficulty", value: String(difficulty)))
         
+        }
+        if category != 0 {
+            queryItems.append(URLQueryItem(name: "category", value: String(category)))
         }
         
         urlComps.queryItems = queryItems
