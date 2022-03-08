@@ -23,17 +23,28 @@ struct SettingsView : View {
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
     @State var isTriviaViewActive = false
+
+    let blueColorArray = [Color.blue, Color.white]
+    let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
+//    let contentView = ContentView()
     
     let circleSize = CGSize(width: 1000, height: 1000)
     
     var body: some View {
         
         ZStack {
-            LinearGradient(colors: [.blue, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+//            LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : defaultColorArray,
+//                           startPoint: .topLeading,
+//                           endPoint: .bottomTrailing)
+//                .ignoresSafeArea()
+            AnimatedBackground().edgesIgnoringSafeArea(.all)
+                .blur(radius: 50)
+            
             
             Circle().size(circleSize)
-                .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
+                                     startPoint: .topLeading,
+                                     endPoint: .bottomTrailing))
                 .ignoresSafeArea()
                 .shadow(color: .white, radius: 5)
                 .padding(.top, 50)
@@ -151,5 +162,29 @@ struct SettingsView : View {
 struct SettingsViewPreviews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+    }
+}
+
+struct AnimatedBackground: View {
+    @State var start = UnitPoint(x: 0, y: -2)
+    @State var end = UnitPoint(x:4, y: 0)
+
+    let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
+//    let colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
+//                  Color.green, Color.orange]
+    let colors = [Color.blue, Color.white, Color.purple]
+
+    var body: some View {
+        LinearGradient(gradient: Gradient(colors: colors), startPoint: start,
+                       endPoint: end)
+            .animation(Animation.easeInOut(duration: 6)
+                        .repeatForever()
+            ).onReceive(timer, perform: { _ in
+
+                self.start = UnitPoint(x: 4, y: 0)
+                self.end = UnitPoint(x: 0, y: 2)
+                self.start = UnitPoint(x:4, y: 20)
+                self.start = UnitPoint(x: 4, y: 0)
+            })
     }
 }
