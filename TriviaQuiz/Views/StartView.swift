@@ -26,6 +26,7 @@ struct ContentView: View {
                     Circle()
                         .fill(LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .padding()
+                        
                     
                     NavigationLink(destination: SettingsView()) {
                         

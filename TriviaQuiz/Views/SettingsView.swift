@@ -16,7 +16,8 @@ struct SettingsView : View {
     
     let categories = ["General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
-    let difficulty = ["easy", "medium", "hard"]
+    let difficulty = ["Mix", "Easy", "Medium", "Hard"]
+    
     let numberOfQuestions = [10, 20, 30, 40, 50]
     
     @State var selectedCategoryIndex = 0
@@ -117,7 +118,7 @@ struct SettingsView : View {
                     
                     triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
                     
-                    triviaManager.difficulty = difficulty[selectedDifficultyIndex]
+                    triviaManager.difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
                     
                     triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
                     
