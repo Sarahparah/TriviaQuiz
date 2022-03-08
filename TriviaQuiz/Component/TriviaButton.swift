@@ -46,13 +46,27 @@ struct TriviaButton: View {
 
 struct MyButtonStyle: ButtonStyle {
     @EnvironmentObject var triviaManager : TriviaManager
+
+    let blueColorArray = [Color.blue, Color.white]
+
     var didTap : Bool
+
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
+
+            .background(triviaManager.isGameEnded ? (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .white],
+                                                                    startPoint: .topLeading,
+                                                                    endPoint: .bottomTrailing))
+                        : (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple],
+                                          startPoint: .topLeading,
+                                          endPoint: .bottomTrailing)), in: Capsule())
+            .opacity(configuration.isPressed ? 0.5 : 1)
+
             .background(triviaManager.isGameEnded ? (LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
            // .opacity(configuration.isPressed ? 0.5 : 1)
             .opacity(self.didTap ? 0.2 : 1)
+
     }
 }

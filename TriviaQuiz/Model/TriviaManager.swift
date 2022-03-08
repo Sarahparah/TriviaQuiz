@@ -24,8 +24,12 @@ class TriviaManager : ObservableObject {
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
     @Published var allAnswers : [String] = []
+
+    @Published var isColorMode = true
+
     @Published var allAnswersDecoded : [String] = []
     var backwards = false
+
     
     var score = 0
     
