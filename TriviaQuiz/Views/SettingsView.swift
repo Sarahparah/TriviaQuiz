@@ -47,7 +47,7 @@ struct SettingsView : View {
                                      startPoint: .topLeading,
                                      endPoint: .bottomTrailing))
                 .ignoresSafeArea()
-                .shadow(color: .white, radius: 5)
+                .shadow(color: .white, radius: 10)
                 .padding(.top, 50)
                 
             VStack {

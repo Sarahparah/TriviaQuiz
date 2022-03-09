@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var animateGradient = false
     //@State var isColorMode = true
     let blueColorArray = [Color.blue, Color.white]
+    @Environment(\.managedObjectContext) var viewContext
     
     var body: some View {
         NavigationView {
@@ -63,6 +64,9 @@ struct ContentView: View {
                     .navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
+//                        let newItem = ColorMode(context: viewContext)
+//                        newItem.color = triviaManager.isColorMode
+//                        print(newItem.color)
                     } label: {
                         Text("Toggle ColorMode")
                     }.foregroundColor(.white)
@@ -81,11 +85,15 @@ struct ContentView: View {
 }
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//
+//    }
+//}
+
+
 
 
 
