@@ -13,6 +13,7 @@ struct TriviaButton: View {
     
     var text: String
     var background: Color?
+   // var answer: Answer
     
     @EnvironmentObject var triviaManager : TriviaManager
     @State private var didTap: Bool = false
@@ -38,6 +39,12 @@ struct TriviaButton: View {
                 .cornerRadius(10)
             // .shadow(radius: 5)
             // .shadow(color: triviaManager.isGameEnded ? (.pink) : .gray, radius: 5, x: 0.5, y: 0.5)
+        }
+        .onTapGesture {
+            if !triviaManager.answerSelected {
+                didTap = true
+               // triviaManager.selectAnswer(answer: answer)
+            }
         }
         .buttonStyle(MyButtonStyle(didTap: self.didTap))
     }
@@ -72,5 +79,6 @@ struct MyButtonStyle: ButtonStyle {
     }
     
 }
+
 
 

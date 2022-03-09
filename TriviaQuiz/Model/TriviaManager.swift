@@ -31,9 +31,10 @@ class TriviaManager : ObservableObject {
     @Published var allAnswersDecoded : [String] = []
     var backwards = false
     var colorMode = ColorMode()
-
-    
-    var score = 0
+    @Published var answerSelected = false
+    @Published var question: AttributedString = ""
+    @Published var answerChoices: [Answer] = []
+    @Published var score = 0
     
     let urlString = "https://opentdb.com/api.php"
     
@@ -46,6 +47,7 @@ class TriviaManager : ObservableObject {
             }
             // 2
             let decoder = JSONDecoder()
+           // decoder.keyDecodingStrategy = .convertFromSnakeCase
             DispatchQueue.main.async {
                 // 3
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
@@ -106,9 +108,9 @@ class TriviaManager : ObservableObject {
         }
         
         if index < (quizData.results.count) {
-            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
+            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question)
             self.allAnswers = quizData.results[self.index].incorrect_answers
-            self.allAnswers.append(quizData.results[self.index].correct_answer!)
+            self.allAnswers.append(quizData.results[self.index].correct_answer)
             self.allAnswers.shuffle()
             print("allAnswers: \(self.allAnswers)")
             allAnswersDecoded = []
@@ -117,11 +119,20 @@ class TriviaManager : ObservableObject {
             }
             print("allAnswers: \(allAnswers)")
             print("allAnswersDecoded: \(allAnswersDecoded)")
+            print("allAnswersNewWay \(quizData.results[index].answers)")
+            print("formattedQuestion \(quizData.results[index].formattedQuestion)")
            // index += 1
             
         } else {
             print("spelet är slut")
             isGameEnded = true
+        }
+    }
+    
+    func selectAnswer(answer: Answer) {
+        answerSelected = true
+        if answer.isCorrect {
+            score += 1
         }
     }
     
