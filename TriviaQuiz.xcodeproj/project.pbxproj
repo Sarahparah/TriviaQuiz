@@ -21,6 +21,8 @@
 		B350222827C7CA1E00D3E404 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222727C7CA1E00D3E404 /* ProgressBar.swift */; };
 		B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222A27C7CBC600D3E404 /* TriviaManager.swift */; };
 		C838905327D0FA7D006ADC73 /* FakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C838905227D0FA7D006ADC73 /* FakeView.swift */; };
+		C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890CD27D8B47E006ADC73 /* PersistenceController.swift */; };
+		C83890D227D8B83A006ADC73 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C83890CF27D8B4BF006ADC73 /* DataModel.xcdatamodeld */; };
 		C852023827C8ED8A0045AACD /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023727C8ED8A0045AACD /* QuizData.swift */; };
 		C852023A27C8EDE00045AACD /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023927C8EDE00045AACD /* QuestionData.swift */; };
 		C852023C27C91ECA0045AACD /* QuestionIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C852023B27C91ECA0045AACD /* QuestionIndex.swift */; };
@@ -62,6 +64,8 @@
 		B350222727C7CA1E00D3E404 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B350222A27C7CBC600D3E404 /* TriviaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaManager.swift; sourceTree = "<group>"; };
 		C838905227D0FA7D006ADC73 /* FakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeView.swift; sourceTree = "<group>"; };
+		C83890CD27D8B47E006ADC73 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		C83890D027D8B4C0006ADC73 /* PersistenceController.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistenceController.xcdatamodel; sourceTree = "<group>"; };
 		C852023727C8ED8A0045AACD /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
 		C852023927C8EDE00045AACD /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
 		C852023B27C91ECA0045AACD /* QuestionIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionIndex.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				415AC19E27C664960042886E /* TriviaQuizApp.swift */,
 				415AC1A227C664980042886E /* Assets.xcassets */,
 				415AC1A427C664980042886E /* Preview Content */,
+				C83890CD27D8B47E006ADC73 /* PersistenceController.swift */,
+				C83890CF27D8B4BF006ADC73 /* DataModel.xcdatamodeld */,
 			);
 			path = TriviaQuiz;
 			sourceTree = "<group>";
@@ -315,6 +321,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */,
+				C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */,
+				C83890D227D8B83A006ADC73 /* DataModel.xcdatamodeld in Sources */,
 				415AC1CF27C79D7C0042886E /* SettingsView.swift in Sources */,
 				C852023E27CCD0AA0045AACD /* ScoreView.swift in Sources */,
 				415AC1CD27C670700042886E /* TriviaButton.swift in Sources */,
@@ -649,6 +657,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C83890CF27D8B4BF006ADC73 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C83890D027D8B4C0006ADC73 /* PersistenceController.xcdatamodel */,
+			);
+			currentVersion = C83890D027D8B4C0006ADC73 /* PersistenceController.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 415AC19327C664960042886E /* Project object */;
 }
