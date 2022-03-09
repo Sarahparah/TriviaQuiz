@@ -13,6 +13,7 @@ struct TriviaView : View {
     @EnvironmentObject var triviaManager : TriviaManager
     let blueColorArray = [Color.blue, Color.white]
     var currentGame = 0
+    var isButtonPressed = false
     
     var body: some View {
         
@@ -21,54 +22,85 @@ struct TriviaView : View {
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .ignoresSafeArea()
-//            AnimatedBackground().edgesIgnoringSafeArea(.all)
-//                .blur(radius: 50)
-
+            //            AnimatedBackground().edgesIgnoringSafeArea(.all)
+            //                .blur(radius: 50)
+            
             VStack{
-                Spacer()
+               
                 ZStack {
-                    Rectangle()
+                    Circle()
                         .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                              startPoint: .topLeading,
                                              endPoint: .bottomTrailing))
                         .frame(height: 280, alignment: .center)
-                        .shadow(color: .white, radius: 5)
-                        .padding()
+                        .shadow(color: .white, radius: 10)
+                        .padding(20)
+                        
                     Text(triviaManager.questionToDisplay)
                         .fontWeight(.bold)
                         .font(.headline)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
-                        .padding(50)
+                        .padding(60)
+                        
                 }
-                Spacer()
-                VStack {
+                .offset(y: -10)
+                
+//                VStack {
                     ForEach(triviaManager.allAnswersDecoded, id: \.self) {answer in
                         TriviaButton(text: answer)
                     }
-                }
-                Spacer()
-                HStack {
-                    Button(action: {
-                        if triviaManager.index >= 1 {
-                            triviaManager.index -= 1
-                        } else {
-                            triviaManager.index = 0
-                        }
-                        triviaManager.nextQuestion()
-                    }, label: {Text("Back")})
-                    Spacer()
-                    Button(action: {
-                        triviaManager.index += 1
-                        triviaManager.nextQuestion()
-                        
-                    }, label: {Text("Next")})
-                }
+//                }
+             
+//                .offset(y: -30)
                 NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
-                Spacer()
+              Spacer()
             }
+            
+            VStack{
+                Spacer()
+            
+            HStack {
+                Button(action: {
+                    if triviaManager.index >= 1 {
+                        triviaManager.index -= 1
+                    } else {
+                        triviaManager.index = 0
+                    }
+                    triviaManager.nextQuestion()
+                }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+                                          startPoint: .top,
+                                          endPoint: .bottom)
+                        .frame(width: 50, height: 50)
+                        .mask(Image(systemName: "arrow.left.circle"))
+                        .font(.system(size: 50.0))
+                        .padding(.leading, 20)
+                    
+//                        .offset(x:40)
+                })
+                Spacer()
+                Button(action: {
+                    triviaManager.index += 1
+                    triviaManager.nextQuestion()
+                    
+                }, label: {
+                    LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+                                   startPoint: .top,
+                                   endPoint: .bottom)
+                        .frame(width: 50, height: 50)
+                        .mask(Image(systemName: "arrow.right.circle"))
+                        .font(.system(size: 50.0))
+                        .padding(.trailing, 20)
+                        
+//                        .offset(x:40)
+                })
+            }
+               
+            }
+            
+            
         }
-        .navigationTitle("TriviaQuiz")
+//                .navigationTitle("TriviaQuiz")
         .navigationBarItems(trailing: QuestionIndex())
     }
 }
