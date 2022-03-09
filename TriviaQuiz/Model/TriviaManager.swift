@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 
 class TriviaManager : ObservableObject {
@@ -29,6 +30,7 @@ class TriviaManager : ObservableObject {
 
     @Published var allAnswersDecoded : [String] = []
     var backwards = false
+    var colorMode = ColorMode()
 
     
     var score = 0
@@ -58,35 +60,6 @@ class TriviaManager : ObservableObject {
         // 5
         task.resume()
         // 6
-    }
-    
-    func nextQuestion() {
-        guard let quizData = quizData else {
-            return
-        }
-        
-        if index < (quizData.results.count) {
-            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
-            self.allAnswers = quizData.results[self.index].incorrect_answers
-            self.allAnswers.append(quizData.results[self.index].correct_answer!)
-            self.allAnswers.shuffle()
-            print("allAnswers: \(self.allAnswers)")
-            allAnswersDecoded = []
-            for i in 0..<allAnswers.count {
-                allAnswersDecoded.append(decodeHTML(string: allAnswers[i]))
-            }
-            print("allAnswers: \(allAnswers)")
-            print("allAnswersDecoded: \(allAnswersDecoded)")
-           // index += 1
-            
-        } else {
-            print("spelet är slut")
-            isGameEnded = true
-        }
-    }
-    
-    func resetGame() {
-        print("reset game")
     }
     
     func fetchTheFetchTrivia(amount : Int, category : Int, difficulty : String) {
@@ -125,5 +98,34 @@ class TriviaManager : ObservableObject {
             return attributedString.string
         }
         return ""
+    }
+    
+    func nextQuestion() {
+        guard let quizData = quizData else {
+            return
+        }
+        
+        if index < (quizData.results.count) {
+            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question!)
+            self.allAnswers = quizData.results[self.index].incorrect_answers
+            self.allAnswers.append(quizData.results[self.index].correct_answer!)
+            self.allAnswers.shuffle()
+            print("allAnswers: \(self.allAnswers)")
+            allAnswersDecoded = []
+            for i in 0..<allAnswers.count {
+                allAnswersDecoded.append(decodeHTML(string: allAnswers[i]))
+            }
+            print("allAnswers: \(allAnswers)")
+            print("allAnswersDecoded: \(allAnswersDecoded)")
+           // index += 1
+            
+        } else {
+            print("spelet är slut")
+            isGameEnded = true
+        }
+    }
+    
+    func resetGame() {
+        print("reset game")
     }
 }

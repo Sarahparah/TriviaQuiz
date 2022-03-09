@@ -14,8 +14,9 @@ struct ContentView: View {
     //@State var isColorMode = true
     let blueColorArray = [Color.blue, Color.white]
     @Environment(\.managedObjectContext) var viewContext
-    
+        
     var body: some View {
+        
         NavigationView {
             ZStack {
                 LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: animateGradient ? .topLeading : .bottomTrailing, endPoint: animateGradient ? .bottomTrailing : .topTrailing)
@@ -64,8 +65,10 @@ struct ContentView: View {
                     .navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
+                        triviaManager.colorMode = ColorMode(context: viewContext)
+                        triviaManager.colorMode.color = triviaManager.isColorMode
+                       // triviaManager.isColorMode = colorMode.color
 //                        let newItem = ColorMode(context: viewContext)
-//                        newItem.color = triviaManager.isColorMode
 //                        print(newItem.color)
                     } label: {
                         Text("Toggle ColorMode")
@@ -81,7 +84,22 @@ struct ContentView: View {
             }
         }.environmentObject(triviaManager)
     }
-
+//    func toggleColorMode() {
+//      //  colorMode.color.toggle
+//        viewContext.save()
+//        do {
+//            try viewContext.save()
+//        } catch {
+//            print("Error saving colorMode")
+//        }
+//    }
+    
+//    func fetchCoreDate() {
+//        let fetchRequest: NSFetchRequest<ColorMode> = ColorMode.fetchRequest()
+//        do {
+//            viewContext.fetch(fetchRequest)
+//        }
+//    }
 }
 
 

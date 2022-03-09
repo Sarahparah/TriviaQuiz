@@ -12,26 +12,15 @@ import SwiftUI
 struct ScoreView: View {
     
     var randomWords = ["Good job", "Almost there", "Score!"]
-    
-    
     @EnvironmentObject var triviaManager : TriviaManager
-
-    
- 
-
     @State var isTriviaViewActive = false
 
-    
     var body: some View {
-        
-       
         
         ZStack {
             
             LinearGradient(colors: [.white, .yellow], startPoint: .topTrailing, endPoint: .bottomLeading)
                 .ignoresSafeArea(.all)
-            
-            
             
             VStack(spacing: 0) {
                 Spacer()
@@ -57,7 +46,6 @@ struct ScoreView: View {
                         .padding(90)
                         .shadow(color: .white, radius: 5)
     
-                        
                     Text("\(triviaManager.score)")
                         .font(.system(size: 180))
                         .fontWeight(.bold)
@@ -68,8 +56,6 @@ struct ScoreView: View {
                         .font(.system(size: 180))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        
-                    
                 }
                 Text("out of \(triviaManager.numberOfQuestions)")
                     .font(.system(size: 50))
