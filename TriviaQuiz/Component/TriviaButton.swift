@@ -11,7 +11,7 @@ import SwiftUI
 
 struct TriviaButton: View {
     
-//    var text: String
+//  var text: String
     var background: Color?
     @State var answer: Answer
     @State var buttonSelected: Bool
