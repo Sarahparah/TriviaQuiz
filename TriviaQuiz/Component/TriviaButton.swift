@@ -11,9 +11,9 @@ import SwiftUI
 
 struct TriviaButton: View {
     
-    var text: String
+//    var text: String
     var background: Color?
-   // var answer: Answer
+    var answer: Answer
     
     @EnvironmentObject var triviaManager : TriviaManager
     @State private var didTap: Bool = false
@@ -22,28 +22,26 @@ struct TriviaButton: View {
         
         Button(action: {
             self.didTap = true
-            print(text)
+            print(answer.text)
             
-            if text == triviaManager.quizData?.results[triviaManager.index].correct_answer {
+            if answer.isCorrect {
                 triviaManager.score += 1
-                print(triviaManager.score)
+                print("Current score: \(triviaManager.score)")
+            } else {
+                print("Wrong answer!")
             }
-            // triviaManager.nextQuestion(backwards: triviaManager.backwards)
-            
-            // self.opacity(configuration.isPressed ? 0.7 : 1)
+
         }) {
-            Text("\(text)")
+            Text("\(answer.text)")
                 .foregroundColor(.white)
                 .frame(width: 280, height: 50)
                 .background(.blue.opacity(0.5))
                 .cornerRadius(10)
-            // .shadow(radius: 5)
-            // .shadow(color: triviaManager.isGameEnded ? (.pink) : .gray, radius: 5, x: 0.5, y: 0.5)
         }
         .onTapGesture {
             if !triviaManager.answerSelected {
                 didTap = true
-               // triviaManager.selectAnswer(answer: answer)
+
             }
         }
         .buttonStyle(MyButtonStyle(didTap: self.didTap))
@@ -78,6 +76,15 @@ struct MyButtonStyle: ButtonStyle {
         
     }
     
+}
+
+
+struct TriviaButton_Previews: PreviewProvider {
+
+    static var previews: some View {
+        
+        TriviaButton(answer: Answer(text: "Single", isCorrect: false))
+    }
 }
 
 
