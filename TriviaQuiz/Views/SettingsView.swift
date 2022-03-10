@@ -26,24 +26,31 @@ struct SettingsView : View {
     @State var isTriviaViewActive = false
 
     let blueColorArray = [Color.blue, Color.white]
+
+    let grayColorArray = [Color(UIColor(named: "GrayColorOne")!),
+                          Color(UIColor(named: "GrayColorTwo")!),
+                          Color(UIColor(named: "GrayColorThree")!),
+                          Color(UIColor(named: "GrayColorFour")!),
+                          Color(UIColor(named: "GrayColorFive")!)]
+
+    let planetArray = [Color(UIColor(named: "GrayColorFive")!),
+                          Color(UIColor(named: "GrayColorOne")!)]
+
+
+
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
-//    let contentView = ContentView()
     
     let circleSize = CGSize(width: 1000, height: 1000)
     
     var body: some View {
         
         ZStack {
-//            LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : defaultColorArray,
-//                           startPoint: .topLeading,
-//                           endPoint: .bottomTrailing)
-//                .ignoresSafeArea()
+
             AnimatedBackground().edgesIgnoringSafeArea(.all)
                 .blur(radius: 50)
-            
-            
+
             Circle().size(circleSize)
-                .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
+                .fill(LinearGradient(colors: triviaManager.isColorMode ? planetArray : [.blue, .red],
                                      startPoint: .topLeading,
                                      endPoint: .bottomTrailing))
                 .ignoresSafeArea()
@@ -53,7 +60,10 @@ struct SettingsView : View {
             VStack {
                 ZStack {
                     Circle()
-                        .fill(LinearGradient(colors: [.purple, .blue, Color.purple.opacity(0.5), .yellow], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .fill(LinearGradient(colors: triviaManager.isColorMode ? planetArray :
+                                                [.purple, .blue, Color.purple.opacity(0.5), .yellow],
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 5)
                     Text("Category")
                         .fontWeight(.bold)
@@ -69,13 +79,14 @@ struct SettingsView : View {
                     }.pickerStyle(WheelPickerStyle())
                 }
                 .offset(x: -70, y: 50)
-                
-                // }.position(x: 130, y: 160)
-                
+
                 Spacer()
                 ZStack {
                     Circle()
-                        .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .fill(LinearGradient(colors: triviaManager.isColorMode ? planetArray :
+                                                [.blue, .red],
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 5)
                     Text("Difficulty")
                         .fontWeight(.bold)
@@ -90,16 +101,22 @@ struct SettingsView : View {
                     }.pickerStyle(WheelPickerStyle())
                     
                 }.offset(x: -20, y: 20)
-                //.position(x: 195, y: 150)
+
                 
                 Spacer()
                 ZStack {
                     Circle()
-                        .fill(LinearGradient(colors: [.blue, Color.yellow.opacity(0.5), .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .fill(LinearGradient(colors: triviaManager.isColorMode ? planetArray :
+                                                [.blue, Color.yellow.opacity(0.5), .purple],
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 10)
                     
                     Circle()
-                        .fill(LinearGradient(colors: [.yellow, .blue, .purple], startPoint: .topTrailing, endPoint: .bottomLeading))
+                        .fill(LinearGradient(colors: triviaManager.isColorMode ? planetArray :
+                                                [.yellow, .blue, .purple],
+                                             startPoint: .topTrailing,
+                                             endPoint: .bottomLeading))
                         .padding()
                         .shadow(color: .white, radius: 5)
                     Text("Questions")
@@ -137,18 +154,20 @@ struct SettingsView : View {
                     returnSettings()
                     
                 }, label: {
+                  //  TextShimmer(text: "Let's quiz!")
                     Text("Let's quiz!")
                         .foregroundColor(.white)
                         .frame(width: 220, height: 50)
-                        .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .background(LinearGradient(colors: triviaManager.isColorMode ? grayColorArray :
+                                                    [.pink, .purple],
+                                                   startPoint: .topLeading,
+                                                   endPoint: .bottomTrailing))
                         .cornerRadius(30)
                 })
                     .offset(y: -20)
             }
             
             .navigationTitle("Customize your game")
-            //.cornerRadius(10)
-            //.edgesIgnoringSafeArea(.bottom)
         }
     }
     
@@ -175,8 +194,16 @@ struct AnimatedBackground: View {
 //                  Color.green, Color.orange]
     let colors = [Color.blue, Color.white, Color.purple]
 
+    @EnvironmentObject var triviaManager : TriviaManager
+
+    let grayColorArray = [Color(UIColor(named: "GrayColorOne")!),
+                           Color(UIColor(named: "GrayColorTwo")!),
+                           Color(UIColor(named: "GrayColorThree")!),
+                           Color(UIColor(named: "GrayColorFour")!),
+                           Color(UIColor(named: "GrayColorFive")!)]
+
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: colors), startPoint: start,
+        LinearGradient(gradient: Gradient(colors: triviaManager.isColorMode ? grayColorArray : colors), startPoint: start,
                        endPoint: end)
             .animation(Animation.easeInOut(duration: 6)
                         .repeatForever()
@@ -189,3 +216,59 @@ struct AnimatedBackground: View {
             })
     }
 }
+
+//struct TextShimmer: View {
+//
+//    var text: String
+//    @State var animation = false
+//
+//    var body: some View {
+//
+//        ZStack{
+//
+//            Text(text)
+//                .font(.system(size:75, weight: .bold))
+//                .foregroundColor(Color.white.opacity(0.25))
+//
+//            //Multicolor Text...
+//
+//            HStack(spacing: 0) {
+//
+//                ForEach(0..<text.count,id: \.self){index in
+//
+//                    Text(String(text[text.index(text.startIndex, offsetBy:
+//                                               index)]))
+//                        .font(.system(size: 75, weight: .bold))
+//                        .foregroundColor(randomColor())
+//                }
+//            }
+//            // Masking for Shimmer Effect...
+//            .mask(
+//                Rectangle()
+//                    .fill(
+//                        LinearGradient(gradient: .init(colors:
+//                                                        [Color.white.opacity(0.5), Color.white, Color.white.opacity(0.5)]),
+//                                       startPoint: .top,
+//                                       endPoint: .bottom)
+//                    )
+//                    .rotationEffect(.init(degrees: 70))
+//                    .padding(20)
+//                    .offset(x: -250)
+//                    .offset(x: animation ? 500 : 0)
+//            )
+//            .onAppear(perform: {
+//                withAnimation(Animation.linear(duration:
+//                                                2).repeatForever(autoreverses: false)){
+//                    animation.toggle()
+//                }
+//            })
+//        }
+//    }
+//
+//
+//    func randomColor()->Color {
+//        let color = UIColor(red: 1, green: .random(in: 0...1),
+//                            blue: .random(in: 0...1), alpha: 1)
+//        return Color(color)
+//    }
+//}
