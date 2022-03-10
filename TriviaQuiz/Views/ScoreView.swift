@@ -14,6 +14,7 @@ struct ScoreView: View {
     var randomWords = ["Good job", "Almost there", "Score!"]
     @EnvironmentObject var triviaManager : TriviaManager
     @State var isTriviaViewActive = false
+    @State var isSettingsViewActive = false
 
     var body: some View {
         
@@ -63,6 +64,9 @@ struct ScoreView: View {
                 NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
                     EmptyView()
                 }
+                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
+                    EmptyView()
+                }
                 Button(action: {
                     isTriviaViewActive = true
                     triviaManager.index = 0
@@ -72,10 +76,15 @@ struct ScoreView: View {
                        label: {
                     Text("See your answers")
                 })
+                Button(action: {
+                    isSettingsViewActive = true
+                    triviaManager.resetGame()
+                }, label: {Text("Play again")})
+                
                 NavigationLink(destination: FakeView()) {
                     Text("Fake View")
                 }
-                Spacer()
+               // Spacer()
             }
         }.navigationBarBackButtonHidden(true)
         

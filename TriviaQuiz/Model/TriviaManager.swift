@@ -22,15 +22,9 @@ class TriviaManager : ObservableObject {
     var difficulty : String = ""
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
-    @Published var questionToDisplay = ""
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
-    @Published var allAnswers : [String] = []
-
     @Published var isColorMode = true
-
-    @Published var allAnswersDecoded : [String] = []
-    var backwards = false
     var colorMode = ColorMode()
     @Published var answerSelected = false
     @Published var question: AttributedString = ""
@@ -119,20 +113,6 @@ class TriviaManager : ObservableObject {
             self.answerChoices = quizData.results[index].answers
             self.question = quizData.results[index].formattedQuestion
             index += 1
-//            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question)
-//            self.allAnswers = quizData.results[self.index].incorrect_answers
-//            self.allAnswers.append(quizData.results[self.index].correct_answer)
-//            self.allAnswers.shuffle()
-//            print("allAnswers: \(self.allAnswers)")
-//            allAnswersDecoded = []
-//            for i in 0..<allAnswers.count {
-//                allAnswersDecoded.append(decodeHTML(string: allAnswers[i]))
-//            }
-//            print("allAnswers: \(allAnswers)")
-//            print("allAnswersDecoded: \(allAnswersDecoded)")
-//            print("allAnswersNewWay \(quizData.results[index].answers)")
-//            print("formattedQuestion \(quizData.results[index].formattedQuestion)")
-
         } else {
             print("spelet är slut")
             isGameEnded = true
@@ -148,6 +128,10 @@ class TriviaManager : ObservableObject {
     
     func resetGame() {
         print("reset game")
+        index = 0
+        score = 0
+        isGameEnded = false
+        quizData = nil
     }
     
 //    func alertDialog() {

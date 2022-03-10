@@ -28,7 +28,7 @@ struct SettingsView : View {
     
     
     
-    @State var showAlert: Bool = false
+    @State var shouldShowAlert: Bool = false
     
     let blueColorArray = [Color.blue, Color.white]
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
@@ -131,57 +131,45 @@ struct SettingsView : View {
                 }
                 Button(action: {
                     
-                    
-                    
-                    
-                    triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
-                    
-                    triviaManager.difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
-                    
-                    triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
-                    
-                    
-                    triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
-                    returnSettings()
-                    
-                    if triviaManager.quizData?.response_code == 0 {
-                        isTriviaViewActive = true
-                    }else {
-                        showAlert = true
-                        print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
-                    }
-                    
+                    returnSettings(completed: showAlert)
                     
                 }
                        , label: {
-                    Text("Let's quiz!")
+                    Text("Let's do this")
                         .foregroundColor(.white)
                         .frame(width: 220, height: 50)
                         .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .cornerRadius(30)
                 })
                     .offset(y: -20)
-                    .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Warning"), message: Text("We don't have this many \(difficulty[selectedDifficultyIndex].lowercased()) questions in the \(categories[selectedCategoryIndex].lowercased()) category"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
-                        
+                    .alert(isPresented: $shouldShowAlert) {
+                        Alert(title: Text("Sorry"), message: Text("We don't have \(numberOfQuestions[selectedNumberOfQuestions]) \(difficulty[selectedDifficultyIndex].lowercased()) questions in the \(categories[selectedCategoryIndex].lowercased()) category"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
                     }
-                
-                
                     .navigationTitle("Customize your game")
-                //.cornerRadius(10)
-                //.edgesIgnoringSafeArea(.bottom)
             }
         }
     }
     
-    func returnSettings() {
+    func returnSettings(completed: () -> Void) {
+        triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
         
-        triviaManager.numberOfQuestions = Int(numberOfQuestions[selectedNumberOfQuestions])
+        triviaManager.difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
         
+        triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
+        
+        triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
+        completed()
+    }
+    
+    func showAlert() {
+        if triviaManager.quizData?.response_code == 1 {
+            shouldShowAlert = true
+            print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
+        } else {
+            isTriviaViewActive = true
+        }
     }
 }
-
-
 
 struct SettingsViewPreviews: PreviewProvider {
     static var previews: some View {
@@ -197,12 +185,12 @@ struct AnimatedBackground: View {
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
     //    let colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
     //                  Color.green, Color.orange]
-    let colors = [Color.blue, Color.white, Color.purple]
+    let colors = [Color.blue, Color.purple, Color.yellow]
     
     var body: some View {
         LinearGradient(gradient: Gradient(colors: colors), startPoint: start,
                        endPoint: end)
-            .animation(Animation.easeInOut(duration: 6)
+            .animation(Animation.easeInOut(duration: 3)
                         .repeatForever()
             ).onReceive(timer, perform: { _ in
                 
