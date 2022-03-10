@@ -25,6 +25,7 @@ struct QuestionData: Decodable {
     }
     
     var answers: [Answer] {
+        
         do {
             let correct = [Answer(text: try AttributedString(markdown: correct_answer), isCorrect: true)]
             var incorrects = [Answer]()
@@ -37,6 +38,7 @@ struct QuestionData: Decodable {
         } catch {
             print("Error setting answers: \(error)")
             return []
+
         }
     }
 }

@@ -106,23 +106,26 @@ class TriviaManager : ObservableObject {
         guard let quizData = quizData else {
             return
         }
-        
+
         if index < (quizData.results.count) {
-            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question)
-            self.allAnswers = quizData.results[self.index].incorrect_answers
-            self.allAnswers.append(quizData.results[self.index].correct_answer)
-            self.allAnswers.shuffle()
-            print("allAnswers: \(self.allAnswers)")
-            allAnswersDecoded = []
-            for i in 0..<allAnswers.count {
-                allAnswersDecoded.append(decodeHTML(string: allAnswers[i]))
-            }
-            print("allAnswers: \(allAnswers)")
-            print("allAnswersDecoded: \(allAnswersDecoded)")
-            print("allAnswersNewWay \(quizData.results[index].answers)")
-            print("formattedQuestion \(quizData.results[index].formattedQuestion)")
-           // index += 1
-            
+
+              self.answerChoices = quizData.results[index].answers
+              self.question = quizData.results[index].formattedQuestion
+              
+//            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question)
+//            self.allAnswers = quizData.results[self.index].incorrect_answers
+//            self.allAnswers.append(quizData.results[self.index].correct_answer)
+//            self.allAnswers.shuffle()
+//            print("allAnswers: \(self.allAnswers)")
+//            allAnswersDecoded = []
+//            for i in 0..<allAnswers.count {
+//                allAnswersDecoded.append(decodeHTML(string: allAnswers[i]))
+//            }
+//            print("allAnswers: \(allAnswers)")
+//            print("allAnswersDecoded: \(allAnswersDecoded)")
+//            print("allAnswersNewWay \(quizData.results[index].answers)")
+//            print("formattedQuestion \(quizData.results[index].formattedQuestion)")
+
         } else {
             print("spelet är slut")
             isGameEnded = true
