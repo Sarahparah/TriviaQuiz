@@ -62,7 +62,7 @@ struct TriviaView : View {
                 //                .offset(y: -70)
 
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
-                    TriviaButton(answer: answer)
+                    TriviaButton(answer: answer, buttonSelected: answer.isSelected)
                 }
 //                        .offset(y: -10)
 
@@ -70,44 +70,45 @@ struct TriviaView : View {
                 Spacer()
             }
             
-            VStack{
-                Spacer()
-
-                HStack {
-                    Button(action: {
-                        if triviaManager.index >= 1 {
-                            triviaManager.index -= 1
-                        } else {
-                            triviaManager.index = 0
-                        }
-                        triviaManager.nextQuestion()
-                    }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-                                              startPoint: .top,
-                                              endPoint: .bottom)
-                            .frame(width: 50, height: 50)
-                            .mask(Image(systemName: "arrow.left.circle"))
-                            .font(.system(size: 50.0))
-                            .padding(.leading, 20)
-
-                    })
-                    Spacer()
-                    Button(action: {
-                        triviaManager.index += 1
-                        triviaManager.nextQuestion()
-
-                    }, label: {
-                        LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-                                       startPoint: .top,
-                                       endPoint: .bottom)
-                            .frame(width: 50, height: 50)
-                            .mask(Image(systemName: "arrow.right.circle"))
-                            .font(.system(size: 50.0))
-                            .padding(.trailing, 20)
-                        
-                    })
-                }
-
-            }
+//            VStack{
+//                Spacer()
+//
+////                HStack {
+////                    Button(action: {
+////                        if triviaManager.index >= 1 {
+////                            triviaManager.index -= 1
+////                        } else {
+////                            triviaManager.index = 0
+////                        }
+////                        triviaManager.nextQuestion()
+////                    }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+////                                              startPoint: .top,
+////                                              endPoint: .bottom)
+////                            .frame(width: 50, height: 50)
+////                            .mask(Image(systemName: "arrow.left.circle"))
+////                            .font(.system(size: 50.0))
+////                            .padding(.leading, 20)
+////
+////                    })
+////                    Spacer()
+////                    Button(action: {
+////                        triviaManager.index += 1
+////                        triviaManager.nextQuestion()
+////
+////                    }, label: {
+////                        LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+////                                       startPoint: .top,
+////                                       endPoint: .bottom)
+////                            .frame(width: 50, height: 50)
+////                            .mask(Image(systemName: "arrow.right.circle"))
+////                            .font(.system(size: 50.0))
+////                            .padding(.trailing, 20)
+////
+////                    })
+////                }
+//
+//
+//            }
             
             
         }
