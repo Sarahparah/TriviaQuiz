@@ -45,7 +45,7 @@ struct TriviaView : View {
                     .padding(.bottom, 40)
                 
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
-                    TriviaButton(answer: answer)
+                    TriviaButton(answer: answer, buttonSelected: answer.isSelected)
                 }
                 //                        .offset(y: -10)
                 

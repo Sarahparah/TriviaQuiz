@@ -116,9 +116,9 @@ class TriviaManager : ObservableObject {
 
         if index < (quizData.results.count) {
 
-              self.answerChoices = quizData.results[index].answers
-              self.question = quizData.results[index].formattedQuestion
-              
+            self.answerChoices = quizData.results[index].answers
+            self.question = quizData.results[index].formattedQuestion
+            index += 1
 //            self.questionToDisplay = self.decodeHTML(string: quizData.results[self.index].question)
 //            self.allAnswers = quizData.results[self.index].incorrect_answers
 //            self.allAnswers.append(quizData.results[self.index].correct_answer)
