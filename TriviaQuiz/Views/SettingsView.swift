@@ -12,7 +12,8 @@ struct SettingsView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     @State var animateGradient = false
-
+    
+    
     
     let categories = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
@@ -24,20 +25,24 @@ struct SettingsView : View {
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
     @State var isTriviaViewActive = false
-
+    
+    
+    
+    @State var showAlert: Bool = false
+    
     let blueColorArray = [Color.blue, Color.white]
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
-//    let contentView = ContentView()
+    //    let contentView = ContentView()
     
     let circleSize = CGSize(width: 1000, height: 1000)
     
     var body: some View {
         
         ZStack {
-//            LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : defaultColorArray,
-//                           startPoint: .topLeading,
-//                           endPoint: .bottomTrailing)
-//                .ignoresSafeArea()
+            //            LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : defaultColorArray,
+            //                           startPoint: .topLeading,
+            //                           endPoint: .bottomTrailing)
+            //                .ignoresSafeArea()
             AnimatedBackground().edgesIgnoringSafeArea(.all)
                 .blur(radius: 50)
             
@@ -49,7 +54,7 @@ struct SettingsView : View {
                 .ignoresSafeArea()
                 .shadow(color: .white, radius: 10)
                 .padding(.top, 50)
-                
+            
             VStack {
                 ZStack {
                     Circle()
@@ -125,7 +130,9 @@ struct SettingsView : View {
                     EmptyView()
                 }
                 Button(action: {
-                    isTriviaViewActive = true
+                    
+                    
+                    
                     
                     triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
                     
@@ -133,10 +140,20 @@ struct SettingsView : View {
                     
                     triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
                     
+                    
                     triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
                     returnSettings()
                     
-                }, label: {
+                    if triviaManager.quizData?.response_code == 0 {
+                        isTriviaViewActive = true
+                    }else {
+                        showAlert = true
+                        print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
+                    }
+                    
+                    
+                }
+                       , label: {
                     Text("Let's quiz!")
                         .foregroundColor(.white)
                         .frame(width: 220, height: 50)
@@ -144,11 +161,16 @@ struct SettingsView : View {
                         .cornerRadius(30)
                 })
                     .offset(y: -20)
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Warning"), message: Text("We don't have this many \(difficulty[selectedDifficultyIndex].lowercased()) questions in the \(categories[selectedCategoryIndex].lowercased()) category"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
+                        
+                    }
+                
+                
+                    .navigationTitle("Customize your game")
+                //.cornerRadius(10)
+                //.edgesIgnoringSafeArea(.bottom)
             }
-            
-            .navigationTitle("Customize your game")
-            //.cornerRadius(10)
-            //.edgesIgnoringSafeArea(.bottom)
         }
     }
     
@@ -160,28 +182,30 @@ struct SettingsView : View {
 }
 
 
+
 struct SettingsViewPreviews: PreviewProvider {
     static var previews: some View {
         SettingsView()
     }
 }
 
+
 struct AnimatedBackground: View {
     @State var start = UnitPoint(x: 0, y: -2)
     @State var end = UnitPoint(x:4, y: 0)
-
+    
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
-//    let colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
-//                  Color.green, Color.orange]
+    //    let colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
+    //                  Color.green, Color.orange]
     let colors = [Color.blue, Color.white, Color.purple]
-
+    
     var body: some View {
         LinearGradient(gradient: Gradient(colors: colors), startPoint: start,
                        endPoint: end)
             .animation(Animation.easeInOut(duration: 6)
                         .repeatForever()
             ).onReceive(timer, perform: { _ in
-
+                
                 self.start = UnitPoint(x: 4, y: 0)
                 self.end = UnitPoint(x: 0, y: 2)
                 self.start = UnitPoint(x:4, y: 20)
@@ -189,3 +213,4 @@ struct AnimatedBackground: View {
             })
     }
 }
+

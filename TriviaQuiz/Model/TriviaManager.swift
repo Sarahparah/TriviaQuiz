@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 
 class TriviaManager : ObservableObject {
@@ -36,6 +37,10 @@ class TriviaManager : ObservableObject {
     @Published var answerChoices: [Answer] = []
     @Published var score = 0
     
+    
+    
+//    @State var showAlert: Bool = false
+    
     let urlString = "https://opentdb.com/api.php"
     
     func fetchTrivia(with url : URL)  { // 1 5 6 2 4 3
@@ -53,6 +58,8 @@ class TriviaManager : ObservableObject {
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
                     self.quizData = quizData
                     // 7
+//                    self.alertDialog()
+                    
                     self.nextQuestion()
                 }
                 // 8
@@ -142,4 +149,17 @@ class TriviaManager : ObservableObject {
     func resetGame() {
         print("reset game")
     }
-}
+    
+//    func alertDialog() {
+//
+//        if quizData!.response_code  > 0 {
+//            print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
+//                showAlert = true
+//        }
+            
+        
+        
+    }
+    
+    
+
