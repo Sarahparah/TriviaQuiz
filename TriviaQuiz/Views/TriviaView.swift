@@ -26,17 +26,6 @@ struct TriviaView : View {
             //                .blur(radius: 50)
             
             VStack{
-
-                //                ZStack {
-                //                    Circle()
-                //                        .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
-                //                                             startPoint: .topLeading,
-                //                                             endPoint: .bottomTrailing))
-                //                        .shadow(color: .white, radius: 10)
-                //                        .padding(.trailing, 30)
-                //                        .padding(.leading, 30)
-
-
                 Text(triviaManager.question)
                     .fontWeight(.bold)
                     .font(.headline)
@@ -45,34 +34,24 @@ struct TriviaView : View {
                     .padding(100)
                     .background(
                         Circle()
+                        
                             .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                                  startPoint: .topLeading,
                                                  endPoint: .bottomTrailing))
-
+                            .frame(width: 310, alignment: .center)
                             .shadow(color: .white, radius: 10)
-//                            .padding(.trailing, 30)
-//                            .padding(.leading, 30)
-
-
+                        
                     )
-
-
-
-                //                }
-                //                .offset(y: -70)
-
+                    .padding(.bottom, 40)
+                
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
                     TriviaButton(answer: answer)
                 }
-//                        .offset(y: -10)
-
+                //                        .offset(y: -10)
+                
                 NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
                 Spacer()
-            }
-            
-            VStack{
-                Spacer()
-
+                
                 HStack {
                     Button(action: {
                         if triviaManager.index >= 1 {
@@ -88,13 +67,13 @@ struct TriviaView : View {
                             .mask(Image(systemName: "arrow.left.circle"))
                             .font(.system(size: 50.0))
                             .padding(.leading, 20)
-
+                        
                     })
                     Spacer()
                     Button(action: {
                         triviaManager.index += 1
                         triviaManager.nextQuestion()
-
+                        
                     }, label: {
                         LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
                                        startPoint: .top,
@@ -106,12 +85,10 @@ struct TriviaView : View {
                         
                     })
                 }
-
             }
             
-            
         }
-
+        
         .navigationBarItems(trailing: QuestionIndex())
     }
 }
