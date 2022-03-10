@@ -22,73 +22,33 @@ struct TriviaView : View {
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .ignoresSafeArea()
-            //            AnimatedBackground().edgesIgnoringSafeArea(.all)
-            //                .blur(radius: 50)
             
-            VStack{
-                Text(triviaManager.question)
-                    .fontWeight(.bold)
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .padding(100)
-                    .background(
-                        Circle()
-                        
-                            .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
-                                                 startPoint: .topLeading,
-                                                 endPoint: .bottomTrailing))
-                            .frame(width: 310, alignment: .center)
-                            .shadow(color: .white, radius: 10)
-                        
-                    )
-                    .padding(.bottom, 40)
+            VStack {
+                ZStack {
+                    Circle()
+                        .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing))
+                        .shadow(color: .white, radius: 10)
+                    Text(triviaManager.question)
+                        .fontWeight(.bold)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .padding(20)
+                }
+                .frame(width: 300, height: 300, alignment: .center)
+                
+                Spacer()
                 
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
                     TriviaButton(answer: answer, buttonSelected: answer.isSelected)
                 }
-                //                        .offset(y: -10)
-                
-                NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
                 Spacer()
                 
-                HStack {
-                    Button(action: {
-                        if triviaManager.index >= 1 {
-                            triviaManager.index -= 1
-                        } else {
-                            triviaManager.index = 0
-                        }
-                        triviaManager.nextQuestion()
-                    }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-                                              startPoint: .top,
-                                              endPoint: .bottom)
-                            .frame(width: 50, height: 50)
-                            .mask(Image(systemName: "arrow.left.circle"))
-                            .font(.system(size: 50.0))
-                            .padding(.leading, 20)
-                        
-                    })
-                    Spacer()
-                    Button(action: {
-                        triviaManager.index += 1
-                        triviaManager.nextQuestion()
-                        
-                    }, label: {
-                        LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-                                       startPoint: .top,
-                                       endPoint: .bottom)
-                            .frame(width: 50, height: 50)
-                            .mask(Image(systemName: "arrow.right.circle"))
-                            .font(.system(size: 50.0))
-                            .padding(.trailing, 20)
-                        
-                    })
-                }
+                NavigationLink(destination: ScoreView(), isActive: $triviaManager.isGameEnded) {EmptyView()}
             }
-            
         }
-        
         .navigationBarItems(trailing: QuestionIndex())
     }
 }
