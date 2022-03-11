@@ -24,11 +24,11 @@ struct SettingsView : View {
     @State var selectedCategoryIndex = 0
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
-    @State var isTriviaViewActive = false
+    @State var isTriviaViewActive : Bool = false
     
     
     
-    @State var shouldShowAlert: Bool = false
+   // @State var shouldShowAlert: Bool = false
     
     let blueColorArray = [Color.blue, Color.white]
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
@@ -126,12 +126,17 @@ struct SettingsView : View {
                 //.position(x: 260, y: 110)
                 
                 Spacer()
-                NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
+                NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
                     EmptyView()
                 }
                 Button(action: {
                     
-                    returnSettings(completed: showAlert)
+                    returnSettings()
+                    print("responseCode: \(triviaManager.quizData?.response_code)")
+                   // isTriviaViewActive = !triviaManager.responseCodeError
+//                    if triviaManager.responseCodeError == false {
+//                        isTriviaViewActive = true
+//                    }
                     
                 }
                        , label: {
@@ -142,7 +147,7 @@ struct SettingsView : View {
                         .cornerRadius(30)
                 })
                     .offset(y: -20)
-                    .alert(isPresented: $shouldShowAlert) {
+                    .alert(isPresented: $triviaManager.responseCodeError) {
                         Alert(title: Text("Sorry"), message: Text("We don't have \(numberOfQuestions[selectedNumberOfQuestions]) \(difficulty[selectedDifficultyIndex].lowercased()) questions in the \(categories[selectedCategoryIndex].lowercased()) category"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
                     }
                     .navigationTitle("Customize your game")
@@ -150,7 +155,7 @@ struct SettingsView : View {
         }
     }
     
-    func returnSettings(completed: () -> Void) {
+    func returnSettings() {
         triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
         
         triviaManager.difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
@@ -158,15 +163,14 @@ struct SettingsView : View {
         triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
         
         triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
-        completed()
+        
     }
     
     func showAlert() {
         if triviaManager.quizData?.response_code == 1 {
-            shouldShowAlert = true
+          //  shouldShowAlert = true
             print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
         } else {
-            isTriviaViewActive = true
         }
     }
 }

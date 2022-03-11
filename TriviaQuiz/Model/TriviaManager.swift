@@ -30,7 +30,8 @@ class TriviaManager : ObservableObject {
     @Published var question: AttributedString = ""
     @Published var answerChoices: [Answer] = []
     @Published var score = 0
-    
+    @Published var responseCodeError = false
+    @Published var isTriviaViewActive = false
     
     
 //    @State var showAlert: Bool = false
@@ -53,8 +54,12 @@ class TriviaManager : ObservableObject {
                     self.quizData = quizData
                     // 7
 //                    self.alertDialog()
-                    
-                    self.nextQuestion()
+                    if quizData.response_code == 1 {
+                        self.responseCodeError = true
+                    } else {
+                        self.nextQuestion()
+                        self.isTriviaViewActive = true
+                    }
                 }
                 // 8
             }
@@ -91,6 +96,7 @@ class TriviaManager : ObservableObject {
         print("URLLLL:  \(url)")
         
         fetchTrivia(with: url)
+        
         
     }
     
@@ -132,6 +138,7 @@ class TriviaManager : ObservableObject {
         score = 0
         isGameEnded = false
         quizData = nil
+        responseCodeError = false
     }
     
 //    func alertDialog() {
