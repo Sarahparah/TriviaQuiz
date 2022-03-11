@@ -22,7 +22,7 @@ struct SettingsView : View {
     @State var selectedCategoryIndex = 0
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
-    @State var isTriviaViewActive : Bool = false
+   // @State var isTriviaViewActive : Bool = false
     
     let blueColorArray = [Color.blue, Color.white]
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
@@ -113,8 +113,8 @@ struct SettingsView : View {
                     EmptyView()
                 }
                 Button(action: {
-                    returnSettings()
-                    print("responseCode: \(triviaManager.quizData?.response_code)")
+                    createGameFromSettings()
+                   // print("responseCode: \(triviaManager.quizData?.response_code)")
                 }
                        , label: {
                     Text("Let's do this")
@@ -132,13 +132,10 @@ struct SettingsView : View {
         }
     }
     
-    func returnSettings() {
+    func createGameFromSettings() {
         triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
-        
         triviaManager.difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
-        
         triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
-        
         triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
     }
 }
