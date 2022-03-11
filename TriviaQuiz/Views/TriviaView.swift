@@ -25,17 +25,20 @@ struct TriviaView : View {
             
             VStack {
                 ZStack {
+                
                     Circle()
                         .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                              startPoint: .topLeading,
                                              endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 10)
+                        CircularProgressBar()
                     Text(triviaManager.question)
                         .fontWeight(.bold)
                         .font(.headline)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding(20)
+                    
                 }
                 .frame(width: 300, height: 300, alignment: .center)
                 
