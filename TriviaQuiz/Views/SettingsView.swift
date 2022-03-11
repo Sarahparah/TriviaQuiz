@@ -13,8 +13,6 @@ struct SettingsView : View {
     @EnvironmentObject var triviaManager : TriviaManager
     @State var animateGradient = false
     
-    
-    
     let categories = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
     let difficulty = ["Mix", "Easy", "Medium", "Hard"]
@@ -26,14 +24,8 @@ struct SettingsView : View {
     @State var selectedNumberOfQuestions = 0
     @State var isTriviaViewActive : Bool = false
     
-    
-    
-   // @State var shouldShowAlert: Bool = false
-    
     let blueColorArray = [Color.blue, Color.white]
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
-    //    let contentView = ContentView()
-    
     let circleSize = CGSize(width: 1000, height: 1000)
     
     var body: some View {
@@ -45,7 +37,6 @@ struct SettingsView : View {
             //                .ignoresSafeArea()
             AnimatedBackground().edgesIgnoringSafeArea(.all)
                 .blur(radius: 50)
-            
             
             Circle().size(circleSize)
                 .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
@@ -74,9 +65,7 @@ struct SettingsView : View {
                     }.pickerStyle(WheelPickerStyle())
                 }
                 .offset(x: -70, y: 50)
-                
-                // }.position(x: 130, y: 160)
-                
+                                
                 Spacer()
                 ZStack {
                     Circle()
@@ -93,16 +82,13 @@ struct SettingsView : View {
                                 .foregroundColor(.white)
                         }
                     }.pickerStyle(WheelPickerStyle())
-                    
                 }.offset(x: -20, y: 20)
-                //.position(x: 195, y: 150)
                 
                 Spacer()
                 ZStack {
                     Circle()
                         .fill(LinearGradient(colors: [.blue, Color.yellow.opacity(0.5), .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 10)
-                    
                     Circle()
                         .fill(LinearGradient(colors: [.yellow, .blue, .purple], startPoint: .topTrailing, endPoint: .bottomLeading))
                         .padding()
@@ -117,27 +103,18 @@ struct SettingsView : View {
                             Text("\(self.numberOfQuestions[$0])")
                                 .foregroundColor(.white)
                                 .fontWeight(.bold)
-                            
                         }
                     }.pickerStyle(WheelPickerStyle())
-                    
                 }
                 .offset(x: 80, y: -20)
-                //.position(x: 260, y: 110)
                 
                 Spacer()
                 NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
                     EmptyView()
                 }
                 Button(action: {
-                    
                     returnSettings()
                     print("responseCode: \(triviaManager.quizData?.response_code)")
-                   // isTriviaViewActive = !triviaManager.responseCodeError
-//                    if triviaManager.responseCodeError == false {
-//                        isTriviaViewActive = true
-//                    }
-                    
                 }
                        , label: {
                     Text("Let's do this")
@@ -163,15 +140,6 @@ struct SettingsView : View {
         triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
         
         triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
-        
-    }
-    
-    func showAlert() {
-        if triviaManager.quizData?.response_code == 1 {
-          //  shouldShowAlert = true
-            print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
-        } else {
-        }
     }
 }
 
