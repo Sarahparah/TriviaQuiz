@@ -37,8 +37,10 @@ struct ContentView: View {
                                                  endPoint: .bottomTrailing))
                             .padding()
 
-                        NavigationLink(destination: SettingsView()) {
-
+                       // NavigationLink(destination: SettingsView()) {
+                        NavigationLink(destination: SettingsView(), isActive: $triviaManager.isSettingsViewActive) {
+                            EmptyView()
+                        }
                             ZStack{
                                 Circle()
                                     .fill(triviaManager.isColorMode ? LinearGradient(colors: [.blue, .purple],
@@ -59,7 +61,10 @@ struct ContentView: View {
                                     .font(.title)
                                     .bold()
                             }
-                        }
+                            .onTapGesture {
+                                triviaManager.isSettingsViewActive = true
+                            }
+                       // }
                     }
                     .offset(y: -60)
                     .navigationTitle("TriviaQuiz")
@@ -83,6 +88,7 @@ struct ContentView: View {
                 }
             }
         }.environmentObject(triviaManager)
+            .navigationViewStyle(.stack)
     }
 //    func toggleColorMode() {
 //      //  colorMode.color.toggle

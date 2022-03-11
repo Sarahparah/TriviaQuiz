@@ -13,8 +13,7 @@ struct ScoreView: View {
     
     var randomWords = ["Good job", "Almost there", "Score!"]
     @EnvironmentObject var triviaManager : TriviaManager
-    @State var isTriviaViewActive = false
-    @State var isSettingsViewActive = false
+    
 
     var body: some View {
         
@@ -61,14 +60,15 @@ struct ScoreView: View {
                 Text("out of \(triviaManager.numberOfQuestions)")
                     .font(.system(size: 50))
                 Spacer()
-                NavigationLink(destination: TriviaView(), isActive: $isTriviaViewActive) {
-                    EmptyView()
-                }
-                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
+//                    EmptyView()
+//                }
+//                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
+//                    EmptyView()
+//                }
                 Button(action: {
-                    isTriviaViewActive = true
+                    triviaManager.isScoreViewActive = false
+                    triviaManager.isTriviaViewActive = false
                     triviaManager.index = 0
                     triviaManager.nextQuestion()
                     
@@ -77,7 +77,8 @@ struct ScoreView: View {
                     Text("See your answers")
                 })
                 Button(action: {
-                    isSettingsViewActive = true
+                    triviaManager.isScoreViewActive = false
+                    triviaManager.isTriviaViewActive = false
                     triviaManager.resetGame()
                 }, label: {Text("Play again")})
                 

@@ -16,7 +16,6 @@ class TriviaManager : ObservableObject {
     @Published var index: Int = 0
     let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
-    @Published var isGameEnded = false
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
@@ -31,8 +30,23 @@ class TriviaManager : ObservableObject {
     @Published var answerChoices: [Answer] = []
     @Published var score = 0
     @Published var responseCodeError = false
-    @Published var isTriviaViewActive = false
+    @Published var isGameEnded = false
     
+    @Published var isSettingsViewActive = false {
+        didSet {
+            print("isSettingsViewActive \(isSettingsViewActive)")
+        }
+    }
+    @Published var isTriviaViewActive = false{
+        didSet {
+            print("isTriviaViewActive \(isTriviaViewActive)")
+        }
+    }
+    @Published var isScoreViewActive = false{
+        didSet {
+            print("isScoreViewActive \(isScoreViewActive)")
+        }
+    }
     
 //    @State var showAlert: Bool = false
     
@@ -136,7 +150,7 @@ class TriviaManager : ObservableObject {
         print("reset game")
         index = 0
         score = 0
-        isGameEnded = false
+       // isGameEnded = false
         quizData = nil
         responseCodeError = false
     }
