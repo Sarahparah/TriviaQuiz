@@ -11,7 +11,6 @@ import SwiftUI
 
 struct TriviaButton: View{
     
-//  var text: String
     var background: Color?
     @State var answer: Answer
     @State var buttonSelected: Bool
@@ -26,8 +25,6 @@ struct TriviaButton: View{
             self.didTap = true
             print(answer.text)
             
-            
-            
             if answer.isCorrect {
                 triviaManager.score += 1
                 print("Current score: \(triviaManager.score)")
@@ -35,10 +32,10 @@ struct TriviaButton: View{
                 print("Wrong answer!")
             }
             triviaManager.nextQuestion()
-
+            
         }) {
             Text("\(answer.text)")
-               // .foregroundColor(.white)
+            // .foregroundColor(.white)
                 .foregroundColor(buttonSelected ? .red : .white)
                 .frame(width: 280, height: 50)
                 .background(.blue.opacity(0.5))
@@ -68,25 +65,17 @@ struct MyButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(5)
-        
             .background(triviaManager.isGameEnded ? (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
             .background(triviaManager.isGameEnded ? (LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
-//         .opacity(configuration.isPressed ? 0.5 : 1)
-                    .opacity(self.didTap ? 0.2 : 1)
-                    
+            .opacity(self.didTap ? 0.2 : 1)
         
     }
     
 }
 
-
 struct TriviaButton_Previews: PreviewProvider {
-
+    
     static var previews: some View {
-        
         TriviaButton(answer: Answer(text: "Single", isCorrect: false), buttonSelected: false)
     }
 }
-
-
-

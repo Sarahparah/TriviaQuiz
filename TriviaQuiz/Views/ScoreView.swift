@@ -17,7 +17,7 @@ struct ScoreView: View {
     @EnvironmentObject var triviaManager : TriviaManager
     @Environment(\.managedObjectContext) private var viewContext
     @State var username = ""
-
+    
     var body: some View {
         
         ZStack {
@@ -34,21 +34,21 @@ struct ScoreView: View {
                         .fill(LinearGradient(colors: [.green, .teal], startPoint: .center, endPoint: .bottom))
                         .shadow(color: .white, radius: 40)
                         .padding(10)
-                        //.rotationEffect(.init(degrees: 30))
+                    //.rotationEffect(.init(degrees: 30))
                     ZStack {
-                    Capsule()
-                        .fill(.white)
-                        .padding(30)
-                        .shadow(color: .white, radius: 5)
-                    Text("Your score")
-                        .font(.system(size: 40))
-                        .padding(.bottom, 250)
+                        Capsule()
+                            .fill(.white)
+                            .padding(30)
+                            .shadow(color: .white, radius: 5)
+                        Text("Your score")
+                            .font(.system(size: 40))
+                            .padding(.bottom, 250)
                     }
                     Circle()
                         .fill(.black)
                         .padding(90)
                         .shadow(color: .white, radius: 5)
-    
+                    
                     Text("\(triviaManager.score)")
                         .font(.system(size: 180))
                         .fontWeight(.bold)
@@ -66,26 +66,26 @@ struct ScoreView: View {
                 
                 VStack {
                     HStack {
-                    Text("Save your score")
+                        Text("Save your score")
                         Spacer()
                     }
-
-                HStack {
-                    TextField("username", text: $username)
-                    Button(action: {showAlert = true
-                        addItem()
-                    }) {
-                        Text("Save")
+                    
+                    HStack {
+                        TextField("username", text: $username)
+                        Button(action: {showAlert = true
+                            addItem()
+                        }) {
+                            Text("Save")
+                        }
                     }
-                }
                 }.padding(.leading, 10)
                     .padding(.trailing, 10)
-//                NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
-//                    EmptyView()
-//                }
-//                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
-//                    EmptyView()
-//                }
+                //                NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
+                //                    EmptyView()
+                //                }
+                //                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
+                //                    EmptyView()
+                //                }
                 Button(action: {
                     triviaManager.isScoreViewActive = false
                     triviaManager.isTriviaViewActive = false
@@ -114,7 +114,7 @@ struct ScoreView: View {
                 NavigationLink(destination: HighScoreView()) {
                     Text("See Saved Scores")
                 }
-               // Spacer()
+                // Spacer()
             }
         }.navigationBarBackButtonHidden(true)
         
@@ -125,7 +125,7 @@ struct ScoreView: View {
             newItem.timestamp = Date()
             newItem.name = username
             newItem.score = Int32(triviaManager.score)
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -138,14 +138,6 @@ struct ScoreView: View {
     }
     
 }
-
-
-
-
-
-
-
-
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
         ScoreView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

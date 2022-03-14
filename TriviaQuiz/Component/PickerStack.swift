@@ -14,7 +14,7 @@ struct PickerStack:  View {
     
     var array: [String]
     var title: String
-    //var color: Color
+    
    @State var index = 0
     
     

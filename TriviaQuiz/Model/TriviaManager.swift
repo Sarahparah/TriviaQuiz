@@ -14,7 +14,7 @@ class TriviaManager : ObservableObject {
     
     
     @Published var index: Int = 0
-   // let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
+    // let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
     var numberOfQuestions = 0
     var category : Int = 0
@@ -24,7 +24,7 @@ class TriviaManager : ObservableObject {
     //var incorrectAnswers : [NSAttributedString] = []
     //var correctAnswer = NSAttributedString()
     @Published var isColorMode = true
-   // var colorMode = ColorMode()
+    // var colorMode = ColorMode()
     @Published var answerSelected = false
     @Published var question: AttributedString = ""
     @Published var answerChoices: [Answer] = []
@@ -34,9 +34,9 @@ class TriviaManager : ObservableObject {
     
     @Published var startTimer = false
     
-//    @Published var circularProgressBar : CircularProgressBar?
+    //    @Published var circularProgressBar : CircularProgressBar?
     
-     @Published var progressBarProgress = 0.0
+    @Published var progressBarProgress = 0.0
     
     @Published var isSettingsViewActive = false {
         didSet {
@@ -54,8 +54,6 @@ class TriviaManager : ObservableObject {
         }
     }
     
-//    @State var showAlert: Bool = false
-    
     let urlString = "https://opentdb.com/api.php"
     
     func fetchTrivia(with url : URL)  { // 1 5 6 2 4 3
@@ -67,13 +65,13 @@ class TriviaManager : ObservableObject {
             }
             // 2
             let decoder = JSONDecoder()
-           // decoder.keyDecodingStrategy = .convertFromSnakeCase
+            // decoder.keyDecodingStrategy = .convertFromSnakeCase
             DispatchQueue.main.async {
                 // 3
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
                     self.quizData = quizData
                     // 7
-//                    self.alertDialog()
+                    //                    self.alertDialog()
                     if quizData.response_code == 1 {
                         self.responseCodeError = true
                         
@@ -135,9 +133,9 @@ class TriviaManager : ObservableObject {
         guard let quizData = quizData else {
             return
         }
-
+        
         if index < (quizData.results.count) {
-
+            
             self.answerChoices = quizData.results[index].answers
             self.question = quizData.results[index].formattedQuestion
             index += 1
@@ -161,23 +159,21 @@ class TriviaManager : ObservableObject {
         print("reset game")
         index = 0
         score = 0
-       // isGameEnded = false
+        // isGameEnded = false
         quizData = nil
         responseCodeError = false
     }
     
+    //    func alertDialog() {
+    //
+    //        if quizData!.response_code  > 0 {
+    //            print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
+    //                showAlert = true
+    //        }
     
     
-//    func alertDialog() {
-//
-//        if quizData!.response_code  > 0 {
-//            print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
-//                showAlert = true
-//        }
-            
-        
-        
-    }
     
-    
+}
+
+
 
