@@ -17,7 +17,7 @@ struct ScoreView: View {
     @EnvironmentObject var triviaManager : TriviaManager
     @Environment(\.managedObjectContext) private var viewContext
     @State var username = ""
-
+    
     var body: some View {
         
         ZStack {
@@ -90,6 +90,7 @@ struct ScoreView: View {
                     }
                 }.padding(.leading, 10)
                     .padding(.trailing, 10)
+
 
 
 //MARK: Play Again knappen
@@ -181,7 +182,7 @@ struct ScoreView: View {
             newItem.timestamp = Date()
             newItem.name = username
             newItem.score = Int32(triviaManager.score)
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -194,7 +195,6 @@ struct ScoreView: View {
     }
     
 }
-
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
         ScoreView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

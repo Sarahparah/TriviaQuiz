@@ -10,6 +10,7 @@ import SwiftUI
 struct CircularProgressBar: View{
 
     @EnvironmentObject var triviaManager : TriviaManager
+
     var start = false
 
     var body: some View {
@@ -31,34 +32,32 @@ struct CircularProgressBar: View{
 
                     .frame(width: 300, height: 300)
                     .rotationEffect(Angle(degrees: -90))
-                    .blur(radius: 2.3) // Perfekt value ;^)
 
-                
+                    .blur(radius: 2.3) // Perfekt value ;^)
+              
             }
             .onAppear(perform: startLoading)
+            
 
         }
     }
     
-    
     func startLoading() {
         
-            _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                withAnimation() {
-                    triviaManager.progressBarProgress += 0.00333333333333
-                    if triviaManager.progressBarProgress >= 1.0 {
-                        triviaManager.nextQuestion()
-                        restartTimer()
-                        
-                    }
-                    if triviaManager.isGameEnded {
-                        timer.invalidate()
-                    }
-                
+        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            withAnimation() {
+                triviaManager.progressBarProgress += 0.00333333333333
+                if triviaManager.progressBarProgress >= 1.0 {
+                    triviaManager.nextQuestion()
+                    restartTimer()
+                    
                 }
+                if triviaManager.isGameEnded {
+                    timer.invalidate()
+                }
+                
             }
-        
-     
+        }
         
     }
     

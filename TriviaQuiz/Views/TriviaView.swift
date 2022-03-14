@@ -25,12 +25,11 @@ struct TriviaView : View {
             
             VStack {
                 ZStack {
-                
+                    
                     Circle()
                         .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                              startPoint: .topLeading,
                                              endPoint: .bottomTrailing))
-                       
                     CircularProgressBar()
                         .offset(y:-5)
                     Text(triviaManager.question)
