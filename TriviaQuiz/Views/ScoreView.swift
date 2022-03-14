@@ -21,14 +21,24 @@ struct ScoreView: View {
     var body: some View {
         
         ZStack {
-            
-            LinearGradient(colors: [.white, .yellow], startPoint: .topTrailing, endPoint: .bottomLeading)
+
+            LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.yellow, .purple, .orange],
+                           startPoint: .topTrailing,
+                           endPoint: .bottomLeading)
                 .ignoresSafeArea(.all)
             
             VStack(spacing: 0) {
                 Spacer()
-                Text("\(randomWords[1])")
-                    .font(.system(size: 50))
+
+//MARK: - ReturnMessage Text
+
+                Text("\(returnMessage())")
+
+                    .font(.system(size: 32))
+                    .foregroundColor(.white)
+                    .offset(y: -30)
+                    .multilineTextAlignment(.center)
+
                 ZStack {
                     Capsule()
                         .fill(LinearGradient(colors: [.green, .teal], startPoint: .center, endPoint: .bottom))
@@ -48,7 +58,7 @@ struct ScoreView: View {
                         .fill(.black)
                         .padding(90)
                         .shadow(color: .white, radius: 5)
-                    
+
                     Text("\(triviaManager.score)")
                         .font(.system(size: 180))
                         .fontWeight(.bold)
@@ -69,7 +79,7 @@ struct ScoreView: View {
                         Text("Save your score")
                         Spacer()
                     }
-                    
+
                     HStack {
                         TextField("username", text: $username)
                         Button(action: {showAlert = true
@@ -80,12 +90,11 @@ struct ScoreView: View {
                     }
                 }.padding(.leading, 10)
                     .padding(.trailing, 10)
-                //                NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
-                //                    EmptyView()
-                //                }
-                //                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
-                //                    EmptyView()
-                //                }
+
+
+
+//MARK: Play Again knappen
+
                 Button(action: {
                     triviaManager.isScoreViewActive = false
                     triviaManager.isTriviaViewActive = false
@@ -95,6 +104,10 @@ struct ScoreView: View {
                     .frame(width: 220, height: 50)
                     .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(30)
+
+                Spacer()
+
+//MARK: See Your Answers knappen
                 
                 Button(action: {
                     triviaManager.isScoreViewActive = false
@@ -109,7 +122,7 @@ struct ScoreView: View {
                     .frame(width: 220, height: 50)
                     .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(30)
-                
+
                 
                 NavigationLink(destination: HighScoreView()) {
                     Text("See Saved Scores")
@@ -119,6 +132,50 @@ struct ScoreView: View {
         }.navigationBarBackButtonHidden(true)
         
     }
+
+    //    private func returnMessage() -> String {
+    //
+    //        print("ReturnMessage score = \(triviaManager.score)")
+    //
+    //        if triviaManager.score > 9 {
+    //            return "Good job!"
+    //        } else if triviaManager.score > 7 {
+    //            return "Wow, not bad!"
+    //        } else if triviaManager.score > 5 {
+    //            return "Could've been better"
+    //        } else if triviaManager.score > 3 {
+    //            return "You've got some reading to do..."
+    //        } else {
+    //            return ":("
+    //        }
+    //    }
+
+//MARK: Bra switchsats 8^)
+
+    private func returnMessage() -> String {
+
+        switch triviaManager.score {
+
+        case 0...3:
+            return "You've got some reading to do!"
+
+        case 3...5:
+            return "Could've been better!"
+
+        case 5...7:
+            return "Wow, not bad!"
+
+        case 7...9:
+            return "Good job!"
+
+        case 10:
+            return "Trivia Master!"
+
+        default:
+            return "Have you done something wrong?"
+        }
+    }
+
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)

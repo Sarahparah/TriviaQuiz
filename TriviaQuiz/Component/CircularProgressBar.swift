@@ -8,30 +8,37 @@
 import SwiftUI
 
 struct CircularProgressBar: View{
-    
-    
+
     @EnvironmentObject var triviaManager : TriviaManager
-    
-    
+
     var start = false
-    
+
     var body: some View {
+
         VStack {
+            
             ZStack {
+
                 Circle()
-                    .stroke(LinearGradient(colors: [.white, .gray], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
+                    .stroke(LinearGradient(colors: [.white, .blue], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
                     .opacity(0.5)
                     .frame(width: 300, height: 300)
+
                 Circle()
                     .trim(from: 0.0, to: triviaManager.progressBarProgress)
-                    .stroke(LinearGradient(colors: [.red, .blue, .yellow, .purple, .blue], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
+                    .stroke(LinearGradient(colors: triviaManager.isColorMode ? [.white] : [.orange, .green, .yellow],
+                                           startPoint: .trailing,
+                                           endPoint: .leading), lineWidth: 10)
+
                     .frame(width: 300, height: 300)
                     .rotationEffect(Angle(degrees: -90))
-                    .blur(radius: 1)
-                
+
+                    .blur(radius: 2.3) // Perfekt value ;^)
+              
             }
             .onAppear(perform: startLoading)
             
+
         }
     }
     
