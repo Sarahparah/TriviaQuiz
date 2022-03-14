@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var animateGradient = false
     //@State var isColorMode = true
     let blueColorArray = [Color.blue, Color.white]
-    @Environment(\.managedObjectContext) var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
         
     var body: some View {
         
@@ -70,8 +70,8 @@ struct ContentView: View {
                     .navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
-                        triviaManager.colorMode = ColorMode(context: viewContext)
-                        triviaManager.colorMode.color = triviaManager.isColorMode
+                       // triviaManager.colorMode = ColorMode(context: viewContext)
+                       // triviaManager.colorMode.color = triviaManager.isColorMode
                        // triviaManager.isColorMode = colorMode.color
 //                        let newItem = ColorMode(context: viewContext)
 //                        print(newItem.color)
