@@ -16,6 +16,7 @@ struct ScoreView: View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     @Environment(\.managedObjectContext) private var viewContext
+    @State var username = ""
 
     var body: some View {
         
@@ -62,19 +63,39 @@ struct ScoreView: View {
                 Text("out of \(triviaManager.numberOfQuestions)")
                     .font(.system(size: 50))
                 Spacer()
+                
+                VStack {
+                    HStack {
+                    Text("Save your score")
+                        Spacer()
+                    }
+
+                HStack {
+                    TextField("username", text: $username)
+                    Button(action: {showAlert = true
+                        addItem()
+                    }) {
+                        Text("Save")
+                    }
+                }
+                }.padding(.leading, 10)
+                    .padding(.trailing, 10)
 //                NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
 //                    EmptyView()
 //                }
 //                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
 //                    EmptyView()
 //                }
-                Button(action: {showAlert = true
-                    addItem()
-                }) {
-                    Text("Save your score")
-                }.alert(isPresented: $showAlert) {
-                    Alert(title: Text("Input a username"), message: Text("User name"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
-                }
+                Button(action: {
+                    triviaManager.isScoreViewActive = false
+                    triviaManager.isTriviaViewActive = false
+                    triviaManager.resetGame()
+                }, label: {Text("Play again")})
+                    .foregroundColor(.white)
+                    .frame(width: 220, height: 50)
+                    .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .cornerRadius(30)
+                
                 Button(action: {
                     triviaManager.isScoreViewActive = false
                     triviaManager.isTriviaViewActive = false
@@ -84,16 +105,12 @@ struct ScoreView: View {
                 },
                        label: {
                     Text("See your answers")
-                })
-                Button(action: {
-                    triviaManager.isScoreViewActive = false
-                    triviaManager.isTriviaViewActive = false
-                    triviaManager.resetGame()
-                }, label: {Text("Play again")})
+                }).foregroundColor(.white)
+                    .frame(width: 220, height: 50)
+                    .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .cornerRadius(30)
                 
-                NavigationLink(destination: FakeView()) {
-                    Text("Fake View")
-                }
+                
                 NavigationLink(destination: HighScoreView()) {
                     Text("See Saved Scores")
                 }
@@ -106,7 +123,7 @@ struct ScoreView: View {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-            newItem.name = "djdan1974"
+            newItem.name = username
             newItem.score = Int32(triviaManager.score)
 
             do {

@@ -27,11 +27,12 @@ struct CircularProgressBar: View{
         VStack {
             ZStack {
                 Circle()
-                    .stroke(LinearGradient(colors: [.blue, .white], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
+                    .stroke(LinearGradient(colors: [.white, .gray], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
+                    .opacity(0.5)
                     .frame(width: 300, height: 300)
                 Circle()
                     .trim(from: 0.0, to: triviaManager.progressBarProgress)
-                    .stroke(Color.red, lineWidth: 10)
+                    .stroke(LinearGradient(colors: [.red, .blue, .yellow, .purple, .blue], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
                     .frame(width: 300, height: 300)
                     .rotationEffect(Angle(degrees: -90))
                     .blur(radius: 1)
@@ -52,13 +53,15 @@ struct CircularProgressBar: View{
         
             _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                 withAnimation() {
-                    triviaManager.progressBarProgress += 0.01
+                    triviaManager.progressBarProgress += 0.00333333333333
                     if triviaManager.progressBarProgress >= 1.0 {
                         triviaManager.nextQuestion()
                         restartTimer()
                         
                     }
-                    
+                    if triviaManager.isGameEnded {
+                        timer.invalidate()
+                    }
                 
                 }
             }

@@ -142,7 +142,7 @@ class TriviaManager : ObservableObject {
             self.question = quizData.results[index].formattedQuestion
             index += 1
             self.startTimer = true
-           // progressBarProgress = 0.0
+            progressBarProgress = 0.0
             
         } else {
             print("spelet är slut")
