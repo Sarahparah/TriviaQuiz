@@ -11,6 +11,9 @@ import SwiftUI
 struct SettingsView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
+    
+    
+    
     @State var animateGradient = false
     
     let categories = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
@@ -114,6 +117,7 @@ struct SettingsView : View {
                 }
                 Button(action: {
                     createGameFromSettings()
+                        
                    // print("responseCode: \(triviaManager.quizData?.response_code)")
                 }
                        , label: {
