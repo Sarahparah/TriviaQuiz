@@ -25,7 +25,7 @@ struct SettingsView : View {
     @State var selectedCategoryIndex = 0
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
-   // @State var isTriviaViewActive : Bool = false
+    // @State var isTriviaViewActive : Bool = false
     
     let blueColorArray = [Color.blue, Color.white]
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
@@ -68,7 +68,7 @@ struct SettingsView : View {
                     }.pickerStyle(WheelPickerStyle())
                 }
                 .offset(x: -70, y: 50)
-                                
+                
                 Spacer()
                 ZStack {
                     Circle()
@@ -117,8 +117,7 @@ struct SettingsView : View {
                 }
                 Button(action: {
                     createGameFromSettings()
-                        
-                   // print("responseCode: \(triviaManager.quizData?.response_code)")
+                    
                 }
                        , label: {
                     Text("Let's do this")

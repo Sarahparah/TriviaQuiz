@@ -13,13 +13,13 @@ struct HighScoreView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.timestamp, order: .reverse)])
     var items : FetchedResults<Item>
     
-//    init(filter: String = "" ) {
-//        if filter == "" {
-//            _items = FetchRequest<Item>(
-//                sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-//                animation: .default
-//                )
-//    }
+    //    init(filter: String = "" ) {
+    //        if filter == "" {
+    //            _items = FetchRequest<Item>(
+    //                sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+    //                animation: .default
+    //                )
+    //    }
     
     var body: some View {
         List {
@@ -42,11 +42,11 @@ struct HighScoreView: View {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
             
-//            for index in offsets {
-//                let item = items[index]
-//                viewContext.delete(item)
-//            }
-        
+            //            for index in offsets {
+            //                let item = items[index]
+            //                viewContext.delete(item)
+            //            }
+            
             do {
                 try viewContext.save()
             } catch {

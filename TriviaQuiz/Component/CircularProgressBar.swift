@@ -12,16 +12,8 @@ struct CircularProgressBar: View{
     
     @EnvironmentObject var triviaManager : TriviaManager
     
-     //var circleProgress : CGFloat = triviaManager.progressBarProgress
     
     var start = false
-    
-    
-//    init() {
-//
-//        @State var circleProgress : CGFloat = triviaManager.progressBarProgress
-//
-//    }
     
     var body: some View {
         VStack {
@@ -36,37 +28,29 @@ struct CircularProgressBar: View{
                     .frame(width: 300, height: 300)
                     .rotationEffect(Angle(degrees: -90))
                     .blur(radius: 1)
-
                 
             }
             .onAppear(perform: startLoading)
-//            Button(action: {self.startLoading()}) {
-//                Text("start timer")
-                
-            
             
         }
     }
     
-    
     func startLoading() {
         
-            _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                withAnimation() {
-                    triviaManager.progressBarProgress += 0.00333333333333
-                    if triviaManager.progressBarProgress >= 1.0 {
-                        triviaManager.nextQuestion()
-                        restartTimer()
-                        
-                    }
-                    if triviaManager.isGameEnded {
-                        timer.invalidate()
-                    }
-                
+        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            withAnimation() {
+                triviaManager.progressBarProgress += 0.00333333333333
+                if triviaManager.progressBarProgress >= 1.0 {
+                    triviaManager.nextQuestion()
+                    restartTimer()
+                    
                 }
+                if triviaManager.isGameEnded {
+                    timer.invalidate()
+                }
+                
             }
-        
-     
+        }
         
     }
     
