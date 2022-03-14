@@ -53,6 +53,7 @@ class TriviaManager : ObservableObject {
             print("isScoreViewActive \(isScoreViewActive)")
         }
     }
+    @Published var isHighScoreViewActive = false
     
     let urlString = "https://opentdb.com/api.php"
     

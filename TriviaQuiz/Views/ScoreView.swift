@@ -82,8 +82,11 @@ struct ScoreView: View {
 
                     HStack {
                         TextField("username", text: $username)
-                        Button(action: {showAlert = true
-                            addItem()
+                        Button(action: {
+                            if username != "" {
+                                addItem()
+                                triviaManager.isHighScoreViewActive = true
+                            }
                         }) {
                             Text("Save")
                         }
@@ -124,7 +127,7 @@ struct ScoreView: View {
                     .cornerRadius(30)
 
                 
-                NavigationLink(destination: HighScoreView()) {
+                NavigationLink(destination: HighScoreView(), isActive: $triviaManager.isHighScoreViewActive) {
                     Text("See Saved Scores")
                 }
                 // Spacer()
