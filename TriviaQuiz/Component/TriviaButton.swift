@@ -40,6 +40,7 @@ struct TriviaButton: View{
                 .frame(width: 280, height: 50)
                 .background(.blue.opacity(0.5))
                 .cornerRadius(10)
+                .multilineTextAlignment(.center)
         }
         .onTapGesture {
             if !triviaManager.answerSelected {

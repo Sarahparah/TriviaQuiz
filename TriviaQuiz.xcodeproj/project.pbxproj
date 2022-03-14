@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC19E27C664960042886E /* TriviaQuizApp.swift */; };
 		415AC1A127C664960042886E /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1A027C664960042886E /* StartView.swift */; };
-		415AC1A327C664980042886E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415AC1A227C664980042886E /* Assets.xcassets */; };
 		415AC1A627C664980042886E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415AC1A527C664980042886E /* Preview Assets.xcassets */; };
 		415AC1B027C664980042886E /* TriviaQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1AF27C664980042886E /* TriviaQuizTests.swift */; };
 		415AC1BA27C664980042886E /* TriviaQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1B927C664980042886E /* TriviaQuizUITests.swift */; };
@@ -23,6 +22,8 @@
 		B350222827C7CA1E00D3E404 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222727C7CA1E00D3E404 /* ProgressBar.swift */; };
 		B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222A27C7CBC600D3E404 /* TriviaManager.swift */; };
 		C805C15027DF41E300544537 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C14F27DF41E300544537 /* HighScoreView.swift */; };
+		C805C15227DFA8E600544537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415AC1A227C664980042886E /* Assets.xcassets */; };
+		C805C15427DFB2F100544537 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15327DFB2F100544537 /* AnswerView.swift */; };
 		C838905327D0FA7D006ADC73 /* FakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C838905227D0FA7D006ADC73 /* FakeView.swift */; };
 		C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890CD27D8B47E006ADC73 /* PersistenceController.swift */; };
 		C83890D227D8B83A006ADC73 /* TriviaQuiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C83890CF27D8B4BF006ADC73 /* TriviaQuiz.xcdatamodeld */; };
@@ -70,6 +71,7 @@
 		B350222727C7CA1E00D3E404 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B350222A27C7CBC600D3E404 /* TriviaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaManager.swift; sourceTree = "<group>"; };
 		C805C14F27DF41E300544537 /* HighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
+		C805C15327DFB2F100544537 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		C838905227D0FA7D006ADC73 /* FakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeView.swift; sourceTree = "<group>"; };
 		C83890CD27D8B47E006ADC73 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		C83890D027D8B4C0006ADC73 /* PersistenceController.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistenceController.xcdatamodel; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				C852023D27CCD0AA0045AACD /* ScoreView.swift */,
 				C838905227D0FA7D006ADC73 /* FakeView.swift */,
 				C805C14F27DF41E300544537 /* HighScoreView.swift */,
+				C805C15327DFB2F100544537 /* AnswerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,8 +309,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C805C15227DFA8E600544537 /* Assets.xcassets in Resources */,
 				415AC1A627C664980042886E /* Preview Assets.xcassets in Resources */,
-				415AC1A327C664980042886E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +349,7 @@
 				C852023C27C91ECA0045AACD /* QuestionIndex.swift in Sources */,
 				415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */,
 				415AC1D127C7B4430042886E /* PickerStack.swift in Sources */,
+				C805C15427DFB2F100544537 /* AnswerView.swift in Sources */,
 				417F61CE27DB82D4008FBB15 /* CircularProgressBar.swift in Sources */,
 				415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */,
 				C852023A27C8EDE00045AACD /* QuestionData.swift in Sources */,

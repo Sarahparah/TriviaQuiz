@@ -114,7 +114,7 @@ struct SettingsView : View {
                 Spacer()
                 NavigationLink(destination: TriviaView(), isActive: $triviaManager.isTriviaViewActive) {
                     EmptyView()
-                }
+                }.isDetailLink(false)
                 Button(action: {
                     createGameFromSettings()
                     

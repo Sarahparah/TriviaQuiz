@@ -113,11 +113,13 @@ struct ScoreView: View {
 //MARK: See Your Answers knappen
                 
                 Button(action: {
-                    triviaManager.isScoreViewActive = false
-                    triviaManager.isTriviaViewActive = false
+                   // triviaManager.isGameEnded = false
                     triviaManager.index = 0
-                    triviaManager.nextQuestion()
-                    
+                   // triviaManager.isScoreViewActive = false
+                   // triviaManager.isTriviaViewActive = false
+                   // triviaManager.isSettingsViewActive = false
+                    triviaManager.isAnswerViewActive = true
+                   // triviaManager.nextQuestion()
                 },
                        label: {
                     Text("See your answers")
@@ -126,10 +128,16 @@ struct ScoreView: View {
                     .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(30)
 
-                
+                Group {
                 NavigationLink(destination: HighScoreView(), isActive: $triviaManager.isHighScoreViewActive) {
                     Text("See Saved Scores")
+                }.isDetailLink(false)
+                
+                NavigationLink(destination: AnswerView(), isActive: $triviaManager.isAnswerViewActive) {
+                    EmptyView()
+                }.isDetailLink(false)
                 }
+                
                 // Spacer()
             }
         }.navigationBarBackButtonHidden(true)

@@ -1,14 +1,13 @@
 //
-//  TriviaView.swift
+//  AnswerView.swift
 //  TriviaQuiz
 //
-//  Created by Sarah Lidberg on 2022-02-23.
+//  Created by Joanne Yager on 2022-03-14.
 //
 
-import Foundation
 import SwiftUI
 
-struct TriviaView : View {
+struct AnswerView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     let blueColorArray = [Color.blue, Color.white]
@@ -30,8 +29,8 @@ struct TriviaView : View {
                         .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                              startPoint: .topLeading,
                                              endPoint: .bottomTrailing))
-                    CircularProgressBar()
-                        .offset(y:-5)
+//                    CircularProgressBar()
+//                        .offset(y:-5)
                     Text(triviaManager.question)
                         .fontWeight(.bold)
                         .font(.headline)
@@ -56,33 +55,9 @@ struct TriviaView : View {
     }
 }
 
-struct TriviaViewPreviews: PreviewProvider {
-    static var previews: some View {
-        TriviaView()
-            .environmentObject(TriviaManager())
-    }
-}
-
-//struct AnimatedBackground: View {
-//    @State var start = UnitPoint(x: 0, y: -2)
-//    @State var end = UnitPoint(x:4, y: 0)
-//
-//    let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
-//    let colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
-//                  Color.green, Color.orange]
-//    
-//
-//    var body: some View {
-//        LinearGradient(gradient: Gradient(colors: colors), startPoint: start,
-//                       endPoint: end)
-//            .animation(Animation.easeInOut(duration: 6)
-//                        .repeatForever()
-//            ).onReceive(timer, perform: { _ in
-//
-//                self.start = UnitPoint(x: 4, y: 0)
-//                self.end = UnitPoint(x: 0, y: 2)
-//                self.start = UnitPoint(x:4, y: 20)
-//                self.start = UnitPoint(x: 4, y: 0)
-//            })
+//struct AnswerViewPreviews: PreviewProvider {
+//    static var previews: some View {
+//        AnswerView()
+//            .environmentObject(TriviaManager())
 //    }
 //}

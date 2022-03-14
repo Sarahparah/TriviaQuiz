@@ -54,6 +54,11 @@ class TriviaManager : ObservableObject {
         }
     }
     @Published var isHighScoreViewActive = false
+    @Published var isAnswerViewActive = false{
+        didSet {
+            print("isAnswerViewActive \(isAnswerViewActive)")
+        }
+    }
     
     let urlString = "https://opentdb.com/api.php"
     
@@ -121,15 +126,6 @@ class TriviaManager : ObservableObject {
         
     }
     
-    func decodeHTML(string: String) -> String {
-        let dataUTF = Data(string.utf8)
-        if let attributedString = try? NSAttributedString(data: dataUTF, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-            print("attributedString: \(attributedString)")
-            return attributedString.string
-        }
-        return ""
-    }
-    
     func nextQuestion() {
         guard let quizData = quizData else {
             return
@@ -145,7 +141,8 @@ class TriviaManager : ObservableObject {
             
         } else {
             print("spelet är slut")
-            isGameEnded = true
+            isScoreViewActive = true
+           // isGameEnded = true
         }
     }
     
@@ -160,7 +157,7 @@ class TriviaManager : ObservableObject {
         print("reset game")
         index = 0
         score = 0
-        isGameEnded = false 
+        isGameEnded = false
         quizData = nil
         responseCodeError = false
         progressBarProgress = 0.0

@@ -34,7 +34,7 @@ struct ContentView: View {
                         
                         NavigationLink(destination: SettingsView(), isActive: $triviaManager.isSettingsViewActive) {
                             EmptyView()
-                        }
+                        }.isDetailLink(false)
                         ZStack{
                             Circle()
                                 .fill(triviaManager.isColorMode ? LinearGradient(colors: [.blue, .purple],
