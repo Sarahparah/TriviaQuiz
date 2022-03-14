@@ -9,12 +9,13 @@ import Foundation
 import UIKit
 import SwiftUI
 
-struct TriviaButton: View {
+struct TriviaButton: View{
     
 //  var text: String
     var background: Color?
     @State var answer: Answer
     @State var buttonSelected: Bool
+    
     
     @EnvironmentObject var triviaManager : TriviaManager
     @State private var didTap: Bool = false
@@ -24,6 +25,8 @@ struct TriviaButton: View {
         Button(action: {
             self.didTap = true
             print(answer.text)
+            
+            
             
             if answer.isCorrect {
                 triviaManager.score += 1

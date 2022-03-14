@@ -7,27 +7,42 @@
 
 import SwiftUI
 
-struct CircularProgressBar: View {
+struct CircularProgressBar: View{
     
-    @State var circleProgress : CGFloat = 0.0
+    
+    @EnvironmentObject var triviaManager : TriviaManager
+    
+     //var circleProgress : CGFloat = triviaManager.progressBarProgress
+    
+    var start = false
+    
+    
+//    init() {
+//
+//        @State var circleProgress : CGFloat = triviaManager.progressBarProgress
+//
+//    }
     
     var body: some View {
         VStack {
             ZStack {
                 Circle()
-                    .stroke(LinearGradient(colors: [.blue, .clear], startPoint: .trailing, endPoint: .leading), lineWidth: 15)
+                    .stroke(LinearGradient(colors: [.blue, .white], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
                     .frame(width: 300, height: 300)
                 Circle()
-                    .trim(from: 0.0, to: circleProgress)
-                    .stroke(Color.white, lineWidth: 15)
+                    .trim(from: 0.0, to: triviaManager.progressBarProgress)
+                    .stroke(Color.red, lineWidth: 10)
                     .frame(width: 300, height: 300)
                     .rotationEffect(Angle(degrees: -90))
+                    .blur(radius: 1)
 
                 
             }
-            Button(action: {self.startLoading()}) {
-                Text("start timer")
-            }
+            .onAppear(perform: startLoading)
+//            Button(action: {self.startLoading()}) {
+//                Text("start timer")
+                
+            
             
         }
     }
@@ -35,15 +50,26 @@ struct CircularProgressBar: View {
     
     func startLoading() {
         
-        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            withAnimation() {
-                self.circleProgress += 0.01
-                if self.circleProgress >= 1.0 {
-                    timer.invalidate()
+            _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                withAnimation() {
+                    triviaManager.progressBarProgress += 0.01
+                    if triviaManager.progressBarProgress >= 1.0 {
+                        triviaManager.nextQuestion()
+                        restartTimer()
+                        
+                    }
+                    
+                
                 }
             }
-        }
         
+     
+        
+    }
+    
+    
+    func restartTimer(){
+        triviaManager.progressBarProgress = 0.0
     }
 }
 

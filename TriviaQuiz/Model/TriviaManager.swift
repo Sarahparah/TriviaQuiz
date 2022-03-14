@@ -12,17 +12,17 @@ import SwiftUI
 
 class TriviaManager : ObservableObject {
     
-    var removeThisVariable = 0
+    
     @Published var index: Int = 0
-    let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
+   // let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
-    var incorrectAnswers : [NSAttributedString] = []
-    var correctAnswer = NSAttributedString()
+    //var incorrectAnswers : [NSAttributedString] = []
+    //var correctAnswer = NSAttributedString()
     @Published var isColorMode = true
     var colorMode = ColorMode()
     @Published var answerSelected = false
@@ -31,6 +31,12 @@ class TriviaManager : ObservableObject {
     @Published var score = 0
     @Published var responseCodeError = false
     @Published var isGameEnded = false
+    
+    @Published var startTimer = false
+    
+//    @Published var circularProgressBar : CircularProgressBar?
+    
+     @Published var progressBarProgress = 0.0
     
     @Published var isSettingsViewActive = false {
         didSet {
@@ -70,9 +76,11 @@ class TriviaManager : ObservableObject {
 //                    self.alertDialog()
                     if quizData.response_code == 1 {
                         self.responseCodeError = true
+                        
                     } else {
                         self.nextQuestion()
                         self.isTriviaViewActive = true
+                        
                     }
                 }
                 // 8
@@ -133,6 +141,9 @@ class TriviaManager : ObservableObject {
             self.answerChoices = quizData.results[index].answers
             self.question = quizData.results[index].formattedQuestion
             index += 1
+            self.startTimer = true
+           // progressBarProgress = 0.0
+            
         } else {
             print("spelet är slut")
             isGameEnded = true
@@ -154,6 +165,8 @@ class TriviaManager : ObservableObject {
         quizData = nil
         responseCodeError = false
     }
+    
+    
     
 //    func alertDialog() {
 //
