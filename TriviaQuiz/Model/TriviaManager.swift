@@ -24,7 +24,7 @@ class TriviaManager : ObservableObject {
     var incorrectAnswers : [NSAttributedString] = []
     var correctAnswer = NSAttributedString()
     @Published var isColorMode = true
-    var colorMode = ColorMode()
+   // var colorMode = ColorMode()
     @Published var answerSelected = false
     @Published var question: AttributedString = ""
     @Published var answerChoices: [Answer] = []

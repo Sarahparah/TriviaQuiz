@@ -12,8 +12,10 @@ import SwiftUI
 struct ScoreView: View {
     
     var randomWords = ["Good job", "Almost there", "Score!"]
-    @EnvironmentObject var triviaManager : TriviaManager
+    @State var showAlert = false
     
+    @EnvironmentObject var triviaManager : TriviaManager
+    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         
@@ -66,6 +68,13 @@ struct ScoreView: View {
 //                NavigationLink(destination: SettingsView(), isActive: $isSettingsViewActive) {
 //                    EmptyView()
 //                }
+                Button(action: {showAlert = true
+                    addItem()
+                }) {
+                    Text("Save your score")
+                }.alert(isPresented: $showAlert) {
+                    Alert(title: Text("Input a username"), message: Text("User name"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
+                }
                 Button(action: {
                     triviaManager.isScoreViewActive = false
                     triviaManager.isTriviaViewActive = false
@@ -85,10 +94,30 @@ struct ScoreView: View {
                 NavigationLink(destination: FakeView()) {
                     Text("Fake View")
                 }
+                NavigationLink(destination: HighScoreView()) {
+                    Text("See Saved Scores")
+                }
                // Spacer()
             }
         }.navigationBarBackButtonHidden(true)
         
+    }
+    private func addItem() {
+        withAnimation {
+            let newItem = Item(context: viewContext)
+            newItem.timestamp = Date()
+            newItem.name = "djdan1974"
+            newItem.score = Int32(triviaManager.score)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
     
 }
@@ -102,7 +131,7 @@ struct ScoreView: View {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView()
+        ScoreView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(TriviaManager())
     }
 }
