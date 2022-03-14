@@ -30,9 +30,9 @@ struct TriviaView : View {
                         .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                              startPoint: .topLeading,
                                              endPoint: .bottomTrailing))
-                        //.shadow(color: .white, radius: 10)
+                       
                     CircularProgressBar()
-                        .offset(y:10)
+                        .offset(y:-5)
                     Text(triviaManager.question)
                         .fontWeight(.bold)
                         .font(.headline)

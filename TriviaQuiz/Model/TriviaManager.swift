@@ -14,8 +14,8 @@ class TriviaManager : ObservableObject {
     
     
     @Published var index: Int = 0
-   // let numberOfQuestionsArray = ["10", "20", "30", "40", "50"]
     @Published var quizData: QuizData?
+    
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
@@ -32,7 +32,7 @@ class TriviaManager : ObservableObject {
     @Published var responseCodeError = false
     @Published var isGameEnded = false
     
-    @Published var startTimer = false
+    //@Published var startTimer = false
     
 //    @Published var circularProgressBar : CircularProgressBar?
     
@@ -141,7 +141,7 @@ class TriviaManager : ObservableObject {
             self.answerChoices = quizData.results[index].answers
             self.question = quizData.results[index].formattedQuestion
             index += 1
-            self.startTimer = true
+           // self.startTimer = true
             progressBarProgress = 0.0
             
         } else {
@@ -161,9 +161,11 @@ class TriviaManager : ObservableObject {
         print("reset game")
         index = 0
         score = 0
-       // isGameEnded = false
+        isGameEnded = false 
         quizData = nil
         responseCodeError = false
+        progressBarProgress = 0.0
+
     }
     
     
