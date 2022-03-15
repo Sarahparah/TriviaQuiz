@@ -132,13 +132,17 @@ struct SettingsView : View {
                     }
                     .navigationTitle("Customize your game")
             }
+        }.onAppear {
+            triviaManager.backToSettings = true
         }
     }
     
     func createGameFromSettings() {
+        triviaManager.resetGame()
         triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
         triviaManager.difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
         triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
+        
         triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
     }
 }

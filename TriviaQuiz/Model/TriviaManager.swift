@@ -31,6 +31,7 @@ class TriviaManager : ObservableObject {
     @Published var score = 0
     @Published var responseCodeError = false
     @Published var isGameEnded = false
+    @Published var backToSettings = false
     
     //@Published var startTimer = false
     
@@ -142,7 +143,7 @@ class TriviaManager : ObservableObject {
         } else {
             print("spelet är slut")
             isScoreViewActive = true
-           // isGameEnded = true
+            isGameEnded = true
         }
     }
     
@@ -160,7 +161,7 @@ class TriviaManager : ObservableObject {
         isGameEnded = false
         quizData = nil
         responseCodeError = false
-        progressBarProgress = 0.0
+      //  progressBarProgress = 1.0
 
     }
     

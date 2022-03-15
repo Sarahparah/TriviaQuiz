@@ -36,7 +36,11 @@ struct CircularProgressBar: View{
                     .blur(radius: 2.3) // Perfekt value ;^)
               
             }
-            .onAppear(perform: startLoading)
+            .onAppear(perform: {
+                triviaManager.backToSettings = false
+                startLoading()
+                
+            })
             
 
         }
@@ -53,6 +57,9 @@ struct CircularProgressBar: View{
                     
                 }
                 if triviaManager.isGameEnded {
+                    timer.invalidate()
+                }
+                if triviaManager.backToSettings {
                     timer.invalidate()
                 }
                 

@@ -48,7 +48,7 @@ struct AnswerView : View {
                 }
                 Spacer()
                 
-                NavigationLink(destination: ScoreView(), isActive: $triviaManager.isScoreViewActive) {EmptyView()}.isDetailLink(false)
+               // NavigationLink(destination: ScoreView(), isActive: $triviaManager.isScoreViewActive) {EmptyView()}.isDetailLink(false)
             }
         }
         .navigationBarItems(trailing: QuestionIndex())
