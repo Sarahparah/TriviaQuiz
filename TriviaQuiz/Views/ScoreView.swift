@@ -193,6 +193,7 @@ struct ScoreView: View {
             newItem.timestamp = Date()
             newItem.name = username
             newItem.score = Int32(triviaManager.score)
+            newItem.maxScore = Int32(triviaManager.numberOfQuestions)
             
             do {
                 try viewContext.save()

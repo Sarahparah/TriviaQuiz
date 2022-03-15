@@ -12,8 +12,6 @@ struct SettingsView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     
-    
-    
     @State var animateGradient = false
     
     let categories = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
@@ -25,7 +23,6 @@ struct SettingsView : View {
     @State var selectedCategoryIndex = 0
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
-    // @State var isTriviaViewActive : Bool = false
     
     let blueColorArray = [Color.blue, Color.white]
     let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
