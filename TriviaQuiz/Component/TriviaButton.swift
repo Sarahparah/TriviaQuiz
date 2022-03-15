@@ -17,12 +17,12 @@ struct TriviaButton: View{
     
     
     @EnvironmentObject var triviaManager : TriviaManager
-    @State private var didTap: Bool = false
+   // @State private var didTap: Bool = false
     
     var body: some View {
         
         Button(action: {
-            self.didTap = true
+           // self.didTap = true
             print(answer.text)
             
             if !triviaManager.isAnswerViewActive {
@@ -38,7 +38,7 @@ struct TriviaButton: View{
         }) {
             Text("\(answer.text)")
             // .foregroundColor(.white)
-                .foregroundColor(buttonSelected ? .red : .white)
+                .foregroundColor(.white)
                 .frame(width: 280, height: 50)
                 .background(.blue.opacity(0.5))
                 .cornerRadius(10)
@@ -46,12 +46,12 @@ struct TriviaButton: View{
         }
         .onTapGesture {
             if !triviaManager.answerSelected {
-                didTap = true
-                answer.isSelected = true
+               // didTap = true
+               // answer.isSelected = true
                 triviaManager.selectAnswer(answer: answer)
             }
         }
-        .buttonStyle(MyButtonStyle(didTap: self.didTap))
+        .buttonStyle(MyButtonStyle())
     }
     
 }
@@ -61,7 +61,7 @@ struct MyButtonStyle: ButtonStyle {
     
     let blueColorArray = [Color.blue, Color.white]
     
-    var didTap : Bool
+   // var didTap : Bool
     var isButtonPressed = false
     
     
@@ -70,7 +70,7 @@ struct MyButtonStyle: ButtonStyle {
             .padding(5)
             .background(triviaManager.isGameEnded ? (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
             .background(triviaManager.isGameEnded ? (LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
-            .opacity(self.didTap ? 0.2 : 1)
+           // .opacity(self.didTap ? 0.2 : 1)
         
     }
     
