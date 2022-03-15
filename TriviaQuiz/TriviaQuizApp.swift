@@ -18,6 +18,7 @@ struct TriviaQuizApp: App {
     init() {
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+        UINavigationBar.appearance().tintColor = .black
     }
     
     var body: some Scene {
