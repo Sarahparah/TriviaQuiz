@@ -88,51 +88,6 @@ struct HighScoreView: View {
 
 }
 
-struct AnimatedBackgroundTwo: View {
-
-    @State var start = UnitPoint(x: 0, y: -2)
-    @State var end = UnitPoint(x:4, y: 0)
-
-    @State var isAnimating = false {
-        didSet {
-            print("anim \(isAnimating)")
-        }
-    }
-
-
-    //let timer = Timer.publish(every: 3, on: .main, in: .default).autoconnect()
-    // @State var colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
-     //                 Color.green, Color.orange]
-    let colors = [Color.blue, Color.white] // : [Color.blue, Color.purple, Color.yellow]
-
-    var body: some View {
-        LinearGradient(gradient: Gradient(colors: colors), startPoint: start,
-                       endPoint: end)
-
-            .animation(
-                Animation.easeInOut(duration: 3).repeatForever(),   //Frame Size startar på 0 när gränssnittet initieras pga navigationview
-                value: start // och animationen kickar igång direkt, vilket resulterar i att det animeras när storleken på vyerna sätts
-            )
-            .onAppear {
-                print("onappear")
-                DispatchQueue.main.async {
-                    self.start = UnitPoint(x: 4, y: 0)
-                    self.end = UnitPoint(x: 0, y: 2)
-                    //self.isAnimating = true
-                }
-            }
-//            .onReceive(timer, perform: { _ in
-//                print("tick")
-//                //self.isAnimating = !self.isAnimating
-//                //self.colors = colors.shuffled()
-//                //self.start = UnitPoint(x: 4, y: 0)
-//                self.end = UnitPoint(x: 0, y: 2)
-//                //self.start = UnitPoint(x:4, y: 20)
-//                self.start = UnitPoint(x: 4, y: 0)
-//            })
-    }
-}
-
 
 
 //

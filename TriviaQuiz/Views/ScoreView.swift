@@ -13,73 +13,89 @@ struct ScoreView: View {
     
     var randomWords = ["Good job", "Almost there", "Score!"]
     @State var showAlert = false
-    
     @EnvironmentObject var triviaManager : TriviaManager
     @Environment(\.managedObjectContext) private var viewContext
     @State var username = ""
     
     var body: some View {
-        
         ZStack {
-
-            LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.yellow, .purple, .orange],
-                           startPoint: .topTrailing,
-                           endPoint: .bottomLeading)
+            LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.yellow, .purple, .orange], startPoint: .topTrailing, endPoint: .bottomLeading)
                 .ignoresSafeArea(.all)
-            
-            VStack(spacing: 0) {
-                Spacer()
-
-//MARK: - ReturnMessage Text
-
+            VStack {
+                //MARK: - ReturnMessage Text
                 Text("\(returnMessage())")
-
                     .font(.system(size: 32))
                     .foregroundColor(.white)
                     .offset(y: -30)
                     .multilineTextAlignment(.center)
-
                 ZStack {
-                    Capsule()
-                        .fill(LinearGradient(colors: [.green, .teal], startPoint: .center, endPoint: .bottom))
+                    Circle()
+                        .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 40)
                         .padding(10)
-                    //.rotationEffect(.init(degrees: 30))
                     ZStack {
-                        Capsule()
-                            .fill(.white)
+                        Circle()
+                            .fill(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                             .padding(30)
                             .shadow(color: .white, radius: 5)
                         Text("Your score")
-                            .font(.system(size: 40))
-                            .padding(.bottom, 250)
+                            .font(.system(size: 30))
+                            .padding(.bottom, 220)
+                        Text("out of \(triviaManager.numberOfQuestions)")
+                            .font(.system(size: 30))
+                            .foregroundColor(.black)
+                            .padding(.top, 220)
                     }
                     Circle()
-                        .fill(.black)
+                        .fill(LinearGradient(colors: [ .teal, .blue, .blue, .red,], startPoint: .topTrailing, endPoint: .bottomLeading))
                         .padding(90)
                         .shadow(color: .white, radius: 5)
-
                     Text("\(triviaManager.score)")
-                        .font(.system(size: 180))
+                        .font(.system(size: 130))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .blur(radius: 15.0)
-                    
                     Text("\(triviaManager.score)")
-                        .font(.system(size: 180))
+                        .font(.system(size: 120))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                 }
-                Text("out of \(triviaManager.numberOfQuestions)")
-                    .font(.system(size: 50))
-                Spacer()
+                .offset(y: -30)
+                //MARK: Play Again knappen
+                Button(action: {
+                    triviaManager.isScoreViewActive = false
+                    triviaManager.isTriviaViewActive = false
+                    triviaManager.resetGame()
+                }, label: {Text("Play again")})
+                    .foregroundColor(.white)
+                    .frame(width: 260, height: 70)
+                    .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .cornerRadius(50)
+                    .offset(y: -20)
+                //MARK: See Your Answers knappen
+                
+                Button(action: {
+                    // triviaManager.isGameEnded = false
+                    triviaManager.index = 0
+                    // triviaManager.isScoreViewActive = false
+                    // triviaManager.isTriviaViewActive = false
+                    // triviaManager.isSettingsViewActive = false
+                    triviaManager.isAnswerViewActive = true
+                    // triviaManager.nextQuestion()
+                },
+                       label: {
+                    Text("See your answers")
+                }).foregroundColor(.white)
+                    .frame(width: 200, height: 50)
+                    .background(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .cornerRadius(30)
+                    .offset(y: -10)
                 
                 VStack {
                     HStack {
                         Text("Save your score")
                         Spacer()
                     }
-
                     HStack {
                         TextField("username", text: $username)
                         Button(action: {
@@ -91,102 +107,53 @@ struct ScoreView: View {
                             Text("Save")
                         }
                     }
-                }.padding(.leading, 10)
-                    .padding(.trailing, 10)
-
-
-
-//MARK: Play Again knappen
-
-                Button(action: {
-                    triviaManager.isScoreViewActive = false
-                    triviaManager.isTriviaViewActive = false
-                    triviaManager.resetGame()
-                }, label: {Text("Play again")})
-                    .foregroundColor(.white)
-                    .frame(width: 220, height: 50)
-                    .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .cornerRadius(30)
-
-                Spacer()
-
-//MARK: See Your Answers knappen
-                
-                Button(action: {
-                   // triviaManager.isGameEnded = false
-                    triviaManager.index = 0
-                   // triviaManager.isScoreViewActive = false
-                   // triviaManager.isTriviaViewActive = false
-                   // triviaManager.isSettingsViewActive = false
-                    triviaManager.isAnswerViewActive = true
-                   // triviaManager.nextQuestion()
-                },
-                       label: {
-                    Text("See your answers")
-                }).foregroundColor(.white)
-                    .frame(width: 220, height: 50)
-                    .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    .cornerRadius(30)
-
-                Group {
-                NavigationLink(destination: HighScoreView(), isActive: $triviaManager.isHighScoreViewActive) {
-                    Text("See Saved Scores")
-                }.isDetailLink(false)
-                
-                NavigationLink(destination: AnswerView(), isActive: $triviaManager.isAnswerViewActive) {
-                    EmptyView()
-                }.isDetailLink(false)
                 }
+//                    .padding(.leading, 10)
+//                    .padding(.trailing, 10)
                 
-                // Spacer()
-            }
+                Group {
+                    HStack {
+                        Spacer()
+                        NavigationLink(destination: HighScoreView(), isActive: $triviaManager.isHighScoreViewActive) {
+                            Text("See Saved Scores")
+                        }.isDetailLink(false)
+                    }
+                    NavigationLink(destination: AnswerView(), isActive: $triviaManager.isAnswerViewActive) {
+                        EmptyView()
+                    }.isDetailLink(false)
+                }
+                Spacer()
+            }.padding(.leading)
+                .padding(.trailing)
         }.navigationBarBackButtonHidden(true)
-        
     }
-
-    //    private func returnMessage() -> String {
-    //
-    //        print("ReturnMessage score = \(triviaManager.score)")
-    //
-    //        if triviaManager.score > 9 {
-    //            return "Good job!"
-    //        } else if triviaManager.score > 7 {
-    //            return "Wow, not bad!"
-    //        } else if triviaManager.score > 5 {
-    //            return "Could've been better"
-    //        } else if triviaManager.score > 3 {
-    //            return "You've got some reading to do..."
-    //        } else {
-    //            return ":("
-    //        }
-    //    }
-
-//MARK: Bra switchsats 8^)
-
+    
+    //MARK: Bra switchsats 8^)
+    
     private func returnMessage() -> String {
-
+        
         switch triviaManager.score {
-
+            
         case 0...3:
             return "You've got some reading to do!"
-
+            
         case 3...5:
             return "Could've been better!"
-
+            
         case 5...7:
             return "Wow, not bad!"
-
+            
         case 7...9:
             return "Good job!"
-
+            
         case 10:
             return "Trivia Master!"
-
+            
         default:
             return "Have you done something wrong?"
         }
     }
-
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
@@ -205,7 +172,6 @@ struct ScoreView: View {
             }
         }
     }
-    
 }
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {

@@ -33,7 +33,6 @@ struct ContentView: View {
                                                  startPoint: .topLeading,
                                                  endPoint: .bottomTrailing))
                             .padding()
-                        
                         NavigationLink(destination: SettingsView(), isActive: $triviaManager.isSettingsViewActive) {
                             EmptyView()
                         }.isDetailLink(false)
