@@ -27,7 +27,8 @@ class TriviaManager : ObservableObject {
     // var colorMode = ColorMode()
     @Published var answerSelected = false
     @Published var question: AttributedString = ""
-    @Published var answerChoices: [Answer] = []
+   // @Published
+    var answerChoices: [Answer] = []
     @Published var score = 0
     @Published var responseCodeError = false
     @Published var isGameEnded = false
