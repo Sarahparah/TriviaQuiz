@@ -13,7 +13,7 @@ struct AnswerView : View {
     let blueColorArray = [Color.blue, Color.white]
     var currentGame = 0
     var isButtonPressed = false
-    
+    @State var previousAnswerButtonIsDisabled = false
     var body: some View {
         
         ZStack {
@@ -29,8 +29,7 @@ struct AnswerView : View {
                         .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                              startPoint: .topLeading,
                                              endPoint: .bottomTrailing))
-//                    CircularProgressBar()
-//                        .offset(y:-5)
+
                     Text(triviaManager.question)
                         .fontWeight(.bold)
                         .font(.headline)
@@ -42,7 +41,45 @@ struct AnswerView : View {
                 .frame(width: 300, height: 300, alignment: .center)
                 
                 Spacer()
-                
+                HStack {
+                                Button(action: {
+                                    if triviaManager.index >= 1 {
+                                        triviaManager.index -= 1
+                                        previousAnswerButtonIsDisabled = false
+                                    } else {
+                                        triviaManager.index = 0
+                                        previousAnswerButtonIsDisabled = true
+                                    }
+                                    triviaManager.nextQuestion()
+                                }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+                                                          startPoint: .top,
+                                                          endPoint: .bottom)
+                                        .frame(width: 50, height: 50)
+                                        .mask(Image(systemName: "arrow.left.circle"))
+                                        .font(.system(size: 50.0))
+                                        .padding(.leading, 20)
+                                    
+                //                        .offset(x:40)
+                                })
+                        .disabled(previousAnswerButtonIsDisabled)
+                                Spacer()
+                                Button(action: {
+                                   // triviaManager.index += 1
+                                    triviaManager.nextQuestion()
+                                    
+                                }, label: {
+                                    LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+                                                   startPoint: .top,
+                                                   endPoint: .bottom)
+                                        .frame(width: 50, height: 50)
+                                        .mask(Image(systemName: "arrow.right.circle"))
+                                        .font(.system(size: 50.0))
+                                        .padding(.trailing, 20)
+                                        
+                //                        .offset(x:40)
+                                })
+                            }
+                Spacer()
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
                     TriviaButton(answer: answer, buttonSelected: answer.isSelected)
                 }
