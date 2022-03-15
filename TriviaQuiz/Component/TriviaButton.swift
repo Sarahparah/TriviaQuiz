@@ -25,11 +25,13 @@ struct TriviaButton: View{
             self.didTap = true
             print(answer.text)
             
+            if !triviaManager.isAnswerViewActive {
             if answer.isCorrect {
                 triviaManager.score += 1
                 print("Current score: \(triviaManager.score)")
             } else {
                 print("Wrong answer!")
+            }
             }
             triviaManager.nextQuestion()
             
