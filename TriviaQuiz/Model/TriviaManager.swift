@@ -149,7 +149,7 @@ class TriviaManager : ObservableObject {
     }
     
     func selectAnswer(answer: Answer) {
-        answerSelected = true
+      //  answerSelected = true
         if answer.isCorrect {
             score += 1
         }

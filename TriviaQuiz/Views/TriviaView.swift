@@ -45,7 +45,7 @@ struct TriviaView : View {
                 Spacer()
                 
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
-                    TriviaButton(answer: answer, buttonSelected: answer.isSelected)
+                    TriviaButton(answer: answer)
                 }
                 Spacer()
                 
