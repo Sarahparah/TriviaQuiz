@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct TriviaQuizApp: App {
+
+//    @EnvironmentObject var triviaManager : TriviaManager
     
     let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) var scenePhase

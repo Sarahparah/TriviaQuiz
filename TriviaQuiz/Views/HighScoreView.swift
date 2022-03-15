@@ -8,45 +8,73 @@
 import SwiftUI
 
 struct HighScoreView: View {
+
     @Environment(\.managedObjectContext) private var viewContext
-    
     @FetchRequest(sortDescriptors: [SortDescriptor(\.score, order: .reverse)])
     var items : FetchedResults<Item>
-    
-    //    init(filter: String = "" ) {
-    //        if filter == "" {
-    //            _items = FetchRequest<Item>(
-    //                sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-    //                animation: .default
-    //                )
-    //    }
-    
+
+    let blueColorArray = [Color.blue, Color.white]
+    @EnvironmentObject var triviaManager : TriviaManager
+
+    init() {
+
+        UITableView.appearance().separatorStyle = .none
+        UITableViewCell.appearance().backgroundColor = .clear
+        UITableView.appearance().backgroundColor = .clear
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+
+    }
+
     var body: some View {
-        List {
-            ForEach(items) { item in
-                HStack {
-                    if let name = item.name {
-                        Text(name)
-                    }
-                    Spacer()
-                    if let score = item.score {
-                        Text("\(score)")
+
+        ZStack{
+
+            //            LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .blue, .yellow],
+            //                           startPoint: .topLeading,
+            //                           endPoint: .bottomTrailing)
+            //                .ignoresSafeArea()
+
+            if triviaManager.isColorMode {
+
+                AnimatedBackgroundTwo().edgesIgnoringSafeArea(.all)
+                    .blur(radius:50)
+
+
+            } else {
+
+                AnimatedBackground().edgesIgnoringSafeArea(.all)
+                    .blur(radius:50)
+            }
+
+            List {
+                ForEach(items) { item in
+                    HStack {
+                        if let name = item.name {
+                            Text(name)
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                        if let score = item.score {
+                            if let maxScore = item.maxScore {
+                                Text("\(score) / \(maxScore)")
+                                    .foregroundColor(.white)
+                            }
+
+                        }
                     }
                 }
+                .onDelete(perform: deleteItems)
             }
-            .onDelete(perform: deleteItems)
+            .listStyle(SidebarListStyle())
+            .navigationTitle("HighScoreView")
+            .foregroundColor(.white)
         }
     }
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-            
-            //            for index in offsets {
-            //                let item = items[index]
-            //                viewContext.delete(item)
-            //            }
-            
+
             do {
                 try viewContext.save()
             } catch {
@@ -57,7 +85,56 @@ struct HighScoreView: View {
             }
         }
     }
+
 }
+
+struct AnimatedBackgroundTwo: View {
+
+    @State var start = UnitPoint(x: 0, y: -2)
+    @State var end = UnitPoint(x:4, y: 0)
+
+    @State var isAnimating = false {
+        didSet {
+            print("anim \(isAnimating)")
+        }
+    }
+
+
+    //let timer = Timer.publish(every: 3, on: .main, in: .default).autoconnect()
+    // @State var colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
+     //                 Color.green, Color.orange]
+    let colors = [Color.blue, Color.white] // : [Color.blue, Color.purple, Color.yellow]
+
+    var body: some View {
+        LinearGradient(gradient: Gradient(colors: colors), startPoint: start,
+                       endPoint: end)
+
+            .animation(
+                Animation.easeInOut(duration: 3).repeatForever(),   //Frame Size startar på 0 när gränssnittet initieras pga navigationview
+                value: start // och animationen kickar igång direkt, vilket resulterar i att det animeras när storleken på vyerna sätts
+            )
+            .onAppear {
+                print("onappear")
+                DispatchQueue.main.async {
+                    self.start = UnitPoint(x: 4, y: 0)
+                    self.end = UnitPoint(x: 0, y: 2)
+                    //self.isAnimating = true
+                }
+            }
+//            .onReceive(timer, perform: { _ in
+//                print("tick")
+//                //self.isAnimating = !self.isAnimating
+//                //self.colors = colors.shuffled()
+//                //self.start = UnitPoint(x: 4, y: 0)
+//                self.end = UnitPoint(x: 0, y: 2)
+//                //self.start = UnitPoint(x:4, y: 20)
+//                self.start = UnitPoint(x: 4, y: 0)
+//            })
+    }
+}
+
+
+
 //
 //struct HighScoreView_Previews: PreviewProvider {
 //    static var previews: some View {

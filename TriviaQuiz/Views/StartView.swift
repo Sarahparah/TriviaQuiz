@@ -19,8 +19,10 @@ struct ContentView: View {
         
         NavigationView {
             ZStack {
-                LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: animateGradient ? .topLeading : .bottomTrailing, endPoint: animateGradient ? .bottomTrailing : .topTrailing)
-                    .ignoresSafeArea()
+//                LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: animateGradient ? .topLeading : .bottomTrailing, endPoint: animateGradient ? .bottomTrailing : .topTrailing)
+//                    .ignoresSafeArea()
+                AnimatedBackgroundTwo().edgesIgnoringSafeArea(.all)
+                    .blur(radius:50)
                 
                 VStack {
                     
@@ -81,9 +83,11 @@ struct ContentView: View {
                     
                 }
             }
-        }.environmentObject(triviaManager)
+        }
+        .environmentObject(triviaManager)
             .navigationViewStyle(.stack)
     }
+
     //    func toggleColorMode() {
     //      //  colorMode.color.toggle
     //        viewContext.save()
