@@ -10,7 +10,7 @@ import SwiftUI
 struct HighScoreView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.timestamp, order: .reverse)])
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.score, order: .reverse)])
     var items : FetchedResults<Item>
     
     //    init(filter: String = "" ) {
