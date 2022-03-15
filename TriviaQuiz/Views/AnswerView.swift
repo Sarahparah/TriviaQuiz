@@ -13,7 +13,7 @@ struct AnswerView : View {
     let blueColorArray = [Color.blue, Color.white]
     var currentGame = 0
     var isButtonPressed = false
-    @State var previousAnswerButtonIsDisabled = false
+    @State var nextAnswerButtonIsDisabled = false
     var body: some View {
         
         ZStack {
@@ -42,31 +42,32 @@ struct AnswerView : View {
                 
                 Spacer()
                 HStack {
-                                Button(action: {
-                                    if triviaManager.index >= 1 {
-                                        triviaManager.index -= 1
-                                        previousAnswerButtonIsDisabled = false
-                                    } else {
-                                        triviaManager.index = 0
-                                        previousAnswerButtonIsDisabled = true
-                                    }
-                                    triviaManager.nextQuestion()
-                                }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-                                                          startPoint: .top,
-                                                          endPoint: .bottom)
-                                        .frame(width: 50, height: 50)
-                                        .mask(Image(systemName: "arrow.left.circle"))
-                                        .font(.system(size: 50.0))
-                                        .padding(.leading, 20)
-                                    
-                //                        .offset(x:40)
-                                })
-                        .disabled(previousAnswerButtonIsDisabled)
-                                Spacer()
+//                                Button(action: {
+//                                    if triviaManager.index >= 1 {
+//                                        triviaManager.index -= 1
+//                                        previousAnswerButtonIsDisabled = false
+//                                    } else {
+//                                        triviaManager.index = 0
+//                                        previousAnswerButtonIsDisabled = true
+//                                    }
+//                                }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+//                                                          startPoint: .top,
+//                                                          endPoint: .bottom)
+//                                        .frame(width: 50, height: 50)
+//                                        .mask(Image(systemName: "arrow.left.circle"))
+//                                        .font(.system(size: 50.0))
+//                                        .padding(.leading, 20)
+//
+//                //                        .offset(x:40)
+//                                })
+//
+//                                Spacer()
                                 Button(action: {
                                    // triviaManager.index += 1
                                     triviaManager.nextQuestion()
-                                    
+                                    if triviaManager.index >= triviaManager.numberOfQuestions {
+                                        nextAnswerButtonIsDisabled = true
+                                    }
                                 }, label: {
                                     LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
                                                    startPoint: .top,
@@ -78,10 +79,13 @@ struct AnswerView : View {
                                         
                 //                        .offset(x:40)
                                 })
+                        .disabled(nextAnswerButtonIsDisabled)
+                        .opacity(nextAnswerButtonIsDisabled ? 0.1 : 1.0)
                             }
                 Spacer()
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
-                    TriviaButton(answer: answer, buttonSelected: answer.isSelected)
+                    TriviaButton(answer: answer)
+                        .disabled(true)
                 }
                 Spacer()
                 
