@@ -13,7 +13,6 @@ struct QuestionIndex: View {
 
     var body: some View {
         Text("\(triviaManager.index) out of \(triviaManager.numberOfQuestions)")
-        
     }
 }
 

@@ -53,6 +53,7 @@ struct TriviaView : View {
             }
         }
         .navigationBarItems(trailing: QuestionIndex())
+        .foregroundColor(.white)
     }
 }
 

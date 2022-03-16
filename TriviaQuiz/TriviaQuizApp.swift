@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct TriviaQuizApp: App {
-
-//    @EnvironmentObject var triviaManager : TriviaManager
     
     let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) var scenePhase
@@ -18,7 +16,7 @@ struct TriviaQuizApp: App {
     init() {
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.yellow]
-        UINavigationBar.appearance().tintColor = .black
+        UINavigationBar.appearance().tintColor = .white
     }
     
     var body: some Scene {
