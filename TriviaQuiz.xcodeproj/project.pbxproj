@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4101730927E1E3CB0006F9DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415AC1A227C664980042886E /* Assets.xcassets */; };
 		415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC19E27C664960042886E /* TriviaQuizApp.swift */; };
 		415AC1A127C664960042886E /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1A027C664960042886E /* StartView.swift */; };
 		415AC1A627C664980042886E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415AC1A527C664980042886E /* Preview Assets.xcassets */; };
@@ -21,7 +22,6 @@
 		417F61D027DF4012008FBB15 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F61CF27DF4012008FBB15 /* PlayerManager.swift */; };
 		B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222A27C7CBC600D3E404 /* TriviaManager.swift */; };
 		C805C15027DF41E300544537 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C14F27DF41E300544537 /* HighScoreView.swift */; };
-		C805C15227DFA8E600544537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 415AC1A227C664980042886E /* Assets.xcassets */; };
 		C805C15427DFB2F100544537 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15327DFB2F100544537 /* AnswerView.swift */; };
 		C805C15627E0DA0E00544537 /* AnimatedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15527E0DA0E00544537 /* AnimatedBackground.swift */; };
 		C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890CD27D8B47E006ADC73 /* PersistenceController.swift */; };
@@ -51,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4101730A27E1E4D80006F9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		415AC19B27C664960042886E /* TriviaQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriviaQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		415AC19E27C664960042886E /* TriviaQuizApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuizApp.swift; sourceTree = "<group>"; };
 		415AC1A027C664960042886E /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		415AC19D27C664960042886E /* TriviaQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				4101730A27E1E4D80006F9DC /* Info.plist */,
 				B350222927C7CB8C00D3E404 /* Model */,
 				415AC1CB27C66EA10042886E /* Component */,
 				415AC1C827C66C800042886E /* Views */,
@@ -306,7 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C805C15227DFA8E600544537 /* Assets.xcassets in Resources */,
+				4101730927E1E3CB0006F9DC /* Assets.xcassets in Resources */,
 				415AC1A627C664980042886E /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,16 +508,20 @@
 		415AC1C027C664980042886E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TriviaQuiz/Preview Content\"";
 				DEVELOPMENT_TEAM = NN7H49SH4L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TriviaQuiz/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -534,16 +540,20 @@
 		415AC1C127C664980042886E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TriviaQuiz/Preview Content\"";
 				DEVELOPMENT_TEAM = NN7H49SH4L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TriviaQuiz/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
