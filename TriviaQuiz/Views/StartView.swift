@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     
@@ -62,6 +63,9 @@ struct ContentView: View {
                         }
                         .onTapGesture {
                             triviaManager.isSettingsViewActive = true
+                            MusicPlayer.shared.startBackgroundMusic(sound: "startButton")
+                            
+                            //AudioServicesPlaySystemSound(1105)
                         }
                     }
                     .offset(y: -60)

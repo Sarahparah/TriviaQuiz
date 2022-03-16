@@ -114,6 +114,7 @@ struct SettingsView : View {
                 }.isDetailLink(false)
                 Button(action: {
                     createGameFromSettings()
+                    MusicPlayer.shared.startBackgroundMusic(sound: "LetsDoThis")
                     
                 }
                        , label: {
@@ -133,6 +134,8 @@ struct SettingsView : View {
             }
         }.onAppear {
             triviaManager.backToSettings = true
+           
+            
         }
     }
     
