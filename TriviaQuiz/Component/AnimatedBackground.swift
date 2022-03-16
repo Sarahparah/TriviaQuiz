@@ -47,8 +47,6 @@ struct AnimatedBackgroundTwo: View {
             print("anim \(isAnimating)")
         }
     }
-   // let colors = [Color.blue, Color.white] // : [Color.blue, Color.purple, Color.yellow]
-
     var body: some View {
         LinearGradient(gradient: Gradient(colors: triviaManager.isColorMode ? colors : colors2), startPoint: start,
                        endPoint: end)
@@ -62,14 +60,7 @@ struct AnimatedBackgroundTwo: View {
                 DispatchQueue.main.async {
                     self.start = UnitPoint(x: 4, y: 0)
                     self.end = UnitPoint(x: 0, y: 2)
-                    //self.isAnimating = true
                 }
             }
     }
 }
-
-//struct AnimatedBackground_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AnimatedBackground()
-//    }
-//}

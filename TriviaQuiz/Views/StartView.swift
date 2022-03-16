@@ -97,33 +97,9 @@ struct ContentView: View {
         .environmentObject(triviaManager)
             .navigationViewStyle(.stack)
     }
-
-    //    func toggleColorMode() {
-    //      //  colorMode.color.toggle
-    //        viewContext.save()
-    //        do {
-    //            try viewContext.save()
-    //        } catch {
-    //            print("Error saving colorMode")
-    //        }
-    //    }
-    
-    //    func fetchCoreDate() {
-    //        let fetchRequest: NSFetchRequest<ColorMode> = ColorMode.fetchRequest()
-    //        do {
-    //            viewContext.fetch(fetchRequest)
-    //        }
-    //    }
+  
 }
 
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//
-//    }
-//}
 
 
 

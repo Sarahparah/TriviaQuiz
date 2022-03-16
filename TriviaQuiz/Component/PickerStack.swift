@@ -15,37 +15,28 @@ struct PickerStack:  View {
     var array: [String]
     var title: String
     
-   @State var index = 0
+    @State var index = 0
     
     
     var body: some View {
         
-    VStack{
-        
-        HStack{
+        VStack{
             
-            Text("Selected \(title): \(array[index])")
-           
-            
-            
-        }
-    
-        Picker(selection: $index, label: Text(""))
-        {
-            ForEach(0..<array.count){
-                Text("\(self.array[$0])")
+            HStack{
+                
+                Text("Selected \(title): \(array[index])")
             }
             
-            
+            Picker(selection: $index, label: Text(""))
+            {
+                ForEach(0..<array.count){
+                    Text("\(self.array[$0])")
+                }
             }
-        .pickerStyle(SegmentedPickerStyle())
-
+            .pickerStyle(SegmentedPickerStyle())
+            
         }
-        
-        
     }
-    
-    
 }
 
 

@@ -61,7 +61,8 @@ struct ScoreView: View {
                         .foregroundColor(.white)
                 }
                 .offset(y: -30)
-                //MARK: Play Again knappen
+//MARK: - Play Again knappen
+                
                 Button(action: {
                     triviaManager.isScoreViewActive = false
                     triviaManager.isTriviaViewActive = false
@@ -72,7 +73,8 @@ struct ScoreView: View {
                     .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(50)
                     .offset(y: -20)
-                //MARK: See Your Answers knappen
+//MARK: - See Your Answers knappen
+                
                 Button(action: {
                     triviaManager.index = 0
                     triviaManager.isAnswerViewActive = true
@@ -118,7 +120,8 @@ struct ScoreView: View {
         }.navigationBarBackButtonHidden(true)
     }
     
-    //MARK: Bra switchsats 8^)
+    //MARK: -Bra switchsats 8^)
+    
     
     private func returnMessage() -> String {
         
@@ -143,6 +146,7 @@ struct ScoreView: View {
             return "Have you done something wrong?"
         }
     }
+    //MARK: - CORE DATA
     
     private func addItem() {
         withAnimation {

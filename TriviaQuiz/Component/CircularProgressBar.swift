@@ -41,8 +41,6 @@ struct CircularProgressBar: View{
                 startLoading()
                 
             })
-            
-
         }
     }
     
@@ -67,8 +65,6 @@ struct CircularProgressBar: View{
         }
         
     }
-    
-    
     func restartTimer(){
         triviaManager.progressBarProgress = 0.0
     }

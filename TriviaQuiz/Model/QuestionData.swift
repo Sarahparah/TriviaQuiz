@@ -14,50 +14,7 @@ struct QuestionData: Decodable {
     var question: String
     var correct_answer: String
     var incorrect_answers: [String]
-   // var answers: [Answer] = [Answer]()
-    
-    
-//    init(category: String, type: String, difficulty: String, question: String, correct_answer: String, incorrect_answers: [String]) {
-//        self.category = category
-//        self.type = type
-//        self.difficulty = difficulty
-//        self.question = question
-//        self.correct_answer = correct_answer
-//        self.incorrect_answers = incorrect_answers
-//        makeAnswers()
-//    }
-    
-//    enum CodingKeys: String, CodingKey {
-//        case category
-//        case type
-//        case difficulty
-//        case question
-//        case correct_answer // = correct_answer
-//        case incorrect_answers
-//    }
-//
-//    init(from decoder: Decoder) throws {
-//            let container = try decoder.container(keyedBy: CodingKeys.self)
-//
-//            category = try container.decode(String.self, forKey: .category)
-//            type = try container.decode(String.self, forKey: .type)
-//            difficulty = try container.decode(String.self, forKey: .difficulty)
-//            question = try container.decode(String.self, forKey: .question)
-//            correct_answer = try container.decode(String.self, forKey: .correct_answer)
-////            incorrect_answers = try container.decode([String].self, forKey: .incorrect_answers)
-////            let details = try container.nestedContainer(keyedBy: DetailsCodingKeys.self, forKey: .details)
-////            isHelpful = try details.decode(Bool.self, forKey: .isHelpful)
-//
-//        }
-//    func decode(to decoder: Decoder) throws {
-//            var container = decoder.container(keyedBy: CodingKeys.self)
-//            try container.decode(category, forKey: .category)
-//            try container.decode(type, forKey: .type)
-//            try container.decode(difficulty, forKey: .difficulty)
-//            try container.decode(question, forKey: .question)
-//            try container.decode(correct_answer, forKey: .correct_answer) // refactor första
-//            try container.decode(incorrect_answers, forKey: .incorrect_answers)
-//        }
+
 }
 
 class Question {
