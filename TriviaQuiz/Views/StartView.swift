@@ -11,7 +11,6 @@ struct ContentView: View {
     
     @StateObject var triviaManager = TriviaManager()
     @State var animateGradient = false
-    //@State var isColorMode = true
     let blueColorArray = [Color.blue, Color.white]
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -19,16 +18,11 @@ struct ContentView: View {
         
         NavigationView {
             ZStack {
-//                LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: animateGradient ? .topLeading : .bottomTrailing, endPoint: animateGradient ? .bottomTrailing : .topTrailing)
-//                    .ignoresSafeArea()
                 AnimatedBackgroundTwo().edgesIgnoringSafeArea(.all)
                     .blur(radius:50)
-                
                 VStack {
-                    
                     ZStack {
 // MARK: OUTER CIRCLE
-                        
                         Circle()
                             .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .white],
                                                  startPoint: .topLeading,
@@ -39,7 +33,6 @@ struct ContentView: View {
                         }.isDetailLink(false)
                         ZStack{
 //MARK: INNER CIRCLE
-                            
                             Circle()
                                 .fill(triviaManager.isColorMode ? LinearGradient(colors: [.blue, .purple],
                                                                                  startPoint: .topLeading,
@@ -70,38 +63,23 @@ struct ContentView: View {
                         .onTapGesture {
                             triviaManager.isSettingsViewActive = true
                         }
-                        // }
                     }
                     .offset(y: -60)
                     .navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
-                        // triviaManager.colorMode = ColorMode(context: viewContext)
-                        // triviaManager.colorMode.color = triviaManager.isColorMode
-                        // triviaManager.isColorMode = colorMode.color
-                        //                        let newItem = ColorMode(context: viewContext)
-                        //                        print(newItem.color)
                     } label: {
                         Text("Toggle ColorMode")
                     }.foregroundColor(.white)
-                    //.frame(width: 160, height: 55)
                         .frame(width: 220, height: 50)
                         .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .cyan] : [.purple, .pink],
                                                    startPoint: .topLeading,
                                                    endPoint: .bottomTrailing))
                         .cornerRadius(30)
-                    
                 }
             }
         }
         .environmentObject(triviaManager)
             .navigationViewStyle(.stack)
     }
-  
 }
-
-
-
-
-
-

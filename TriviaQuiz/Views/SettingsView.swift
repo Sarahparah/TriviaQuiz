@@ -136,11 +136,12 @@ struct SettingsView : View {
     
     func createGameFromSettings() {
         triviaManager.resetGame()
-        triviaManager.numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
-        triviaManager.difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
-        triviaManager.category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
+        let numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
+        triviaManager.numberOfQuestions = numberOfQuestions
+        let difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
+        let category = triviaManager.categoryNumbersArray[selectedCategoryIndex]
         
-        triviaManager.fetchTheFetchTrivia(amount: triviaManager.numberOfQuestions, category: triviaManager.category, difficulty: triviaManager.difficulty)
+        triviaManager.FetchTrivia(amount: numberOfQuestions, category: category, difficulty: difficulty)
     }
 }
 

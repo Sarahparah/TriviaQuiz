@@ -11,19 +11,16 @@ import SwiftUI
 
 class TriviaManager : ObservableObject {
 
-    @Published var index: Int = 0
     var quizData: QuizData?
     var quizResults: QuizResults?
     
+    var index: Int = 0
     var numberOfQuestions = 0
-    var category : Int = 0
-    var difficulty : String = ""
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
     @Published var isColorMode = true
-    @Published var answerSelected = false
     @Published var question: AttributedString = ""
-    var answerChoices: [Answer] = []
+    @Published var answerChoices: [Answer] = []
     @Published var score = 0
     @Published var responseCodeError = false
     @Published var isGameEnded = false
@@ -35,18 +32,22 @@ class TriviaManager : ObservableObject {
             print("isSettingsViewActive \(isSettingsViewActive)")
         }
     }
-    @Published var isTriviaViewActive = false{
+    @Published var isTriviaViewActive = false {
         didSet {
             print("isTriviaViewActive \(isTriviaViewActive)")
         }
     }
-    @Published var isScoreViewActive = false{
+    @Published var isScoreViewActive = false {
         didSet {
             print("isScoreViewActive \(isScoreViewActive)")
         }
     }
-    @Published var isHighScoreViewActive = false
-    @Published var isAnswerViewActive = false{
+    @Published var isHighScoreViewActive = false {
+        didSet {
+            print("isHighScoreViewActive \(isHighScoreViewActive)")
+        }
+    }
+    @Published var isAnswerViewActive = false {
         didSet {
             print("isAnswerViewActive \(isAnswerViewActive)")
         }
@@ -54,7 +55,7 @@ class TriviaManager : ObservableObject {
     
     let urlString = "https://opentdb.com/api.php"
     
-    func fetchTrivia(with url : URL)  {
+    func decodeAPIResults(with url : URL)  {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil && data != nil {
@@ -82,7 +83,7 @@ class TriviaManager : ObservableObject {
         task.resume()
     }
     
-    func fetchTheFetchTrivia(amount : Int, category : Int, difficulty : String) {
+    func FetchTrivia(amount : Int, category : Int, difficulty : String) {
         guard var urlComps = URLComponents(string: self.urlString) else {
             print("failed to create URLCOMPONENTS")
             return
@@ -100,9 +101,9 @@ class TriviaManager : ObservableObject {
         
         urlComps.queryItems = queryItems
         guard let url = urlComps.url else { return }
-        print("URLLLL:  \(url)")
+        print("URL:  \(url)")
         
-        fetchTrivia(with: url)
+        decodeAPIResults(with: url)
     }
     
     func nextQuestion() {
@@ -122,12 +123,6 @@ class TriviaManager : ObservableObject {
         }
     }
     
-    func selectAnswer(answer: Answer) {
-        if answer.isCorrect {
-            score += 1
-        }
-    }
-    
     func resetGame() {
         print("reset game")
         index = 0
@@ -138,6 +133,3 @@ class TriviaManager : ObservableObject {
         responseCodeError = false
     }
 }
-
-
-
