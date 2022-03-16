@@ -25,7 +25,7 @@ struct TriviaButton: View{
                 } else {
                     print("Wrong answer!")
                 }
-                triviaManager.selectAnswer(answer: answer)
+               // triviaManager.selectAnswer(answer: answer)
                 answer.isSelected = true
                 // print("isSelected: \(answer.text)\(answer.isSelected)")
             }

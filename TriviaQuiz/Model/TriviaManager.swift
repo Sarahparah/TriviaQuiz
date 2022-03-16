@@ -66,55 +66,34 @@ class TriviaManager : ObservableObject {
     
     let urlString = "https://opentdb.com/api.php"
     
-    func fetchTrivia(with url : URL)  { // 1 5 6 2 4 3
+    func fetchTrivia(with url : URL)  {
         let session = URLSession(configuration: .default)
-        print("session")
-        // 1
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil && data != nil {
                 return
             }
-            // 2
-            print("//2")
             let decoder = JSONDecoder()
-            // decoder.keyDecodingStrategy = .convertFromSnakeCase
             DispatchQueue.main.async {
-                // 3
-                print("//3")
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
-                    print("if let")
                     self.quizData = quizData
                     self.quizResults = QuizResults()
-                    print("//7")
-                    // 7
-                    //                    self.alertDialog()
                     if quizData.response_code == 1 {
                         self.responseCodeError = true
                         
                     } else {
-                        print("before makeanswers")
                         
                         for question in quizData.results {
                             var question2 = Question(questionData: question)
                             self.quizResults?.results.append(question2)
                         }
-                        // self.question = quizResults.results[self.index].formattedQuestion
-                        
-                        //  quizData.results[self.index]
-                        //    .makeAnswers()
-                        print("after makeanswers")
                         self.nextQuestion()
                         self.isTriviaViewActive = true
                         
                     }
                 }
-                // 8
             }
-            // 4
         }
-        // 5
         task.resume()
-        // 6
     }
     
     func fetchTheFetchTrivia(amount : Int, category : Int, difficulty : String) {
@@ -126,10 +105,7 @@ class TriviaManager : ObservableObject {
             
             
             URLQueryItem(name: "amount", value: String(amount)),
-            //URLQueryItem(name: "category", value: String(category)),
-            // URLQueryItem(name: "difficulty", value: String(difficulty)),
             URLQueryItem(name: "type", value: "multiple"),
-            // URLQueryItem(name: "encode", value: "url3986")
         ]
         if difficulty  != "mix" {
             queryItems.append(URLQueryItem(name: "difficulty", value: String(difficulty)))
@@ -148,11 +124,9 @@ class TriviaManager : ObservableObject {
     }
     
     func nextQuestion() {
-        print("nextQuestion")
         guard let quizResults = quizResults else {
             return
         }
-        print("153")
         if index < (quizResults.results.count) {
             self.answerChoices = quizResults.results[index].answers
             self.question = quizResults.results[index].formattedQuestion
@@ -168,7 +142,6 @@ class TriviaManager : ObservableObject {
     }
     
     func selectAnswer(answer: Answer) {
-        //  answerSelected = true
         if answer.isCorrect {
             score += 1
         }
@@ -185,16 +158,6 @@ class TriviaManager : ObservableObject {
         //  progressBarProgress = 1.0
         
     }
-    
-    //    func alertDialog() {
-    //
-    //        if quizData!.response_code  > 0 {
-    //            print("ERRROOOOR RESPOMSSEEEEE CODDDEEE")
-    //                showAlert = true
-    //        }
-    
-    
-    
 }
 
 
