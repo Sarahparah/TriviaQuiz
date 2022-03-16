@@ -73,15 +73,9 @@ struct ScoreView: View {
                     .cornerRadius(50)
                     .offset(y: -20)
                 //MARK: See Your Answers knappen
-                
                 Button(action: {
-                    // triviaManager.isGameEnded = false
                     triviaManager.index = 0
-                    // triviaManager.isScoreViewActive = false
-                    // triviaManager.isTriviaViewActive = false
-                    // triviaManager.isSettingsViewActive = false
                     triviaManager.isAnswerViewActive = true
-                    // triviaManager.nextQuestion()
                 },
                        label: {
                     Text("See your answers")
@@ -103,13 +97,9 @@ struct ScoreView: View {
                                 addItem()
                                 triviaManager.isHighScoreViewActive = true
                             }
-                        }) {
-                            Text("Save")
-                        }
+                        }) { Text("Save") }
                     }
                 }
-//                    .padding(.leading, 10)
-//                    .padding(.trailing, 10)
                 
                 Group {
                     HStack {
