@@ -12,8 +12,8 @@ struct QuestionData: Decodable {
     var type: String
     var difficulty: String
     var question: String
-    var correct_answer: String
-    var incorrect_answers: [String]
+    var correctAnswer: String
+    var incorrectAnswers: [String]
 
 }
 
@@ -29,9 +29,9 @@ class Question {
     func makeAnswers() -> [Answer] {
         
         do {
-            let correct = [Answer(text: try AttributedString(markdown: questionData.correct_answer), isCorrect: true)]
+            let correct = [Answer(text: try AttributedString(markdown: questionData.correctAnswer), isCorrect: true)]
             var incorrects = [Answer]()
-            for answer in questionData.incorrect_answers {
+            for answer in questionData.incorrectAnswers {
                 incorrects.append(Answer(text: try AttributedString(markdown: answer), isCorrect: false))
             }
             let allAnswers = correct + incorrects

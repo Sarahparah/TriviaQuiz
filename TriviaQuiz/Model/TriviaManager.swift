@@ -61,11 +61,12 @@ class TriviaManager : ObservableObject {
                 return
             }
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             DispatchQueue.main.async {
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
                     self.quizData = quizData
                     self.quizResults = QuizResults()
-                    if quizData.response_code == 1 {
+                    if quizData.responseCode == 1 {
                         self.responseCodeError = true
                     } else {
                         for question in quizData.results {
