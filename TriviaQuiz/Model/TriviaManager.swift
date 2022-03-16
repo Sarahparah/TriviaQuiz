@@ -11,35 +11,24 @@ import SwiftUI
 
 
 class TriviaManager : ObservableObject {
-    
-    
+
     @Published var index: Int = 0
-    @Published var quizData: QuizData?
-    @Published var quizResults: QuizResults?
+    var quizData: QuizData?
+    var quizResults: QuizResults?
     
     var numberOfQuestions = 0
     var category : Int = 0
     var difficulty : String = ""
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
-    var uselessVariable : String = ""
-    //var incorrectAnswers : [NSAttributedString] = []
-    //var correctAnswer = NSAttributedString()
     @Published var isColorMode = true
-    // var colorMode = ColorMode()
     @Published var answerSelected = false
     @Published var question: AttributedString = ""
-    // @Published
     var answerChoices: [Answer] = []
     @Published var score = 0
     @Published var responseCodeError = false
     @Published var isGameEnded = false
     @Published var backToSettings = false
-    
-    //@Published var startTimer = false
-    
-    //    @Published var circularProgressBar : CircularProgressBar?
-    
     @Published var progressBarProgress = 0.0
     
     @Published var isSettingsViewActive = false {
@@ -79,16 +68,13 @@ class TriviaManager : ObservableObject {
                     self.quizResults = QuizResults()
                     if quizData.response_code == 1 {
                         self.responseCodeError = true
-                        
                     } else {
-                        
                         for question in quizData.results {
                             var question2 = Question(questionData: question)
                             self.quizResults?.results.append(question2)
                         }
                         self.nextQuestion()
                         self.isTriviaViewActive = true
-                        
                     }
                 }
             }
@@ -102,8 +88,6 @@ class TriviaManager : ObservableObject {
             return
         }
         var queryItems = [
-            
-            
             URLQueryItem(name: "amount", value: String(amount)),
             URLQueryItem(name: "type", value: "multiple"),
         ]
@@ -119,8 +103,6 @@ class TriviaManager : ObservableObject {
         print("URLLLL:  \(url)")
         
         fetchTrivia(with: url)
-        
-        
     }
     
     func nextQuestion() {
@@ -131,7 +113,6 @@ class TriviaManager : ObservableObject {
             self.answerChoices = quizResults.results[index].answers
             self.question = quizResults.results[index].formattedQuestion
             index += 1
-            // self.startTimer = true
             progressBarProgress = 0.0
             
         } else {
@@ -155,8 +136,6 @@ class TriviaManager : ObservableObject {
         quizData = nil
         quizResults = nil
         responseCodeError = false
-        //  progressBarProgress = 1.0
-        
     }
 }
 

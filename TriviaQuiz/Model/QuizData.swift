@@ -13,8 +13,5 @@ struct QuizData: Decodable {
 }
 
 class QuizResults {
-   // var quizData : QuizData
     var results: [Question] = [Question]()
-    
-
 }
