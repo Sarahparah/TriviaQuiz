@@ -7,10 +7,16 @@
 
 import Foundation
 
-struct Answer: Identifiable {
-
+class Answer: Identifiable, Decodable {
+    
     var id = UUID()
     var text: AttributedString
     var isCorrect: Bool
     var isSelected: Bool = false
+    
+    init(text: AttributedString, isCorrect: Bool) {
+        self.text = text
+        self.isCorrect = isCorrect
+    }
+    
 }

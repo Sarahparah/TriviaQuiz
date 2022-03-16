@@ -11,3 +11,10 @@ struct QuizData: Decodable {
     var response_code: Int = 0
     var results: [QuestionData]
 }
+
+class QuizResults {
+   // var quizData : QuizData
+    var results: [Question] = [Question]()
+    
+
+}
