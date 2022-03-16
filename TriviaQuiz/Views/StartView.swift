@@ -22,7 +22,7 @@ struct ContentView: View {
 //                LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: animateGradient ? .topLeading : .bottomTrailing, endPoint: animateGradient ? .bottomTrailing : .topTrailing)
 //                    .ignoresSafeArea()
                 AnimatedBackgroundTwo().edgesIgnoringSafeArea(.all)
-                    .blur(radius:50)
+                    
                 
                 VStack {
                     
@@ -73,7 +73,7 @@ struct ContentView: View {
                         // }
                     }
                     .offset(y: -60)
-                    .navigationTitle("TriviaQuiz")
+                    //.navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
                         // triviaManager.colorMode = ColorMode(context: viewContext)
@@ -82,7 +82,8 @@ struct ContentView: View {
                         //                        let newItem = ColorMode(context: viewContext)
                         //                        print(newItem.color)
                     } label: {
-                        Text("Toggle ColorMode")
+                       // Text("Toggle ColorMode")
+                        TextShimmer(text: "Color mode")
                     }.foregroundColor(.white)
                     //.frame(width: 160, height: 55)
                         .frame(width: 220, height: 50)
@@ -90,7 +91,7 @@ struct ContentView: View {
                                                    startPoint: .topLeading,
                                                    endPoint: .bottomTrailing))
                         .cornerRadius(30)
-                    
+                        .shadow(color: .black, radius: 3)
                 }
             }
         }

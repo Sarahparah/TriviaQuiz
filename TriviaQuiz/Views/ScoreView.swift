@@ -29,13 +29,21 @@ struct ScoreView: View {
                     .offset(y: -30)
                     .multilineTextAlignment(.center)
                 ZStack {
+                    //MARK: - outer circle
+                    
                     Circle()
-                        .fill(LinearGradient(colors: [.blue, .red], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .fill(LinearGradient(colors: [.blue, .red],
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing))
                         .shadow(color: .white, radius: 40)
                         .padding(10)
                     ZStack {
+                        //MARK: - middle circle
+                        
                         Circle()
-                            .fill(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .fill(LinearGradient(colors: [.blue, .purple],
+                                                 startPoint: .topLeading,
+                                                 endPoint: .bottomTrailing))
                             .padding(30)
                             .shadow(color: .white, radius: 5)
                         Text("Your score")
@@ -46,8 +54,11 @@ struct ScoreView: View {
                             .foregroundColor(.black)
                             .padding(.top, 220)
                     }
+//MARK: - inner circle
                     Circle()
-                        .fill(LinearGradient(colors: [ .teal, .blue, .blue, .red,], startPoint: .topTrailing, endPoint: .bottomLeading))
+                        .fill(LinearGradient(colors: [ .teal, .blue, .blue, .red,],
+                                             startPoint: .topTrailing,
+                                             endPoint: .bottomLeading))
                         .padding(90)
                         .shadow(color: .white, radius: 5)
                     Text("\(triviaManager.score)")
@@ -167,6 +178,13 @@ struct ScoreView: View {
             
         }
     }
+
+}
+
+struct outerCircle{
+    
+    
+    
 }
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
