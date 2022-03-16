@@ -134,17 +134,17 @@ struct ScoreView: View {
         
         switch triviaManager.score {
             
-        case 0...3:
+        case 0...Int(Double(triviaManager.numberOfQuestions)*0.3):
             return "You've got some reading to do!"
             
-        case 3...5:
+        case Int(Double(triviaManager.numberOfQuestions)*0.3)...Int(Double(triviaManager.numberOfQuestions)*0.5):
             return "Could've been better!"
             
-        case 5...7:
+        case Int(Double(triviaManager.numberOfQuestions)*0.5)...Int(Double(triviaManager.numberOfQuestions)*0.7):
             return "Wow, not bad!"
             
-        case 7...9:
-            return "Good job!"
+        case Int(Double(triviaManager.numberOfQuestions)*0.7)...Int(Double(triviaManager.numberOfQuestions)*0.9):
+            return "Great job!"
             
         case triviaManager.numberOfQuestions:
             return "Trivia Master!"
