@@ -15,6 +15,7 @@ class TriviaManager : ObservableObject {
     
     @Published var index: Int = 0
     @Published var quizData: QuizData?
+    @Published var quizResults: QuizResults?
     
     var numberOfQuestions = 0
     var category : Int = 0
@@ -27,7 +28,7 @@ class TriviaManager : ObservableObject {
     // var colorMode = ColorMode()
     @Published var answerSelected = false
     @Published var question: AttributedString = ""
-   // @Published
+    // @Published
     var answerChoices: [Answer] = []
     @Published var score = 0
     @Published var responseCodeError = false
@@ -66,24 +67,41 @@ class TriviaManager : ObservableObject {
     
     func fetchTrivia(with url : URL)  { // 1 5 6 2 4 3
         let session = URLSession(configuration: .default)
+        print("session")
         // 1
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil && data != nil {
                 return
             }
             // 2
+            print("//2")
             let decoder = JSONDecoder()
             // decoder.keyDecodingStrategy = .convertFromSnakeCase
             DispatchQueue.main.async {
                 // 3
+                print("//3")
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
+                    print("if let")
                     self.quizData = quizData
+                    self.quizResults = QuizResults()
+                    print("//7")
                     // 7
                     //                    self.alertDialog()
                     if quizData.response_code == 1 {
                         self.responseCodeError = true
                         
                     } else {
+                        print("before makeanswers")
+                        
+                        for question in quizData.results {
+                            var question2 = Question(questionData: question)
+                            self.quizResults?.results.append(question2)
+                        }
+                        // self.question = quizResults.results[self.index].formattedQuestion
+                        
+                        //  quizData.results[self.index]
+                        //    .makeAnswers()
+                        print("after makeanswers")
                         self.nextQuestion()
                         self.isTriviaViewActive = true
                         
@@ -129,16 +147,16 @@ class TriviaManager : ObservableObject {
     }
     
     func nextQuestion() {
-        guard let quizData = quizData else {
+        print("nextQuestion")
+        guard let quizResults = quizResults else {
             return
         }
-        
-        if index < (quizData.results.count) {
-            
-            self.answerChoices = quizData.results[index].answers
-            self.question = quizData.results[index].formattedQuestion
+        print("153")
+        if index < (quizResults.results.count) {
+            self.answerChoices = quizResults.results[index].answers
+            self.question = quizResults.results[index].formattedQuestion
             index += 1
-           // self.startTimer = true
+            // self.startTimer = true
             progressBarProgress = 0.0
             
         } else {
@@ -149,7 +167,7 @@ class TriviaManager : ObservableObject {
     }
     
     func selectAnswer(answer: Answer) {
-      //  answerSelected = true
+        //  answerSelected = true
         if answer.isCorrect {
             score += 1
         }
@@ -161,9 +179,10 @@ class TriviaManager : ObservableObject {
         score = 0
         isGameEnded = false
         quizData = nil
+        quizResults = nil
         responseCodeError = false
-      //  progressBarProgress = 1.0
-
+        //  progressBarProgress = 1.0
+        
     }
     
     //    func alertDialog() {

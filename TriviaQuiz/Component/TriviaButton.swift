@@ -34,6 +34,7 @@ struct TriviaButton: View{
             Text("\(answer.text)")
                 .scaledToFit()
                 .minimumScaleFactor(0.5)
+                .lineLimit(2)
                 .frame(width: 280, height: 50)
                 .background(.blue.opacity(0.5))
                 .cornerRadius(10)
@@ -51,9 +52,23 @@ struct MyButtonStyle: ButtonStyle {
         
         if triviaManager.isAnswerViewActive {
             configuration.label
+                .foregroundColor(.white)
                 .padding(5)
-                .background(answer.isCorrect ? (LinearGradient(colors: [.green, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
-                .foregroundColor(answer.isSelected ? .black : .white)
+               // .background(answer.isCorrect ? (LinearGradient(colors: [.green, .white, .green], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .white, .red], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
+                //.border(answer.isSelected ? Color.black : Color.clear, width: 2, cornerRadius: 20)
+                .background(answer.isCorrect ? (LinearGradient(colors: [.green, .white, .green], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .white, .red], startPoint: .topLeading, endPoint: .bottomTrailing)), in: RoundedRectangle(cornerRadius: 30))
+                .opacity(answer.isCorrect ? 1 : 0.5)
+                .padding(4)
+                .overlay(
+//                    Capsule(style: .continuous)
+//                        .stroke(answer.isSelected ? Color.blue : Color.clear, style: StrokeStyle(lineWidth: 2))
+//                    )
+                    RoundedRectangle(cornerRadius: 40)
+                        .stroke(answer.isSelected ? Color.blue : Color.clear, style: StrokeStyle(lineWidth: 2))
+                                    )
+                .shadow(color: .white, radius: 10)
+                
+
         } else {
             configuration.label
                 .padding(5)
@@ -66,6 +81,6 @@ struct MyButtonStyle: ButtonStyle {
 struct TriviaButton_Previews: PreviewProvider {
     
     static var previews: some View {
-        TriviaButton(answer: Answer(text: "Single", isCorrect: false, isSelected: false))
+        TriviaButton(answer: Answer(text: "Single", isCorrect: false))
     }
 }

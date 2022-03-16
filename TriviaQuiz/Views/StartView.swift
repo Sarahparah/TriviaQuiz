@@ -47,14 +47,18 @@ struct ContentView: View {
                                 .padding(50)
                                 .shadow(color: .white, radius: 5)
                             
-                            Circle()
-                                .fill(triviaManager.isColorMode ? .blue : .yellow)
-                                .padding(110)
+                            Image("1024")
+                                .mask(Circle()
+                                        .frame(width: 200, height: 200, alignment: .center))
+                              //  .frame(width: 200, height: 200, alignment: .center)
+                              //  .frame(width: 200, height: 200, alignment: .center)
+                               // .cornerRadius(100)
+                               // .padding(110)
                                 .shadow(color: .white, radius: 5)
-                            Text("Enter game")
-                                .foregroundColor(.white)
-                                .font(.title)
-                                .bold()
+//                            Text("Enter game")
+//                                .foregroundColor(.white)
+//                                .font(.title)
+//                                .bold()
                         }
                         .onTapGesture {
                             triviaManager.isSettingsViewActive = true

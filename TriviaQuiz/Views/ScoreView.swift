@@ -146,7 +146,7 @@ struct ScoreView: View {
         case 7...9:
             return "Good job!"
             
-        case 10:
+        case triviaManager.numberOfQuestions:
             return "Trivia Master!"
             
         default:
