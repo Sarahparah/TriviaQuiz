@@ -48,11 +48,12 @@ struct ScoreView: View {
                             .shadow(color: .white, radius: 5)
                         Text("Your score")
                             .font(.system(size: 30))
-                            .padding(.bottom, 220)
+                            .foregroundColor(.white)
+                            .padding(.bottom, 190)
                         Text("out of \(triviaManager.numberOfQuestions)")
                             .font(.system(size: 30))
-                            .foregroundColor(.black)
-                            .padding(.top, 220)
+                            .foregroundColor(.white)
+                            .padding(.top, 190)
                     }
 //MARK: - inner circle
                     Circle()
@@ -62,7 +63,7 @@ struct ScoreView: View {
                         .padding(90)
                         .shadow(color: .white, radius: 5)
                     Text("\(triviaManager.score)")
-                        .font(.system(size: 130))
+                        .font(.system(size: 160))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .blur(radius: 15.0)
@@ -70,6 +71,7 @@ struct ScoreView: View {
                         .font(.system(size: 120))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
+                        .shadow(color: .black, radius: 10)
                 }
                 .offset(y: -30)
 //MARK: - Play Again knappen
@@ -78,7 +80,7 @@ struct ScoreView: View {
                     triviaManager.isScoreViewActive = false
                     triviaManager.isTriviaViewActive = false
                     triviaManager.resetGame()
-                }, label: {Text("Play again")})
+                }, label: {Text("PLAY AGAIN")})
                     .foregroundColor(.white)
                     .frame(width: 260, height: 70)
                     .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -101,30 +103,44 @@ struct ScoreView: View {
                 VStack {
                     HStack {
                         Text("Save your score")
+                            .foregroundColor(.white)
                         Spacer()
                     }
                     HStack {
                         TextField("username", text: $username)
+                            .foregroundColor(.white)
                         Button(action: {
                             if username != "" {
                                 addItem()
                                 triviaManager.isHighScoreViewActive = true
                             }
-                        }) { Text("Save") }
+                        }) { Text("Save")
+                                .foregroundColor(.white)
+                                .frame(alignment: .center)
+                                .padding(7)
+                                .background(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                                .cornerRadius(20)
+                        }
                     }
-                }
-                
-                Group {
                     HStack {
                         Spacer()
                         NavigationLink(destination: HighScoreView(), isActive: $triviaManager.isHighScoreViewActive) {
                             Text("See Saved Scores")
+                                .foregroundColor(.white)
+                                .frame(width: 150, height: 16, alignment: .center)
+                                .padding(7)
+                                .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                                .cornerRadius(20)
                         }.isDetailLink(false)
                     }
                     NavigationLink(destination: AnswerView(), isActive: $triviaManager.isAnswerViewActive) {
                         EmptyView()
                     }.isDetailLink(false)
                 }
+                .frame(height: 80, alignment: .center)
+                .padding(15)
+                .background(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                .cornerRadius(5)
                 Spacer()
             }.padding(.leading)
                 .padding(.trailing)
