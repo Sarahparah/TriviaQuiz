@@ -25,9 +25,7 @@ struct TriviaButton: View{
                 } else {
                     print("Wrong answer!")
                 }
-               // triviaManager.selectAnswer(answer: answer)
                 answer.isSelected = true
-                // print("isSelected: \(answer.text)\(answer.isSelected)")
             }
             triviaManager.nextQuestion()
         }) {
@@ -54,25 +52,18 @@ struct MyButtonStyle: ButtonStyle {
             configuration.label
                 .foregroundColor(.white)
                 .padding(5)
-               // .background(answer.isCorrect ? (LinearGradient(colors: [.green, .white, .green], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .white, .red], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
-                //.border(answer.isSelected ? Color.black : Color.clear, width: 2, cornerRadius: 20)
                 .background(answer.isCorrect ? (LinearGradient(colors: [.green, .white, .green], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: [.red, .white, .red], startPoint: .topLeading, endPoint: .bottomTrailing)), in: RoundedRectangle(cornerRadius: 30))
                 .opacity(answer.isCorrect ? 1 : 0.5)
                 .padding(4)
                 .overlay(
-//                    Capsule(style: .continuous)
-//                        .stroke(answer.isSelected ? Color.blue : Color.clear, style: StrokeStyle(lineWidth: 2))
-//                    )
                     RoundedRectangle(cornerRadius: 40)
                         .stroke(answer.isSelected ? Color.blue : Color.clear, style: StrokeStyle(lineWidth: 2))
-                                    )
+                )
                 .shadow(color: .white, radius: 10)
-                
-
         } else {
             configuration.label
                 .padding(5)
-                .background(triviaManager.isGameEnded ? (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .white], startPoint: .topLeading, endPoint: .bottomTrailing)) : (LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)), in: Capsule())
+                .background(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .yellow, .purple], startPoint: .topLeading, endPoint: .bottomTrailing), in: Capsule())
                 .foregroundColor(.white)
         }
     }
