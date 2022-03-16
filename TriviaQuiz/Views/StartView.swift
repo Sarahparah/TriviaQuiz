@@ -19,7 +19,7 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 AnimatedBackgroundTwo().edgesIgnoringSafeArea(.all)
-                    .blur(radius:50)
+
                 VStack {
                     ZStack {
 // MARK: OUTER CIRCLE
@@ -65,17 +65,19 @@ struct ContentView: View {
                         }
                     }
                     .offset(y: -60)
-                    .navigationTitle("TriviaQuiz")
+                    //.navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
                     } label: {
-                        Text("Toggle ColorMode")
+                       // Text("Toggle ColorMode")
+                        TextShimmer(text: "Color mode")
                     }.foregroundColor(.white)
                         .frame(width: 220, height: 50)
                         .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .cyan] : [.purple, .pink],
                                                    startPoint: .topLeading,
                                                    endPoint: .bottomTrailing))
                         .cornerRadius(30)
+                        .shadow(color: .black, radius: 3)
                 }
             }
         }

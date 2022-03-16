@@ -117,11 +117,13 @@ struct SettingsView : View {
                     
                 }
                        , label: {
-                    Text("Let's do this")
+                    //Text("Let's do this")
+                    TextShimmer(text: "Let's do this!")
                         .foregroundColor(.white)
                         .frame(width: 220, height: 50)
                         .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                         .cornerRadius(30)
+                        .shadow(color: .black, radius: 3)
                 })
                     .offset(y: -20)
                     .alert(isPresented: $triviaManager.responseCodeError) {

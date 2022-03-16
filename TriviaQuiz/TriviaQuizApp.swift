@@ -15,7 +15,7 @@ struct TriviaQuizApp: App {
     
     init() {
         
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.yellow]
         UINavigationBar.appearance().tintColor = .white
     }
     
