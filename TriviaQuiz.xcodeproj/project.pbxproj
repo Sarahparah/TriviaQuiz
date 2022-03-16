@@ -21,6 +21,7 @@
 		417F61CE27DB82D4008FBB15 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F61CD27DB82D4008FBB15 /* CircularProgressBar.swift */; };
 		417F61D027DF4012008FBB15 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F61CF27DF4012008FBB15 /* PlayerManager.swift */; };
 		B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222A27C7CBC600D3E404 /* TriviaManager.swift */; };
+		B37FCED627E211C600560A1D /* RainbowText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37FCED527E211C600560A1D /* RainbowText.swift */; };
 		C805C15027DF41E300544537 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C14F27DF41E300544537 /* HighScoreView.swift */; };
 		C805C15427DFB2F100544537 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15327DFB2F100544537 /* AnswerView.swift */; };
 		C805C15627E0DA0E00544537 /* AnimatedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15527E0DA0E00544537 /* AnimatedBackground.swift */; };
@@ -69,6 +70,7 @@
 		417F61CD27DB82D4008FBB15 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		417F61CF27DF4012008FBB15 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		B350222A27C7CBC600D3E404 /* TriviaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaManager.swift; sourceTree = "<group>"; };
+		B37FCED527E211C600560A1D /* RainbowText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowText.swift; sourceTree = "<group>"; };
 		C805C14F27DF41E300544537 /* HighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
 		C805C15327DFB2F100544537 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		C805C15527E0DA0E00544537 /* AnimatedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBackground.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				C852023B27C91ECA0045AACD /* QuestionIndex.swift */,
 				417F61CD27DB82D4008FBB15 /* CircularProgressBar.swift */,
 				C805C15527E0DA0E00544537 /* AnimatedBackground.swift */,
+				B37FCED527E211C600560A1D /* RainbowText.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				C852023C27C91ECA0045AACD /* QuestionIndex.swift in Sources */,
 				415AC1CA27C66C9D0042886E /* TriviaView.swift in Sources */,
 				415AC1D127C7B4430042886E /* PickerStack.swift in Sources */,
+				B37FCED627E211C600560A1D /* RainbowText.swift in Sources */,
 				C805C15427DFB2F100544537 /* AnswerView.swift in Sources */,
 				417F61CE27DB82D4008FBB15 /* CircularProgressBar.swift in Sources */,
 				415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */,

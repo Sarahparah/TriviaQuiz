@@ -69,15 +69,11 @@ struct ContentView: View {
                     .navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
-                        // triviaManager.colorMode = ColorMode(context: viewContext)
-                        // triviaManager.colorMode.color = triviaManager.isColorMode
-                        // triviaManager.isColorMode = colorMode.color
-                        //                        let newItem = ColorMode(context: viewContext)
-                        //                        print(newItem.color)
                     } label: {
-                        Text("Toggle ColorMode")
+                        //Text("Toggle ColorMode")
+                        TextShimmer(text: "Toggle ColorMode")
                     }.foregroundColor(.white)
-                    //.frame(width: 160, height: 55)
+                   
                         .frame(width: 220, height: 50)
                         .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .cyan] : [.purple, .pink],
                                                    startPoint: .topLeading,
