@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 import SwiftUI
 
-
 class TriviaManager : ObservableObject {
 
     @Published var index: Int = 0
