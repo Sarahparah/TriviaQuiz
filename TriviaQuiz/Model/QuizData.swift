@@ -8,7 +8,7 @@
 import Foundation
 
 struct QuizData: Decodable {
-    var response_code: Int = 0
+    var responseCode: Int = 0
     var results: [QuestionData]
 }
 
