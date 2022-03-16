@@ -514,7 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TriviaQuiz/Preview Content\"";
-				DEVELOPMENT_TEAM = NN7H49SH4L;
+				DEVELOPMENT_TEAM = 7XRTX3GK5X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TriviaQuiz/Info.plist;
@@ -529,7 +529,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Sarahparah.TriviaQuiz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jo.TriviaQuiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -546,7 +546,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TriviaQuiz/Preview Content\"";
-				DEVELOPMENT_TEAM = NN7H49SH4L;
+				DEVELOPMENT_TEAM = 7XRTX3GK5X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TriviaQuiz/Info.plist;
@@ -561,7 +561,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Sarahparah.TriviaQuiz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jo.TriviaQuiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

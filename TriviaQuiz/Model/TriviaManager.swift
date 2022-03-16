@@ -22,7 +22,7 @@ class TriviaManager : ObservableObject {
     var difficulty : String = ""
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
-    var uselessVariable : String 
+    var uselessVariable : String = ""
     //var incorrectAnswers : [NSAttributedString] = []
     //var correctAnswer = NSAttributedString()
     @Published var isColorMode = true
