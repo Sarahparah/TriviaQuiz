@@ -27,6 +27,7 @@ struct ContentView: View {
                 VStack {
                     
                     ZStack {
+// MARK: OUTER CIRCLE
                         
                         Circle()
                             .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .white],
@@ -37,28 +38,34 @@ struct ContentView: View {
                             EmptyView()
                         }.isDetailLink(false)
                         ZStack{
+//MARK: INNER CIRCLE
+                            
                             Circle()
                                 .fill(triviaManager.isColorMode ? LinearGradient(colors: [.blue, .purple],
                                                                                  startPoint: .topLeading,
                                                                                  endPoint: .bottomTrailing) :
-                                        LinearGradient(colors: [.red, .purple],
+                                        LinearGradient(colors: [.red, .yellow, .pink],
                                                        startPoint: .topLeading,
                                                        endPoint: .bottomTrailing))
                                 .padding(50)
                                 .shadow(color: .white, radius: 5)
                             
-                            Image("1024")
-                                .mask(Circle()
-                                        .frame(width: 200, height: 200, alignment: .center))
-                              //  .frame(width: 200, height: 200, alignment: .center)
-                              //  .frame(width: 200, height: 200, alignment: .center)
-                               // .cornerRadius(100)
-                               // .padding(110)
+                            Circle()
+                                .fill(triviaManager.isColorMode ? LinearGradient(colors: [.blue, .teal, .orange],
+                                                                                 startPoint: .topLeading,
+                                                                                 endPoint: .bottomTrailing) :
+                                        LinearGradient(colors: [.red, .purple],
+                                                       startPoint: .topLeading,
+                                                       endPoint: .bottomTrailing))
+                                .padding(80)
                                 .shadow(color: .white, radius: 5)
-//                            Text("Enter game")
-//                                .foregroundColor(.white)
-//                                .font(.title)
-//                                .bold()
+                            
+//MARK: LOGO IMAGE
+                            Image("180")
+                                .mask(Circle()
+                                        .frame(width: 200, alignment: .center))
+                                .shadow(color: .white, radius: 5)
+     
                         }
                         .onTapGesture {
                             triviaManager.isSettingsViewActive = true
