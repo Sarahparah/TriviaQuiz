@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 struct TriviaView : View {
     
@@ -14,6 +15,8 @@ struct TriviaView : View {
     let blueColorArray = [Color.blue, Color.white]
     var currentGame = 0
     var isButtonPressed = false
+    @State var countdownTimer: AVAudioPlayer?
+
     
     var body: some View {
         

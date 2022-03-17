@@ -26,6 +26,9 @@
 		C805C15027DF41E300544537 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C14F27DF41E300544537 /* HighScoreView.swift */; };
 		C805C15427DFB2F100544537 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15327DFB2F100544537 /* AnswerView.swift */; };
 		C805C15627E0DA0E00544537 /* AnimatedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15527E0DA0E00544537 /* AnimatedBackground.swift */; };
+		C805C15E27E33CEB00544537 /* TimerDelayedStart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */; };
+		C805C16027E33FCF00544537 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15F27E33FCF00544537 /* Sounds.swift */; };
+		C805C16227E34C5E00544537 /* koolbackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C16127E34C5E00544537 /* koolbackground.mp3 */; };
 		C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890CD27D8B47E006ADC73 /* PersistenceController.swift */; };
 		C83890D227D8B83A006ADC73 /* TriviaQuiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C83890CF27D8B4BF006ADC73 /* TriviaQuiz.xcdatamodeld */; };
 		C83890D427D903BC006ADC73 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890D327D903BC006ADC73 /* Answer.swift */; };
@@ -76,6 +79,9 @@
 		C805C14F27DF41E300544537 /* HighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
 		C805C15327DFB2F100544537 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		C805C15527E0DA0E00544537 /* AnimatedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBackground.swift; sourceTree = "<group>"; };
+		C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TimerDelayedStart.mp3; sourceTree = "<group>"; };
+		C805C15F27E33FCF00544537 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		C805C16127E34C5E00544537 /* koolbackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = koolbackground.mp3; sourceTree = "<group>"; };
 		C83890CD27D8B47E006ADC73 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		C83890D027D8B4C0006ADC73 /* PersistenceController.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistenceController.xcdatamodel; sourceTree = "<group>"; };
 		C83890D327D903BC006ADC73 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -140,7 +146,9 @@
 				415AC19E27C664960042886E /* TriviaQuizApp.swift */,
 				415AC1A227C664980042886E /* Assets.xcassets */,
 				41B9774F27E2304600455E86 /* startButton.wav */,
+				C805C16127E34C5E00544537 /* koolbackground.mp3 */,
 				41B9775127E2358E00455E86 /* LetsDoThis.wav */,
+				C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */,
 				415AC1A427C664980042886E /* Preview Content */,
 				C83890CD27D8B47E006ADC73 /* PersistenceController.swift */,
 				C83890CF27D8B4BF006ADC73 /* TriviaQuiz.xcdatamodeld */,
@@ -195,6 +203,7 @@
 				C805C15527E0DA0E00544537 /* AnimatedBackground.swift */,
 				41B9774B27E2196B00455E86 /* RainbowText.swift */,
 				41B9774D27E22F1600455E86 /* MusicPlayer.swift */,
+				C805C15F27E33FCF00544537 /* Sounds.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -315,7 +324,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				41B9775227E2358E00455E86 /* LetsDoThis.wav in Resources */,
+				C805C15E27E33CEB00544537 /* TimerDelayedStart.mp3 in Resources */,
 				4101730927E1E3CB0006F9DC /* Assets.xcassets in Resources */,
+				C805C16227E34C5E00544537 /* koolbackground.mp3 in Resources */,
 				415AC1A627C664980042886E /* Preview Assets.xcassets in Resources */,
 				41B9775027E2304600455E86 /* startButton.wav in Resources */,
 			);
@@ -345,6 +356,7 @@
 				B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */,
 				C805C15627E0DA0E00544537 /* AnimatedBackground.swift in Sources */,
 				C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */,
+				C805C16027E33FCF00544537 /* Sounds.swift in Sources */,
 				C83890D227D8B83A006ADC73 /* TriviaQuiz.xcdatamodeld in Sources */,
 				C805C15027DF41E300544537 /* HighScoreView.swift in Sources */,
 				415AC1CF27C79D7C0042886E /* SettingsView.swift in Sources */,

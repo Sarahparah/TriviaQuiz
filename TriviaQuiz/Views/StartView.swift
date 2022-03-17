@@ -13,6 +13,9 @@ struct ContentView: View {
     @StateObject var triviaManager = TriviaManager()
     @State var animateGradient = false
     let blueColorArray = [Color.blue, Color.white]
+   // @State var countdownTimer: AVAudioPlayer?
+    
+    
     @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
@@ -63,15 +66,16 @@ struct ContentView: View {
                         }
                         .onTapGesture {
                             triviaManager.isSettingsViewActive = true
-                            MusicPlayer.shared.startBackgroundMusic(sound: "startButton")
-                            
-                            //AudioServicesPlaySystemSound(1105)
+                            //self.countdownTimer?.play()
+                           // self.isPlaying.toggle()
+                            Sounds.playSounds(soundfile: "startButton.wav")
                         }
                     }
                     .offset(y: -60)
                     //.navigationTitle("TriviaQuiz")
                     Button {
                         triviaManager.isColorMode.toggle()
+                        Sounds.playSounds(soundfile: triviaManager.isColorMode ? "LetsDoThis.wav" : "koolbackground.mp3")
                     } label: {
                        // Text("Toggle ColorMode")
                         TextShimmer(text: "Color mode")
@@ -84,8 +88,25 @@ struct ContentView: View {
                         .shadow(color: .black, radius: 3)
                 }
             }
+            .onAppear {
+                Sounds.playSounds(soundfile: triviaManager.isColorMode ? "LetsDoThis.wav" : "koolbackground.mp3")
+
+//                let sound = Bundle.main.path(forResource: "startButton", ofType: "wav")
+//                self.countdownTimer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            }
         }
         .environmentObject(triviaManager)
             .navigationViewStyle(.stack)
     }
 }
+//struct player {
+//    let path = Bundle.main.path(forResource: "startButton.wav", ofType:nil)!
+//    let url = URL(fileURLWithPath: path)
+//
+//    do {
+//        countdownTimer = try AVAudioPlayer(contentsOf: url)
+//        countdownTimer?.play()
+//    } catch {
+//        // couldn't load file 😦
+//    }
+//}
