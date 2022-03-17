@@ -14,8 +14,6 @@ struct AnimatedBackground: View {
 
     
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
-    //    let colors = [Color.blue, Color.red, Color.purple, Color.pink, Color.yellow,
-    //                  Color.green, Color.orange]
     let colors2 = [Color.blue, Color.purple, Color.yellow]
     let colors = [Color.purple, Color.blue, Color.white]
     

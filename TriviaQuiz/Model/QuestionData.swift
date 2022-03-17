@@ -22,11 +22,11 @@ struct QuestionData: Decodable {
  */
 class Question {
     var questionData : QuestionData
-    var answers : [Answer] = [Answer]()
+    var formattedAnswers : [Answer] = [Answer]()
     
     init(questionData: QuestionData) {
         self.questionData = questionData
-        answers = formattedAnswers()
+        formattedAnswers = formatAnswers()
     }
     /*
      I denna kalkulerade variabel skapar vi AttributedString där vi har en Do/Catch för att kunna formattera våra frågor.
@@ -43,7 +43,7 @@ class Question {
     /**
      Denna func returnerar en array som innehåller Answer objekt. Här formatteras korrekta och inkorrekta svar och läggs i en array(allAnswers) som sedan shufflas på slutet.
      */
-    func formattedAnswers() -> [Answer] {
+    func formatAnswers() -> [Answer] {
         
         do {
             let correct = [Answer(text: try AttributedString(markdown: questionData.correctAnswer), isCorrect: true)]

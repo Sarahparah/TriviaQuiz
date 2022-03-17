@@ -34,9 +34,9 @@ class TriviaManager : ObservableObject {
     var timerSounds = Sounds()
     
     
-    /*
-     Dessa fem variabler använder vi oss av för att lättare kunna navigera och se vad som händer när vi byter view.
-     */
+    
+    // Dessa fem variabler använder vi oss av för att lättare kunna navigera och se vad som händer när vi byter view.
+     
     @Published var isSettingsViewActive = false {
         didSet {
             print("isSettingsViewActive \(isSettingsViewActive)")
@@ -68,9 +68,9 @@ class TriviaManager : ObservableObject {
     let urlString = "https://opentdb.com/api.php"
     
     
-    /*
+    /**
      I denna func decodar vi vår API.
-     */
+     **/
     func decodeAPIResults(with url : URL)  {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, response, error) in
@@ -95,7 +95,6 @@ class TriviaManager : ObservableObject {
                         for questionObject in quizData.results {
                             var newQuestionObject = Question(questionData: questionObject)
                             self.quizResults?.results.append(newQuestionObject)
-                            print("SYNS QUIZRESULTS \(self.quizResults?.results[0])")
                             
                         }
                         self.nextQuestion()
@@ -106,10 +105,10 @@ class TriviaManager : ObservableObject {
         }
         task.resume()
     }
-    /*
+    /**
      En funktion som bygger upp URL strängen baserat på den inställning som görs i SettingsView. När en setting har valts så läggs den till i vår urstrungs URL
      (rad 67).
-     */
+     **/
     func FetchTrivia(amount : Int, category : Int, difficulty : String) {
         guard var urlComps = URLComponents(string: self.urlString) else {
             print("failed to create URLCOMPONENTS")
@@ -134,24 +133,22 @@ class TriviaManager : ObservableObject {
         decodeAPIResults(with: url)
     }
     
-    /*
+    /**
+     Denna funktion går igenom resultat-arrayen och för första objektet i arrayen sätter den in svaren i arrayen answerChoices och frågan i variabeln question. Timern startas också om.
      
-     
-     
-     */
+     Detta händer för varje index när nextQuestion körs, fram till sista indexet, då tar spelet slut och ScoreView blir aktiv.
+     **/
     func nextQuestion() {
         guard let quizResults = quizResults else {
             return
         }
         if index < (quizResults.results.count) {
-            self.answerChoices = quizResults.results[index].answers
+            self.answerChoices = quizResults.results[index].formattedAnswers
             self.question = quizResults.results[index].formattedQuestion
             index += 1
-            progressBarProgress = 0.0
-//            Sounds.stopSounds()
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20.0) {
-//                Sounds.playSounds(soundfile: "countdownTimerNoDelay.mp3")
-//            }
+            if isTriviaViewActive {
+                progressBarProgress = 0.0
+            }
             
         } else {
             print("spelet är slut")
