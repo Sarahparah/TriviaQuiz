@@ -14,8 +14,6 @@ struct CircularProgressBar: View{
 
     var start = false
     @State var startTimer = false
-   // @State var countdownTimer: AVAudioPlayer?
-
 
     var body: some View {
 
@@ -40,46 +38,45 @@ struct CircularProgressBar: View{
             }
             .onAppear(perform: {
                 triviaManager.backToSettings = false
-                //MusicPlayer.shared.startBackgroundMusic(sound: "TimerDelayedStart", type: "mp3")
-//                let sound = Bundle.main.path(forResource: "TimerDelayedStart", ofType: "mp3")
-//                countdownTimer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                 startLoading()
             })
         }
     }
     
     func startLoading() {
-       // countdownTimer?.play()
-        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3")
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20.0) {
+//            Sounds.playSounds(soundfile: "countdownTimerNoDelay.mp3", delay: 2.0)
+//        }
+       
 
         _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             withAnimation() {
                 triviaManager.progressBarProgress += 0.00333333333333
+                
+                if triviaManager.progressBarProgress <= 0.01 {
+                    Sounds.stopSounds()
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20.0) {
+                        Sounds.playSounds(soundfile: "countdownTimerNoDelay.mp3")
+                    }
+                }
+                
                 if triviaManager.progressBarProgress >= 1.0 {
                     triviaManager.nextQuestion()
                     restartTimer()
-                    
                 }
                 if triviaManager.isGameEnded {
                     timer.invalidate()
-                   // MusicPlayer.shared.stopBackgroundMusic()
                 }
                 if triviaManager.backToSettings {
                     timer.invalidate()
-                   // MusicPlayer.shared.stopBackgroundMusic()
+                    
                 }
             }
         }
     }
     func restartTimer(){
         triviaManager.progressBarProgress = 0.0
-        print("restart1")
-        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3")
-
-       // countdownTimer?.play()
-        print("restart2")
-
-       // MusicPlayer.shared.startBackgroundMusic(sound: "TimerDelayedStart", type: "mp3")
+        
     }
 }
 

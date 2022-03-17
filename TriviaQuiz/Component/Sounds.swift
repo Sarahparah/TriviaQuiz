@@ -12,7 +12,7 @@ import AVFoundation
 
    static var audioPlayer:AVAudioPlayer?
 
-   static func playSounds(soundfile: String) {
+     static func playSounds(soundfile: String) {
 
        if let path = Bundle.main.path(forResource: soundfile, ofType: nil){
 
@@ -22,10 +22,15 @@ import AVFoundation
                audioPlayer?.prepareToPlay()
                audioPlayer?.play()
 
-           }catch {
+           } catch {
                print("Error")
            }
+           
        }
     }
+     
+     static func stopSounds() {
+         audioPlayer?.stop()
+     }
  }
 

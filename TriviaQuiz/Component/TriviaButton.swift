@@ -28,7 +28,7 @@ struct TriviaButton: View{
                 answer.isSelected = true
             }
             triviaManager.nextQuestion()
-            Sounds.playSounds(soundfile: "TimerDelayedStart.mp3")
+            
         }) {
             Text("\(answer.text)")
                 .scaledToFit()
