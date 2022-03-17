@@ -125,6 +125,7 @@ class TriviaManager : ObservableObject {
             queryItems.append(URLQueryItem(name: "category", value: String(category)))
         }
         
+        
         urlComps.queryItems = queryItems
         guard let url = urlComps.url else { return }
         print("URL:  \(url)")
