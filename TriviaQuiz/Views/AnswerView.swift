@@ -90,7 +90,10 @@ struct AnswerView : View {
                 Spacer()
                 
                // NavigationLink(destination: ScoreView(), isActive: $triviaManager.isScoreViewActive) {EmptyView()}.isDetailLink(false)
-            }.onAppear(perform: triviaManager.nextQuestion)
+            }.onAppear{
+                triviaManager.nextQuestion()
+                Sounds.stopSounds()
+            }
         }
         .navigationBarItems(trailing: QuestionIndex())
     }

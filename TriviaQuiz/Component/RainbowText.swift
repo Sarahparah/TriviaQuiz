@@ -7,27 +7,6 @@
 
 import SwiftUI
 
-//struct Home: View {
-//
-//    //Toggle for multicolors
-//    @State var multiColor = false
-//
-//    var body: some View {
-//        //VStack(spacing: 25) {
-//
-//            TextShimmer(text: "Trivia Quiz")
-//
-//            Toggle(isOn: $multiColor, label: {
-//                Text("Enable Multi Colors")
-//                    .font(.title)
-//                    .fontWeight(.bold)
-//            })
-//
-//
-//        //}
-//
-//    }
-//}
 struct TextShimmer: View {
 
     var text: String
