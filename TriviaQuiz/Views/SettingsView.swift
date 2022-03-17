@@ -102,7 +102,7 @@ struct SettingsView : View {
                 }.isDetailLink(false)
                 Button(action: {
                     createGameFromSettings()
-                    Sounds.playSounds(soundfile: "LetsDoThis.wav", delay: 0.0)
+                    Sounds.playSounds(soundfile: "LetsDoThis.wav")
                 }
                        , label: {
                     TextShimmer(text: "Let's do this!")
@@ -120,7 +120,7 @@ struct SettingsView : View {
             }
         }.onAppear {
             triviaManager.backToSettings = true
-           // Sounds.playSounds(soundfile: "soundOfSilenceShort.mp3", delay: 3.0)
+            Sounds.stopSounds()
         }
     }
     

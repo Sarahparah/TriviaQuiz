@@ -33,7 +33,7 @@ struct ContentView: View {
                         StartGameCircle()
                             .onTapGesture {
                                 triviaManager.isSettingsViewActive = true
-                                Sounds.playSounds(soundfile: "startButton.wav", delay: 0.0)
+                               // Sounds.playSounds(soundfile: "startButton.wav")
                             }
                     }
                     .offset(y: -60)
@@ -44,7 +44,7 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                Sounds.playSounds(soundfile: triviaManager.isColorMode ? "desertSound.mp3" : "koolbackground.mp3", delay: 0.0)
+                Sounds.playSounds(soundfile: triviaManager.isColorMode ? "desertSound.mp3" : "koolbackground.mp3")
             }
         }
         .environmentObject(triviaManager)
@@ -58,7 +58,7 @@ struct ToggleColorButton : View {
     var body: some View {
         Button {
             triviaManager.isColorMode.toggle()
-            Sounds.playSounds(soundfile: triviaManager.isColorMode ? "desertSound.mp3" : "koolbackground.mp3", delay: 0.0)
+            Sounds.playSounds(soundfile: triviaManager.isColorMode ? "desertSound.mp3" : "koolbackground.mp3")
         } label: {
             TextShimmer(text: "Color mode")
         }

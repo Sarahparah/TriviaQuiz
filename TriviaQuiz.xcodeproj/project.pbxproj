@@ -25,11 +25,12 @@
 		C805C15027DF41E300544537 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C14F27DF41E300544537 /* HighScoreView.swift */; };
 		C805C15427DFB2F100544537 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15327DFB2F100544537 /* AnswerView.swift */; };
 		C805C15627E0DA0E00544537 /* AnimatedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15527E0DA0E00544537 /* AnimatedBackground.swift */; };
-		C805C15E27E33CEB00544537 /* TimerDelayedStart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */; };
 		C805C16027E33FCF00544537 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15F27E33FCF00544537 /* Sounds.swift */; };
 		C805C16227E34C5E00544537 /* koolbackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C16127E34C5E00544537 /* koolbackground.mp3 */; };
 		C805C16C27E369C500544537 /* soundOfSilenceShort.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C16B27E369C500544537 /* soundOfSilenceShort.mp3 */; };
 		C805C16E27E36A0900544537 /* desertSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C16D27E36A0900544537 /* desertSound.mp3 */; };
+		C805C17127E3866600544537 /* countdownTimerNoDelay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C17027E3866600544537 /* countdownTimerNoDelay.mp3 */; };
+		C805C17327E3887300544537 /* gameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = C805C17227E3887300544537 /* gameOver.wav */; };
 		C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890CD27D8B47E006ADC73 /* PersistenceController.swift */; };
 		C83890D227D8B83A006ADC73 /* TriviaQuiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C83890CF27D8B4BF006ADC73 /* TriviaQuiz.xcdatamodeld */; };
 		C83890D427D903BC006ADC73 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890D327D903BC006ADC73 /* Answer.swift */; };
@@ -79,11 +80,12 @@
 		C805C14F27DF41E300544537 /* HighScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
 		C805C15327DFB2F100544537 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		C805C15527E0DA0E00544537 /* AnimatedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBackground.swift; sourceTree = "<group>"; };
-		C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TimerDelayedStart.mp3; sourceTree = "<group>"; };
 		C805C15F27E33FCF00544537 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		C805C16127E34C5E00544537 /* koolbackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = koolbackground.mp3; sourceTree = "<group>"; };
 		C805C16B27E369C500544537 /* soundOfSilenceShort.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundOfSilenceShort.mp3; sourceTree = "<group>"; };
 		C805C16D27E36A0900544537 /* desertSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = desertSound.mp3; sourceTree = "<group>"; };
+		C805C17027E3866600544537 /* countdownTimerNoDelay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = countdownTimerNoDelay.mp3; path = ../../../Downloads/countdownTimerNoDelay.mp3; sourceTree = "<group>"; };
+		C805C17227E3887300544537 /* gameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gameOver.wav; sourceTree = "<group>"; };
 		C83890CD27D8B47E006ADC73 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		C83890D027D8B4C0006ADC73 /* PersistenceController.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistenceController.xcdatamodel; sourceTree = "<group>"; };
 		C83890D327D903BC006ADC73 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -152,7 +154,8 @@
 				C805C16127E34C5E00544537 /* koolbackground.mp3 */,
 				C805C16B27E369C500544537 /* soundOfSilenceShort.mp3 */,
 				41B9775127E2358E00455E86 /* LetsDoThis.wav */,
-				C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */,
+				C805C17027E3866600544537 /* countdownTimerNoDelay.mp3 */,
+				C805C17227E3887300544537 /* gameOver.wav */,
 				415AC1A427C664980042886E /* Preview Content */,
 				C83890CD27D8B47E006ADC73 /* PersistenceController.swift */,
 				C83890CF27D8B4BF006ADC73 /* TriviaQuiz.xcdatamodeld */,
@@ -327,8 +330,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				41B9775227E2358E00455E86 /* LetsDoThis.wav in Resources */,
-				C805C15E27E33CEB00544537 /* TimerDelayedStart.mp3 in Resources */,
 				4101730927E1E3CB0006F9DC /* Assets.xcassets in Resources */,
+				C805C17127E3866600544537 /* countdownTimerNoDelay.mp3 in Resources */,
+				C805C17327E3887300544537 /* gameOver.wav in Resources */,
 				C805C16227E34C5E00544537 /* koolbackground.mp3 in Resources */,
 				C805C16C27E369C500544537 /* soundOfSilenceShort.mp3 in Resources */,
 				C805C16E27E36A0900544537 /* desertSound.mp3 in Resources */,

@@ -148,7 +148,7 @@ struct ScoreView: View {
                 .padding(.trailing)
         }.navigationBarBackButtonHidden(true)
             .onAppear {
-                Sounds.playSounds(soundfile: "LetsDoThis.wav", delay: 0.0)
+                Sounds.playSounds(soundfile: "gameOver.wav")
             }
     }
     

@@ -26,6 +26,7 @@ class TriviaManager : ObservableObject {
     @Published var isGameEnded = false
     @Published var backToSettings = false
     @Published var progressBarProgress = 0.0
+    var timerSounds = Sounds()
     
     @Published var isSettingsViewActive = false {
         didSet {
@@ -115,6 +116,10 @@ class TriviaManager : ObservableObject {
             self.question = quizResults.results[index].formattedQuestion
             index += 1
             progressBarProgress = 0.0
+//            Sounds.stopSounds()
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20.0) {
+//                Sounds.playSounds(soundfile: "countdownTimerNoDelay.mp3")
+//            }
             
         } else {
             print("spelet är slut")

@@ -12,7 +12,7 @@ import AVFoundation
 
    static var audioPlayer:AVAudioPlayer?
 
-     static func playSounds(soundfile: String, delay: Double) {
+     static func playSounds(soundfile: String) {
 
        if let path = Bundle.main.path(forResource: soundfile, ofType: nil){
 
@@ -20,14 +20,17 @@ import AVFoundation
 
                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
                audioPlayer?.prepareToPlay()
-               DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
-                   audioPlayer?.play()
-               }
+               audioPlayer?.play()
 
            } catch {
                print("Error")
            }
+           
        }
     }
+     
+     static func stopSounds() {
+         audioPlayer?.stop()
+     }
  }
 
