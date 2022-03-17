@@ -19,7 +19,6 @@
 		415AC1CF27C79D7C0042886E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415AC1CE27C79D7C0042886E /* SettingsView.swift */; };
 		417F61CE27DB82D4008FBB15 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F61CD27DB82D4008FBB15 /* CircularProgressBar.swift */; };
 		41B9774C27E2196B00455E86 /* RainbowText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B9774B27E2196B00455E86 /* RainbowText.swift */; };
-		41B9774E27E22F1600455E86 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B9774D27E22F1600455E86 /* MusicPlayer.swift */; };
 		41B9775027E2304600455E86 /* startButton.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41B9774F27E2304600455E86 /* startButton.wav */; };
 		41B9775227E2358E00455E86 /* LetsDoThis.wav in Resources */ = {isa = PBXBuildFile; fileRef = 41B9775127E2358E00455E86 /* LetsDoThis.wav */; };
 		B350222B27C7CBC600D3E404 /* TriviaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B350222A27C7CBC600D3E404 /* TriviaManager.swift */; };
@@ -29,6 +28,8 @@
 		C805C15E27E33CEB00544537 /* TimerDelayedStart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */; };
 		C805C16027E33FCF00544537 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C805C15F27E33FCF00544537 /* Sounds.swift */; };
 		C805C16227E34C5E00544537 /* koolbackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C16127E34C5E00544537 /* koolbackground.mp3 */; };
+		C805C16C27E369C500544537 /* soundOfSilenceShort.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C16B27E369C500544537 /* soundOfSilenceShort.mp3 */; };
+		C805C16E27E36A0900544537 /* desertSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C805C16D27E36A0900544537 /* desertSound.mp3 */; };
 		C83890CE27D8B47E006ADC73 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890CD27D8B47E006ADC73 /* PersistenceController.swift */; };
 		C83890D227D8B83A006ADC73 /* TriviaQuiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C83890CF27D8B4BF006ADC73 /* TriviaQuiz.xcdatamodeld */; };
 		C83890D427D903BC006ADC73 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83890D327D903BC006ADC73 /* Answer.swift */; };
@@ -72,7 +73,6 @@
 		415AC1CE27C79D7C0042886E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		417F61CD27DB82D4008FBB15 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		41B9774B27E2196B00455E86 /* RainbowText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowText.swift; sourceTree = "<group>"; };
-		41B9774D27E22F1600455E86 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		41B9774F27E2304600455E86 /* startButton.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = startButton.wav; sourceTree = "<group>"; };
 		41B9775127E2358E00455E86 /* LetsDoThis.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LetsDoThis.wav; sourceTree = "<group>"; };
 		B350222A27C7CBC600D3E404 /* TriviaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaManager.swift; sourceTree = "<group>"; };
@@ -82,6 +82,8 @@
 		C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TimerDelayedStart.mp3; sourceTree = "<group>"; };
 		C805C15F27E33FCF00544537 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		C805C16127E34C5E00544537 /* koolbackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = koolbackground.mp3; sourceTree = "<group>"; };
+		C805C16B27E369C500544537 /* soundOfSilenceShort.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = soundOfSilenceShort.mp3; sourceTree = "<group>"; };
+		C805C16D27E36A0900544537 /* desertSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = desertSound.mp3; sourceTree = "<group>"; };
 		C83890CD27D8B47E006ADC73 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		C83890D027D8B4C0006ADC73 /* PersistenceController.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistenceController.xcdatamodel; sourceTree = "<group>"; };
 		C83890D327D903BC006ADC73 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -146,7 +148,9 @@
 				415AC19E27C664960042886E /* TriviaQuizApp.swift */,
 				415AC1A227C664980042886E /* Assets.xcassets */,
 				41B9774F27E2304600455E86 /* startButton.wav */,
+				C805C16D27E36A0900544537 /* desertSound.mp3 */,
 				C805C16127E34C5E00544537 /* koolbackground.mp3 */,
+				C805C16B27E369C500544537 /* soundOfSilenceShort.mp3 */,
 				41B9775127E2358E00455E86 /* LetsDoThis.wav */,
 				C805C15D27E33CEB00544537 /* TimerDelayedStart.mp3 */,
 				415AC1A427C664980042886E /* Preview Content */,
@@ -202,7 +206,6 @@
 				417F61CD27DB82D4008FBB15 /* CircularProgressBar.swift */,
 				C805C15527E0DA0E00544537 /* AnimatedBackground.swift */,
 				41B9774B27E2196B00455E86 /* RainbowText.swift */,
-				41B9774D27E22F1600455E86 /* MusicPlayer.swift */,
 				C805C15F27E33FCF00544537 /* Sounds.swift */,
 			);
 			path = Component;
@@ -327,6 +330,8 @@
 				C805C15E27E33CEB00544537 /* TimerDelayedStart.mp3 in Resources */,
 				4101730927E1E3CB0006F9DC /* Assets.xcassets in Resources */,
 				C805C16227E34C5E00544537 /* koolbackground.mp3 in Resources */,
+				C805C16C27E369C500544537 /* soundOfSilenceShort.mp3 in Resources */,
+				C805C16E27E36A0900544537 /* desertSound.mp3 in Resources */,
 				415AC1A627C664980042886E /* Preview Assets.xcassets in Resources */,
 				41B9775027E2304600455E86 /* startButton.wav in Resources */,
 			);
@@ -369,7 +374,6 @@
 				C805C15427DFB2F100544537 /* AnswerView.swift in Sources */,
 				417F61CE27DB82D4008FBB15 /* CircularProgressBar.swift in Sources */,
 				415AC19F27C664960042886E /* TriviaQuizApp.swift in Sources */,
-				41B9774E27E22F1600455E86 /* MusicPlayer.swift in Sources */,
 				C852023A27C8EDE00045AACD /* QuestionData.swift in Sources */,
 				C852023827C8ED8A0045AACD /* QuizData.swift in Sources */,
 				41B9774C27E2196B00455E86 /* RainbowText.swift in Sources */,

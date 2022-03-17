@@ -7,28 +7,18 @@
 
 import Foundation
 import SwiftUI
-import AVFoundation
 
 struct SettingsView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     
-    @State var animateGradient = false
-   // @State var countdownTimer: AVAudioPlayer?
-    
-    let categories = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
-    let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
-    let difficulty = ["Mix", "Easy", "Medium", "Hard"]
-    
-    let numberOfQuestions = [10, 20, 30, 40, 50]
+    let categoriesArray = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
+    let difficultyArray = ["Mix", "Easy", "Medium", "Hard"]
+    let numberOfQuestionsArray = [10, 20, 30, 40, 50]
     
     @State var selectedCategoryIndex = 0
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
-    
-    let blueColorArray = [Color.blue, Color.white]
-    let defaultColorArray = [Color.blue, Color.yellow, Color.purple]
-    let circleSize = CGSize(width: 1000, height: 1000)
     
     var body: some View {
         
@@ -36,8 +26,8 @@ struct SettingsView : View {
             AnimatedBackground().edgesIgnoringSafeArea(.all)
                 .blur(radius: 50)
             
-            Circle().size(circleSize)
-                .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
+            Circle().size(width: 1000, height: 1000)
+                .fill(LinearGradient(colors: triviaManager.isColorMode ? [Color.blue, Color.white] : [.blue, .red],
                                      startPoint: .topLeading,
                                      endPoint: .bottomTrailing))
                 .ignoresSafeArea()
@@ -55,8 +45,8 @@ struct SettingsView : View {
                         .padding(.bottom, 90)
                         .foregroundColor(.yellow)
                     Picker(selection: $selectedCategoryIndex, label: Text("")) {
-                        ForEach(0..<categories.count) {
-                            Text("\(self.categories[$0])")
+                        ForEach(0..<categoriesArray.count) {
+                            Text("\(self.categoriesArray[$0])")
                                 .foregroundColor(.white)
                                 .fontWeight(.bold)
                         }
@@ -74,8 +64,8 @@ struct SettingsView : View {
                         .padding(.bottom, 90)
                         .foregroundColor(.yellow)
                     Picker(selection: $selectedDifficultyIndex, label: Text("")) {
-                        ForEach(0..<difficulty.count) {
-                            Text("\(self.difficulty[$0])")
+                        ForEach(0..<difficultyArray.count) {
+                            Text("\(self.difficultyArray[$0])")
                                 .foregroundColor(.white)
                                 .fontWeight(.bold)
                         }
@@ -97,8 +87,8 @@ struct SettingsView : View {
                         .padding(.bottom, 90)
                         .foregroundColor(.yellow)
                     Picker(selection: $selectedNumberOfQuestions, label: Text("")) {
-                        ForEach(0..<numberOfQuestions.count) {
-                            Text("\(self.numberOfQuestions[$0])")
+                        ForEach(0..<numberOfQuestionsArray.count) {
+                            Text("\(self.numberOfQuestionsArray[$0])")
                                 .foregroundColor(.white)
                                 .fontWeight(.bold)
                         }
@@ -112,7 +102,7 @@ struct SettingsView : View {
                 }.isDetailLink(false)
                 Button(action: {
                     createGameFromSettings()
-                    Sounds.playSounds(soundfile: "LetsDoThis.wav")
+                    Sounds.playSounds(soundfile: "LetsDoThis.wav", delay: 0.0)
                 }
                        , label: {
                     TextShimmer(text: "Let's do this!")
@@ -124,19 +114,19 @@ struct SettingsView : View {
                 })
                     .offset(y: -20)
                     .alert(isPresented: $triviaManager.responseCodeError) {
-                        Alert(title: Text("Sorry!"), message: Text("We don't have \(numberOfQuestions[selectedNumberOfQuestions]) \(difficulty[selectedDifficultyIndex].lowercased()) questions in the \(categories[selectedCategoryIndex].lowercased()) category"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
+                        Alert(title: Text("Sorry!"), message: Text("We don't have \(numberOfQuestionsArray[selectedNumberOfQuestions]) \(difficultyArray[selectedDifficultyIndex].lowercased()) questions in the \(categoriesArray[selectedCategoryIndex].lowercased()) category"), primaryButton: .default(Text("OK")), secondaryButton: .cancel())
                     }
                     .navigationTitle("Customize your game")
             }
         }.onAppear {
             triviaManager.backToSettings = true
-            Sounds.playSounds(soundfile: "startButton.wav")
+           // Sounds.playSounds(soundfile: "soundOfSilenceShort.mp3", delay: 3.0)
         }
     }
     
     func createGameFromSettings() {
         triviaManager.resetGame()
-        let numberOfQuestions = numberOfQuestions[selectedNumberOfQuestions]
+        let numberOfQuestions = numberOfQuestionsArray[selectedNumberOfQuestions]
         triviaManager.numberOfQuestions = numberOfQuestions
         let difficulty = triviaManager.difficultyArray[selectedDifficultyIndex]
         let category = triviaManager.categoryNumbersArray[selectedCategoryIndex]

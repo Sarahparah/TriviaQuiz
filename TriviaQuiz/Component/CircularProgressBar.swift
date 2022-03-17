@@ -49,8 +49,8 @@ struct CircularProgressBar: View{
     }
     
     func startLoading() {
-       // countdownTimer?.play()
-        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3")
+        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3", delay: 2.0)
+       
 
         _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             withAnimation() {
@@ -58,28 +58,19 @@ struct CircularProgressBar: View{
                 if triviaManager.progressBarProgress >= 1.0 {
                     triviaManager.nextQuestion()
                     restartTimer()
-                    
                 }
                 if triviaManager.isGameEnded {
                     timer.invalidate()
-                   // MusicPlayer.shared.stopBackgroundMusic()
                 }
                 if triviaManager.backToSettings {
                     timer.invalidate()
-                   // MusicPlayer.shared.stopBackgroundMusic()
                 }
             }
         }
     }
     func restartTimer(){
         triviaManager.progressBarProgress = 0.0
-        print("restart1")
-        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3")
-
-       // countdownTimer?.play()
-        print("restart2")
-
-       // MusicPlayer.shared.startBackgroundMusic(sound: "TimerDelayedStart", type: "mp3")
+        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3", delay: 2.0)
     }
 }
 
