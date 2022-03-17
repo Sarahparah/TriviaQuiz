@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct CircularProgressBar: View{
 
     @EnvironmentObject var triviaManager : TriviaManager
 
     var start = false
+    @State var startTimer = false
+   // @State var countdownTimer: AVAudioPlayer?
+
 
     var body: some View {
 
@@ -32,20 +36,22 @@ struct CircularProgressBar: View{
 
                     .frame(width: 300, height: 300)
                     .rotationEffect(Angle(degrees: -90))
-
-                    .blur(radius: 2.3) // Perfekt value ;^)
-              
+                    .blur(radius: 2.3)
             }
             .onAppear(perform: {
                 triviaManager.backToSettings = false
+                //MusicPlayer.shared.startBackgroundMusic(sound: "TimerDelayedStart", type: "mp3")
+//                let sound = Bundle.main.path(forResource: "TimerDelayedStart", ofType: "mp3")
+//                countdownTimer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                 startLoading()
-                
             })
         }
     }
     
     func startLoading() {
-        
+       // countdownTimer?.play()
+        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3")
+
         _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             withAnimation() {
                 triviaManager.progressBarProgress += 0.00333333333333
@@ -56,17 +62,24 @@ struct CircularProgressBar: View{
                 }
                 if triviaManager.isGameEnded {
                     timer.invalidate()
+                   // MusicPlayer.shared.stopBackgroundMusic()
                 }
                 if triviaManager.backToSettings {
                     timer.invalidate()
+                   // MusicPlayer.shared.stopBackgroundMusic()
                 }
-                
             }
         }
-        
     }
     func restartTimer(){
         triviaManager.progressBarProgress = 0.0
+        print("restart1")
+        Sounds.playSounds(soundfile: "TimerDelayedStart.mp3")
+
+       // countdownTimer?.play()
+        print("restart2")
+
+       // MusicPlayer.shared.startBackgroundMusic(sound: "TimerDelayedStart", type: "mp3")
     }
 }
 

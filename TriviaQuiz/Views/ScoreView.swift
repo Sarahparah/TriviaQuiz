@@ -49,11 +49,11 @@ struct ScoreView: View {
                         Text("Your score")
                             .font(.system(size: 30))
                             .foregroundColor(.white)
-                            .padding(.bottom, 190)
+                            .padding(.bottom, 200)
                         Text("out of \(triviaManager.numberOfQuestions)")
                             .font(.system(size: 30))
                             .foregroundColor(.white)
-                            .padding(.top, 190)
+                            .padding(.top, 200)
                     }
 //MARK: - inner circle
                     Circle()
@@ -85,6 +85,7 @@ struct ScoreView: View {
                     .frame(width: 260, height: 70)
                     .background(LinearGradient(colors: [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(50)
+                    .shadow(color: .white, radius: 5)
                     .offset(y: -20)
 //MARK: - See Your Answers knappen
                 
@@ -98,6 +99,7 @@ struct ScoreView: View {
                     .frame(width: 200, height: 50)
                     .background(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(30)
+                    .shadow(color: .white, radius: 5)
                     .offset(y: -10)
                 
                 VStack {
@@ -145,7 +147,11 @@ struct ScoreView: View {
             }.padding(.leading)
                 .padding(.trailing)
         }.navigationBarBackButtonHidden(true)
+            .onAppear {
+                Sounds.playSounds(soundfile: "LetsDoThis.wav")
+            }
     }
+    
     
     //MARK: -Bra switchsats 8^)
     

@@ -7,12 +7,14 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 struct SettingsView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     
     @State var animateGradient = false
+   // @State var countdownTimer: AVAudioPlayer?
     
     let categories = ["Mixed categories", "General knowledge", "Books", "Film", "Music", "Television", "Video Games", "Science & Nature", "Geography", "History", "Art", "Cartoons & Animations"]
     let color = [Color.green, Color.yellow, Color.blue, Color.red, Color.purple, Color.pink]
@@ -31,10 +33,6 @@ struct SettingsView : View {
     var body: some View {
         
         ZStack {
-            //            LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : defaultColorArray,
-            //                           startPoint: .topLeading,
-            //                           endPoint: .bottomTrailing)
-            //                .ignoresSafeArea()
             AnimatedBackground().edgesIgnoringSafeArea(.all)
                 .blur(radius: 50)
             
@@ -63,8 +61,7 @@ struct SettingsView : View {
                                 .fontWeight(.bold)
                         }
                     }.pickerStyle(WheelPickerStyle())
-                }
-                .offset(x: -70, y: 50)
+                }.offset(x: -70, y: 50)
                 
                 Spacer()
                 ZStack {
@@ -80,6 +77,7 @@ struct SettingsView : View {
                         ForEach(0..<difficulty.count) {
                             Text("\(self.difficulty[$0])")
                                 .foregroundColor(.white)
+                                .fontWeight(.bold)
                         }
                     }.pickerStyle(WheelPickerStyle())
                 }.offset(x: -20, y: 20)
@@ -114,11 +112,9 @@ struct SettingsView : View {
                 }.isDetailLink(false)
                 Button(action: {
                     createGameFromSettings()
-                    MusicPlayer.shared.startBackgroundMusic(sound: "LetsDoThis")
-                    
+                    Sounds.playSounds(soundfile: "LetsDoThis.wav")
                 }
                        , label: {
-                    //Text("Let's do this")
                     TextShimmer(text: "Let's do this!")
                         .foregroundColor(.white)
                         .frame(width: 220, height: 50)
@@ -134,8 +130,7 @@ struct SettingsView : View {
             }
         }.onAppear {
             triviaManager.backToSettings = true
-           
-            
+            Sounds.playSounds(soundfile: "startButton.wav")
         }
     }
     
