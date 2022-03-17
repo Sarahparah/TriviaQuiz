@@ -136,6 +136,7 @@ class TriviaManager : ObservableObject {
     /*
      
      
+     
      */
     func nextQuestion() {
         guard let quizResults = quizResults else {
