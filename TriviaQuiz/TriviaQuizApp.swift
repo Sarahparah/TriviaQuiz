@@ -14,7 +14,6 @@ struct TriviaQuizApp: App {
     @Environment(\.scenePhase) var scenePhase
     
     init() {
-        
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.yellow]
         UINavigationBar.appearance().tintColor = .white
     }

@@ -10,14 +10,9 @@ struct CircularProgressBar: View{
 
     @EnvironmentObject var triviaManager : TriviaManager
 
-    var start = false
-
     var body: some View {
-
         VStack {
-            
             ZStack {
-
                 Circle()
                     .stroke(LinearGradient(colors: [.white, .blue], startPoint: .trailing, endPoint: .leading), lineWidth: 10)
                     .opacity(0.5)
@@ -31,14 +26,11 @@ struct CircularProgressBar: View{
 
                     .frame(width: 300, height: 300)
                     .rotationEffect(Angle(degrees: -90))
-
                     .blur(radius: 2.3)
-              
             }
             .onAppear(perform: {
                 triviaManager.backToSettings = false
                 startLoading()
-                
             })
         }
     }
@@ -51,7 +43,6 @@ struct CircularProgressBar: View{
                 if triviaManager.progressBarProgress >= 1.0 {
                     triviaManager.nextQuestion()
                     restartTimer()
-                    
                 }
                 if triviaManager.isGameEnded {
                     timer.invalidate()
@@ -61,7 +52,6 @@ struct CircularProgressBar: View{
                 }
             }
         }
-        
     }
     func restartTimer(){
         triviaManager.progressBarProgress = 0.0

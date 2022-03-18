@@ -11,9 +11,8 @@ struct AnswerView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     let blueColorArray = [Color.blue, Color.white]
-    var currentGame = 0
-    var isButtonPressed = false
     @State var nextAnswerButtonIsDisabled = false
+    
     var body: some View {
         
         ZStack {
@@ -24,84 +23,56 @@ struct AnswerView : View {
             
             VStack {
                 ZStack {
-                    
                     Circle()
                         .fill(LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.blue, .red],
                                              startPoint: .topLeading,
                                              endPoint: .bottomTrailing))
-
+                    
                     Text(triviaManager.question)
                         .fontWeight(.bold)
                         .font(.headline)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding(20)
-                    
                 }
                 .frame(width: 300, height: 300, alignment: .center)
                 
                 Spacer()
                 HStack {
-//                                Button(action: {
-//                                    if triviaManager.index >= 1 {
-//                                        triviaManager.index -= 1
-//                                        previousAnswerButtonIsDisabled = false
-//                                    } else {
-//                                        triviaManager.index = 0
-//                                        previousAnswerButtonIsDisabled = true
-//                                    }
-//                                }, label: {LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-//                                                          startPoint: .top,
-//                                                          endPoint: .bottom)
-//                                        .frame(width: 50, height: 50)
-//                                        .mask(Image(systemName: "arrow.left.circle"))
-//                                        .font(.system(size: 50.0))
-//                                        .padding(.leading, 20)
-//
-//                //                        .offset(x:40)
-//                                })
-//
-//                                Spacer()
-                                Button(action: {
-                                   // triviaManager.index += 1
-                                    triviaManager.nextQuestion()
-                                    if triviaManager.index >= triviaManager.numberOfQuestions {
-                                        nextAnswerButtonIsDisabled = true
-                                    }
-                                }, label: {
-                                    LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
-                                                   startPoint: .top,
-                                                   endPoint: .bottom)
-                                        .frame(width: 50, height: 50)
-                                        .mask(Image(systemName: "arrow.right.circle"))
-                                        .font(.system(size: 50.0))
-                                        .padding(.trailing, 20)
-                                        
-                //                        .offset(x:40)
-                                })
+                    Button(action: {
+                        triviaManager.nextQuestion()
+                        if triviaManager.index >= triviaManager.numberOfQuestions {
+                            nextAnswerButtonIsDisabled = true
+                        }
+                    }, label: {
+                        LinearGradient(gradient: Gradient(colors: [.pink, .blue]),
+                                       startPoint: .top,
+                                       endPoint: .bottom)
+                            .frame(width: 50, height: 50)
+                            .mask(Image(systemName: "arrow.right.circle"))
+                            .font(.system(size: 50.0))
+                            .padding(.trailing, 20)
+                    })
                         .disabled(nextAnswerButtonIsDisabled)
                         .opacity(nextAnswerButtonIsDisabled ? 0.1 : 1.0)
-                            }
+                }
                 Spacer()
                 ForEach(triviaManager.answerChoices, id: \.id) { answer in
                     TriviaButton(answer: answer)
                         .disabled(true)
                 }
                 Spacer()
-                
-               // NavigationLink(destination: ScoreView(), isActive: $triviaManager.isScoreViewActive) {EmptyView()}.isDetailLink(false)
             }.onAppear{
                 triviaManager.nextQuestion()
-                Sounds.stopSounds()
             }
         }
         .navigationBarItems(trailing: QuestionIndex())
     }
 }
 
-//struct AnswerViewPreviews: PreviewProvider {
-//    static var previews: some View {
-//        AnswerView()
-//            .environmentObject(TriviaManager())
-//    }
-//}
+struct AnswerViewPreviews: PreviewProvider {
+    static var previews: some View {
+        AnswerView()
+            .environmentObject(TriviaManager())
+    }
+}

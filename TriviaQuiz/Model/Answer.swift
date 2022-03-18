@@ -7,20 +7,19 @@
 
 import Foundation
 
-class Answer: Decodable { //answerklassen som förhåller sig till decodable protokollet 
+//Answerklassen som förhåller sig till decodable protokollet
+class Answer: Decodable {
     
     var id = UUID()
     var text: AttributedString
     var isCorrect: Bool
     var isSelected: Bool = false
     
-    
-    /*
+    /**
      Här initialiseras klassen Answer 
      */
     init(text: AttributedString, isCorrect: Bool) {
         self.text = text
         self.isCorrect = isCorrect
     }
-    
 }
