@@ -13,8 +13,7 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
 
     var quizData: QuizData?
     var quizResults: QuizResults?
-    
-    
+
     var index: Int = 0
     var numberOfQuestions = 0
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
@@ -68,18 +67,22 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
     /**
      I denna func decodar vi vår API. decodeAPIResults tar emot en url, skapar upp en URLSession, en datatask och en JSONDecoder.
      **/
+
     func decodeAPIResults(with url : URL)  {
         let session = URLSession(configuration: .default)
+//1
+
         let task = session.dataTask(with: url) { (data, response, error) in
             if error != nil && data != nil {
                 return
             }
-            
+//2
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             DispatchQueue.main.async {
+                //3
                 
-                //Här under decodar vi vår JSON object
+//Här under decodar vi vår JSON object
                 if let quizData = try? decoder.decode(QuizData.self, from: data!) {
                     self.quizData = quizData
                     self.quizResults = QuizResults()
@@ -98,7 +101,9 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
                     }
                 }
             }
+            //5
         }
+        //4
         task.resume()
     }
     /**
@@ -133,6 +138,7 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
      
      Detta händer för varje index när nextQuestion körs, fram till sista indexet, då tar spelet slut och ScoreView blir aktiv.
      **/
+
     func nextQuestion() {
         guard let quizResults = quizResults else {
             return
@@ -151,7 +157,8 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
         }
     }
 
-    /**Återställer alla inställningar till sina ursprungsvärden
+    /**
+     Återställer alla inställningar till sina ursprungsvärden
      */
 
     func resetGame() {
