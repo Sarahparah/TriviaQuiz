@@ -33,7 +33,7 @@ struct ContentView: View {
                         StartGameCircle()
                             .onTapGesture {
                                 triviaManager.isSettingsViewActive = true
-                               // Sounds.playSounds(soundfile: "startButton.wav")
+                                Sounds.playSounds(soundfile: "startButton.wav")
                             }
                     }
                     .offset(y: -60)
