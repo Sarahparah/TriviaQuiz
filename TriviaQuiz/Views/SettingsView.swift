@@ -19,7 +19,7 @@ struct SettingsView : View {
     @State var selectedCategoryIndex = 0
     @State var selectedDifficultyIndex = 0
     @State var selectedNumberOfQuestions = 0
-    
+
     var body: some View {
         
         ZStack {
