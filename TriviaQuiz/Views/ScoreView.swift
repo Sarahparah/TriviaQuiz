@@ -27,6 +27,7 @@ struct ScoreView: View {
                     .multilineTextAlignment(.center)
                 
                 ScoreCircle()
+                    .frame(width: 320, height: 320, alignment: .center)
                     .offset(y: -30)
                 PlayAgainButton()
                     .offset(y: -20)
@@ -89,7 +90,7 @@ struct ScoreCircle: View {
 //MARK: - Middle circle
                 
                 Circle()
-                    .fill(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.blue, .purple],
+                    .fill(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .blue, .white] : [.blue, .purple],
                                          startPoint: .topLeading,
                                          endPoint: .bottomTrailing))
                     .padding(30)
@@ -135,7 +136,7 @@ struct PlayAgainButton: View {
         }, label: {Text("PLAY AGAIN")})
             .foregroundColor(.white)
             .frame(width: 260, height: 70)
-            .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .blue, .white] : [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
             .cornerRadius(50)
             .shadow(color: .white, radius: 5)
     }
@@ -152,7 +153,7 @@ struct SeeAnswersButton: View {
             Text("See your answers")
         }).foregroundColor(.white)
             .frame(width: 200, height: 50)
-            .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .blue, .white] : [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
             .cornerRadius(30)
             .shadow(color: .white, radius: 5)
     }
@@ -182,7 +183,8 @@ struct SaveScoreBox: View {
                         .foregroundColor(.white)
                         .frame(alignment: .center)
                         .padding(7)
-                        .background(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .blue, .white] : [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .shadow(color: .white, radius: 5)
                         .cornerRadius(20)
                 }
             }
@@ -193,7 +195,8 @@ struct SaveScoreBox: View {
                         .foregroundColor(.white)
                         .frame(width: 150, height: 16, alignment: .center)
                         .padding(7)
-                        .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .blue, .white] : [.pink, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .shadow(color: .white, radius: 5)
                         .cornerRadius(20)
                 }.isDetailLink(false)
             }
@@ -202,8 +205,8 @@ struct SaveScoreBox: View {
             }.isDetailLink(false)
         }
         .frame(height: 80, alignment: .center)
-        .padding(15)
-        .background(LinearGradient(colors: [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+        .padding(25)
+        .background(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .blue, .white] : [.blue, .purple], startPoint: .topLeading, endPoint: .bottomTrailing))
         .cornerRadius(5)
     }
     
