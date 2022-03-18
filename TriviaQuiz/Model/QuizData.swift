@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct QuizData: Decodable {
+struct QuizData: Decodable { // första lagret av API callbacken
     var responseCode: Int = 0
     var results: [QuestionData]
+
 }
 
 
-class QuizResults {
+class QuizResults { // Skapar upp en array av klassen Question 
     var results: [Question] = [Question]()
+
 }

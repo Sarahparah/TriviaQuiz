@@ -22,14 +22,14 @@ struct QuestionData: Decodable {
  */
 class Question {
     var questionData : QuestionData
-    var formattedAnswers : [Answer] = [Answer]()
+    var formattedAnswers : [Answer] = [Answer]()  //skapar upp ett AnswerArray objekt
     
     init(questionData: QuestionData) {
         self.questionData = questionData
-        formattedAnswers = formatAnswers()
+        formattedAnswers = formatAnswers() //binder våra shufflade svar in i formattedAnswers 
     }
     /*
-     I denna kalkulerade variabel skapar vi AttributedString där vi har en Do/Catch för att kunna formattera våra frågor.
+     I denna kalkylerade variabel skapar vi AttributedString där vi har en Do/Catch för att kunna formattera våra frågor.
      */
     var formattedQuestion: AttributedString {
         do {
