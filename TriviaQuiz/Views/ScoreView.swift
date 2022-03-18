@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ScoreView: View {
     
-    var randomWords = ["Good job", "Almost there", "Score!"]
-    @State var showAlert = false
     @EnvironmentObject var triviaManager : TriviaManager
     @State var username = ""
     
@@ -21,14 +19,15 @@ struct ScoreView: View {
             VStack {
 //MARK: - ReturnMessage Text
                 Text("\(returnMessage())")
-                    .font(.system(size: 32))
+                    .lineLimit(nil)
+                    .font(.system(size: 25))
                     .foregroundColor(.white)
                     .offset(y: -30)
                     .multilineTextAlignment(.center)
                 
                 ScoreCircle()
                     .frame(width: 320, height: 320, alignment: .center)
-                    .offset(y: -30)
+                    .offset(y: -20)
                 PlayAgainButton()
                     .offset(y: -20)
                 SeeAnswersButton()
@@ -79,7 +78,6 @@ struct ScoreCircle: View {
     var body: some View {
         ZStack {
 //MARK: - Outer circle
-            
             Circle()
                 .fill(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .white] : [.blue, .red],
                                      startPoint: .topLeading,
@@ -88,7 +86,6 @@ struct ScoreCircle: View {
                 .padding(10)
             ZStack {
 //MARK: - Middle circle
-                
                 Circle()
                     .fill(LinearGradient(colors: triviaManager.isColorMode ? [.blue, .blue, .white] : [.blue, .purple],
                                          startPoint: .topLeading,
