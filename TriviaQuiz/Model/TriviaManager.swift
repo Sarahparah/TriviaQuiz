@@ -2,23 +2,23 @@
 //  TriviaManager.swift
 //  TriviaQuiz
 //
-//  Created by Yolanda Jonasson on 2022-02-24.
+//  Created by Andreas Jonasson on 2022-02-24.
 //
 
 import Foundation
 import CoreData
 import SwiftUI
 
-class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer som kollar på klassens variabler
+class TriviaManager : ObservableObject { // ObservableObject, dvs. andra vyer som kollar på klassens variabler
 
     var quizData: QuizData?
     var quizResults: QuizResults?
-
-    var index: Int = 0
-    var numberOfQuestions = 0
+    
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
     
+    @Published var index: Int = 0
+    @Published var numberOfQuestions = 0
     @Published var isColorMode = true  //Publicerad variabel som tas emot på andra ställen!
     
     @Published var question: AttributedString = ""
@@ -61,13 +61,12 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
         }
     }
 
-    //Vår Core URL string
-    
+    //Vår bas-URLsträng:
     let urlString = "https://opentdb.com/api.php"
 
     /**
      I denna func decodar vi vår API. decodeAPIResults tar emot en url, skapar upp en URLSession, en datatask och en JSONDecoder.
-     **/
+     */
 
     func decodeAPIResults(with url : URL)  {
         let session = URLSession(configuration: .default)
@@ -92,11 +91,10 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
                     if quizData.responseCode == 1 {
                         self.responseCodeError = true
                     } else {
-//För varje fråga i quizData.results
+//För varje fråga i quizData.results binder vi en newQuestionObject till results arrayen
                         for questionObject in quizData.results {
-                            var newQuestionObject = Question(questionData: questionObject)
-                            self.quizResults?.results.append(newQuestionObject) // binder vi en newQuestionObject till results arrayen
-                            
+                            let newQuestionObject = Question(questionData: questionObject)
+                            self.quizResults?.results.append(newQuestionObject)
                         }
                         self.nextQuestion()
                         self.isTriviaViewActive = true
@@ -111,7 +109,7 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
     /**
      En funktion som bygger upp URL strängen baserat på den inställning som görs i SettingsView. När en setting har valts så läggs den till i vår urstrungs URL
      (rad 66).
-     **/
+     */
     func FetchTrivia(amount : Int, category : Int, difficulty : String) {
         guard var urlComps = URLComponents(string: self.urlString) else {
             print("failed to create URLCOMPONENTS")
@@ -140,7 +138,7 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
      Denna funktion går igenom resultat-arrayen och för första objektet i arrayen sätter den in svaren i arrayen answerChoices och frågan i variabeln question. Timern startas också om.
      
      Detta händer för varje index när nextQuestion körs, fram till sista indexet, då tar spelet slut och ScoreView blir aktiv.
-     **/
+     */
 
     func nextQuestion() {
         guard let quizResults = quizResults else {

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct QuestionIndex: View { // liten QuestionIndex vy
+// Liten QuestionIndex vy som visas i TriviaView
+struct QuestionIndex: View {
     
     @EnvironmentObject var triviaManager: TriviaManager
 
