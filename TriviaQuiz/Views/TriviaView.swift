@@ -13,10 +13,6 @@ struct TriviaView : View {
     
     @EnvironmentObject var triviaManager : TriviaManager
     let blueColorArray = [Color.blue, Color.white]
-    var currentGame = 0
-    var isButtonPressed = false
-    @State var countdownTimer: AVAudioPlayer?
-
     
     var body: some View {
         
