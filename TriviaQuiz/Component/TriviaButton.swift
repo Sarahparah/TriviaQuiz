@@ -28,7 +28,6 @@ struct TriviaButton: View{
                 answer.isSelected = true
             }
             triviaManager.nextQuestion()
-            
         }) {
             Text("\(answer.text)")
                 .scaledToFit()

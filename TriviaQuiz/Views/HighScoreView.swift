@@ -17,31 +17,19 @@ struct HighScoreView: View {
     @EnvironmentObject var triviaManager : TriviaManager
 
     init() {
-
         UITableView.appearance().separatorStyle = .none
         UITableViewCell.appearance().backgroundColor = .clear
         UITableView.appearance().backgroundColor = .clear
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
-
     }
 
     var body: some View {
 
         ZStack{
-
-            //            LinearGradient(colors: triviaManager.isColorMode ? blueColorArray : [.red, .blue, .yellow],
-            //                           startPoint: .topLeading,
-            //                           endPoint: .bottomTrailing)
-            //                .ignoresSafeArea()
-
             if triviaManager.isColorMode {
-
                 AnimatedBackgroundTwo().edgesIgnoringSafeArea(.all)
                     .blur(radius:50)
-
-
             } else {
-
                 AnimatedBackground().edgesIgnoringSafeArea(.all)
                     .blur(radius:50)
             }
@@ -59,7 +47,6 @@ struct HighScoreView: View {
                                 Text("\(score) / \(maxScore)")
                                     .foregroundColor(.white)
                             }
-
                         }
                     }
                 }
@@ -85,14 +72,12 @@ struct HighScoreView: View {
             }
         }
     }
-
 }
 
 
 
-//
-//struct HighScoreView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HighScoreView()
-//    }
-//}
+struct HighScoreView_Previews: PreviewProvider {
+    static var previews: some View {
+        HighScoreView()
+    }
+}

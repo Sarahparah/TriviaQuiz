@@ -120,7 +120,6 @@ struct SettingsView : View {
             }
         }.onAppear {
             triviaManager.backToSettings = true
-            Sounds.stopSounds()
         }
     }
     

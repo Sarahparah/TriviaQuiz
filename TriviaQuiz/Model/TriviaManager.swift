@@ -63,7 +63,6 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
     }
 
     //Vår Core URL string
-    
     let urlString = "https://opentdb.com/api.php"
 
     /**
@@ -89,11 +88,10 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
                     if quizData.responseCode == 1 {
                         self.responseCodeError = true
                     } else {
-                        //För varje fråga i quizData.results
+                        //För varje fråga i quizData.results binder vi en newQuestionObject till results arrayen
                         for questionObject in quizData.results {
-                            var newQuestionObject = Question(questionData: questionObject)
-                            self.quizResults?.results.append(newQuestionObject) // binder vi en newQuestionObject till results arrayen
-                            
+                            let newQuestionObject = Question(questionData: questionObject)
+                            self.quizResults?.results.append(newQuestionObject)
                         }
                         self.nextQuestion()
                         self.isTriviaViewActive = true
@@ -123,7 +121,6 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
             queryItems.append(URLQueryItem(name: "category", value: String(category)))
         }
         
-        
         urlComps.queryItems = queryItems
         guard let url = urlComps.url else { return }
         print("URL:  \(url)")
@@ -147,7 +144,6 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
             if isTriviaViewActive {
                 progressBarProgress = 0.0
             }
-            
         } else {
             print("spelet är slut")
             isScoreViewActive = true

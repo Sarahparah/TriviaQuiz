@@ -16,8 +16,7 @@ struct QuestionData: Decodable {
     var incorrectAnswers: [String]
 }
 
-
-/*
+/**
  Tar in ett QuestionsData objekt. Den skapar upp Answers och formatterar om svaret och frågan.
  */
 class Question {
@@ -28,7 +27,7 @@ class Question {
         self.questionData = questionData
         formattedAnswers = formatAnswers() //binder våra shufflade svar in i formattedAnswers 
     }
-    /*
+    /**
      I denna kalkylerade variabel skapar vi AttributedString där vi har en Do/Catch för att kunna formattera våra frågor.
      */
     var formattedQuestion: AttributedString {
@@ -60,4 +59,3 @@ class Question {
         }
     }
 }
-

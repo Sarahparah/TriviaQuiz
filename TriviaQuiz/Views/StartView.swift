@@ -10,16 +10,14 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var triviaManager = TriviaManager()  //skapar upp triviaManagerobjekt (stateObject) så vi kan komma åt variablerna där!
-    @State var animateGradient = false
+  //  @State var animateGradient = false
 
     @Environment(\.managedObjectContext) private var viewContext // coreData relaterad, injicerar managedObjectContext in i swiftUi-miljön
     
     var body: some View {
-        
         NavigationView {
             ZStack { 
                 AnimatedBackgroundTwo().edgesIgnoringSafeArea(.all)
-                
                 VStack {
                     ZStack {
                         
@@ -33,7 +31,7 @@ struct ContentView: View {
                         StartGameCircle()
                             .onTapGesture {
                                 triviaManager.isSettingsViewActive = true
-                               // Sounds.playSounds(soundfile: "startButton.wav")
+                                Sounds.playSounds(soundfile: "startButton.wav")
                             }
                     }
                     .offset(y: -60)
@@ -103,7 +101,6 @@ struct StartGameCircle : View {
                 .mask(Circle()
                         .frame(width: 200, alignment: .center))
                 .shadow(color: .white, radius: 5)
-            
         }
     }
 }
