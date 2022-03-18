@@ -14,6 +14,7 @@ class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer so
     var quizData: QuizData?
     var quizResults: QuizResults?
     
+    
     var index: Int = 0
     var numberOfQuestions = 0
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
