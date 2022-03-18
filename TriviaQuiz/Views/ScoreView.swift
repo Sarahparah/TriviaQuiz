@@ -234,3 +234,4 @@ struct ScoreView_Previews: PreviewProvider {
             .environmentObject(TriviaManager())
     }
 }
+
