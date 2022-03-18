@@ -12,7 +12,6 @@ struct AnimatedBackground: View {
     @State var end = UnitPoint(x:4, y: 0)
     @EnvironmentObject var triviaManager : TriviaManager
 
-    
     let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
     let colors2 = [Color.blue, Color.purple, Color.yellow]
     let colors = [Color.purple, Color.blue, Color.white]

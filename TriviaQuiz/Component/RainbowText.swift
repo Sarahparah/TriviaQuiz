@@ -11,7 +11,6 @@ struct TextShimmer: View {
 
     var text: String
     @State var animation = false
-    //@Binding var multiColors: Bool
 
     var body: some View {
 

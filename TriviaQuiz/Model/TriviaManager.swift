@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class TriviaManager : ObservableObject {
+class TriviaManager : ObservableObject { // Observableobject, dvs. andra vyer som kollar på klassens variabler
 
     var quizData: QuizData?
     var quizResults: QuizResults?
@@ -19,7 +19,7 @@ class TriviaManager : ObservableObject {
     var categoryNumbersArray = [0, 9, 10, 11, 12, 14, 15, 17, 22, 23, 25, 32]
     var difficultyArray = ["mix", "easy", "medium", "hard"]
     
-    @Published var isColorMode = true
+    @Published var isColorMode = true  //Publicerad variabel som tas emot på andra ställen!
     
     @Published var question: AttributedString = ""
     @Published var answerChoices: [Answer] = []
@@ -32,9 +32,7 @@ class TriviaManager : ObservableObject {
     
     @Published var progressBarProgress = 0.0
     var timerSounds = Sounds()
-    
-    
-    
+
     // Dessa fem variabler använder vi oss av för att lättare kunna navigera och se vad som händer när vi byter view.
      
     @Published var isSettingsViewActive = false {
@@ -66,10 +64,9 @@ class TriviaManager : ObservableObject {
     //Vår Core URL string
     
     let urlString = "https://opentdb.com/api.php"
-    
-    
+
     /**
-     I denna func decodar vi vår API.
+     I denna func decodar vi vår API. decodeAPIResults tar emot en url, skapar upp en URLSession, en datatask och en JSONDecoder.
      **/
     func decodeAPIResults(with url : URL)  {
         let session = URLSession(configuration: .default)
@@ -94,7 +91,7 @@ class TriviaManager : ObservableObject {
                         //För varje fråga i quizData.results
                         for questionObject in quizData.results {
                             var newQuestionObject = Question(questionData: questionObject)
-                            self.quizResults?.results.append(newQuestionObject)
+                            self.quizResults?.results.append(newQuestionObject) // binder vi en newQuestionObject till results arrayen
                             
                         }
                         self.nextQuestion()
@@ -107,7 +104,7 @@ class TriviaManager : ObservableObject {
     }
     /**
      En funktion som bygger upp URL strängen baserat på den inställning som görs i SettingsView. När en setting har valts så läggs den till i vår urstrungs URL
-     (rad 67).
+     (rad 66).
      **/
     func FetchTrivia(amount : Int, category : Int, difficulty : String) {
         guard var urlComps = URLComponents(string: self.urlString) else {
@@ -156,7 +153,10 @@ class TriviaManager : ObservableObject {
             isGameEnded = true
         }
     }
-    
+
+    /**Återställer alla inställningar till sina ursprungsvärden
+     */
+
     func resetGame() {
         print("reset game")
         index = 0
